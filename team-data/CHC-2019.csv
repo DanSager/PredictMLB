@@ -1,163 +1,188 @@
-gm#, date, location, opp, w/l
-1,2019-03-28,away,TEX,W
-2,2019-03-30,away,TEX,L
-3,2019-03-31,away,TEX,L
-4,2019-04-01,away,ATL,L
-5,2019-04-03,away,ATL,L
-6,2019-04-04,away,ATL,L
-7,2019-04-05,away,MIL,L
-8,2019-04-06,away,MIL,W
-9,2019-04-07,away,MIL,L
-10,2019-04-08,home,PIT,W
-11,2019-04-10,home,PIT,L
-12,2019-04-11,home,PIT,W
-13,2019-04-12,home,LAA,W
-14,2019-04-13,home,LAA,L
-15,2019-04-15,away,MIA,W
-16,2019-04-16,away,MIA,W
-17,2019-04-17,away,MIA,W
-18,2019-04-19,home,ARI,W
-19,2019-04-20,home,ARI,L
-20,2019-04-21,home,ARI,W
-21,2019-04-23,home,LAD,W
-22,2019-04-24,home,LAD,W
-23,2019-04-25,home,LAD,L
-24,2019-04-26,away,ARI,L
-25,2019-04-27,away,ARI,W
-26,2019-04-28,away,ARI,W
-27,2019-04-30,away,SEA,W
-28,2019-05-01,away,SEA,W
-29,2019-05-03,home,STL,W
-30,2019-05-04,home,STL,W
-31,2019-05-05,home,STL,W
-32,2019-05-06,home,MIA,L
-33,2019-05-07,home,MIA,W
-34,2019-05-08,home,MIA,W
-35,2019-05-09,home,MIA,W
-36,2019-05-10,home,MIL,L
-37,2019-05-11,home,MIL,W
-38,2019-05-12,home,MIL,W
-39,2019-05-14,away,CIN,W
-40,2019-05-15,away,CIN,L
-41,2019-05-16,away,CIN,L
-42,2019-05-17,away,WSN,W
-43,2019-05-18,away,WSN,L
-44,2019-05-19,away,WSN,W
-45,2019-05-20,home,PHI,L
-46,2019-05-21,home,PHI,W
-47,2019-05-22,home,PHI,W
-48,2019-05-23,home,PHI,L
-49,2019-05-24,home,CIN,L
-50,2019-05-25,home,CIN,W
-51,2019-05-26,home,CIN,L
-52,2019-05-27,away,HOU,L
-53,2019-05-28,away,HOU,L
-54,2019-05-29,away,HOU,W
-55,2019-05-31,away,STL,L
-56,2019-06-01,away,STL,L
-57,2019-06-02,away,STL,L
-58,2019-06-03,home,LAA,W
-59,2019-06-04,home,COL,W
-60,2019-06-05,home,COL,W
-61,2019-06-06,home,COL,L
-62,2019-06-07,home,STL,W
-63,2019-06-08,home,STL,W
-64,2019-06-09,home,STL,W
-65,2019-06-10,away,COL,L
-66,2019-06-11,away,COL,L
-67,2019-06-12,away,COL,W
-68,2019-06-13,away,LAD,L
-69,2019-06-14,away,LAD,L
-70,2019-06-15,away,LAD,W
-71,2019-06-16,away,LAD,L
-72,2019-06-18,home,CHW,L
-73,2019-06-19,home,CHW,W
-74,2019-06-20,home,NYM,W
-75,2019-06-21,home,NYM,L
-76,2019-06-22,home,NYM,L
-77,2019-06-23,home,NYM,W
-78,2019-06-24,home,ATL,W
-79,2019-06-25,home,ATL,L
-80,2019-06-26,home,ATL,L
-81,2019-06-27,home,ATL,W
-82,2019-06-28,away,CIN,L
-83,2019-06-29,away,CIN,W
-84,2019-06-30,away,CIN,L
-85,2019-07-01,away,PIT,L
-86,2019-07-02,away,PIT,L
-87,2019-07-03,away,PIT,L
-88,2019-07-04,away,PIT,W
-89,2019-07-06,away,CHW,W
-90,2019-07-07,away,CHW,L
-91,2019-07-12,home,PIT,W
-92,2019-07-13,home,PIT,W
-93,2019-07-14,home,PIT,W
-94,2019-07-15,home,CIN,L
-95,2019-07-16,home,CIN,W
-96,2019-07-17,home,CIN,W
-97,2019-07-19,home,SDP,W
-98,2019-07-20,home,SDP,W
-99,2019-07-21,home,SDP,L
-100,2019-07-22,away,SFG,L
-101,2019-07-23,away,SFG,L
-102,2019-07-24,away,SFG,W
-103,2019-07-26,away,MIL,L
-104,2019-07-27,away,MIL,L
-105,2019-07-28,away,MIL,W
-106,2019-07-30,away,STL,L
-107,2019-07-31,away,STL,W
-108,2019-08-01,away,STL,L
-109,2019-08-02,home,MIL,W
-110,2019-08-03,home,MIL,W
-111,2019-08-04,home,MIL,W
-112,2019-08-05,home,OAK,W
-113,2019-08-06,home,OAK,L
-114,2019-08-07,home,OAK,W
-115,2019-08-08,away,CIN,W
-116,2019-08-09,away,CIN,L
-117,2019-08-10,away,CIN,L
-118,2019-08-11,away,CIN,W
-119,2019-08-13,away,PHI,L
-120,2019-08-14,away,PHI,L
-121,2019-08-15,away,PHI,L
-122,2019-08-16,away,PIT,L
-123,2019-08-17,away,PIT,W
-124,2019-08-18,away,PIT,W
-125,2019-08-20,home,SFG,W
-126,2019-08-21,home,SFG,W
-127,2019-08-22,home,SFG,W
-128,2019-08-23,home,WSN,L
-129,2019-08-24,home,WSN,L
-130,2019-08-25,home,WSN,L
-131,2019-08-27,away,NYM,W
-132,2019-08-28,away,NYM,W
-133,2019-08-29,away,NYM,W
-134,2019-08-30,home,MIL,W
-135,2019-08-31,home,MIL,L
-136,2019-09-01,home,MIL,L
-137,2019-09-02,home,SEA,W
-138,2019-09-03,home,SEA,W
-139,2019-09-05,away,MIL,W
-140,2019-09-06,away,MIL,L
-141,2019-09-07,away,MIL,L
-142,2019-09-08,away,MIL,L
-143,2019-09-09,away,SDP,W
-144,2019-09-10,away,SDP,L
-145,2019-09-11,away,SDP,L
-146,2019-09-12,away,SDP,W
-147,2019-09-13,home,PIT,W
-148,2019-09-14,home,PIT,W
-149,2019-09-15,home,PIT,W
-150,2019-09-16,home,CIN,W
-151,2019-09-17,home,CIN,L
-152,2019-09-18,home,CIN,L
-153,2019-09-19,home,STL,L
-154,2019-09-20,home,STL,L
-155,2019-09-21,home,STL,L
-156,2019-09-22,home,STL,L
-157,2019-09-24,away,PIT,L
-158,2019-09-25,away,PIT,L
-159,2019-09-26,away,PIT,L
-160,2019-09-27,away,STL,W
-161,2019-09-28,away,STL,W
-162,2019-09-29,away,STL,L
+Overall W-L%, Home W-L%, Away W-L%
+.519,.630,.407
+
+Opponent, W-L%
+ARI,.667
+ATL,.286
+CHW,.500
+CIN,.421
+COL,.500
+HOU,.333
+LAA,.667
+LAD,.429
+MIA,.857
+MIL,.474
+NYM,.714
+OAK,.667
+PHI,.286
+PIT,.579
+SDP,.571
+SEA,1.000
+SFG,.667
+STL,.474
+TEX,.333
+WSN,.333
+
+gm#, date, location, opp, w/l, win, win ref, loss, loss ref
+1,2019-03-28,away,TEX,W,Jon Lester,/players/l/lestejo01.shtml,Mike Minor,/players/m/minormi01.shtml
+2,2019-03-30,away,TEX,L,Shawn Kelley,/players/k/kellesh01.shtml,Carl Edwards,/players/e/edwarca01.shtml
+3,2019-03-31,away,TEX,L,Jose Leclerc,/players/l/leclejo01.shtml,Pedro Strop,/players/s/stroppe01.shtml
+4,2019-04-01,away,ATL,L,Wes Parsons,/players/p/parsowe01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+5,2019-04-03,away,ATL,L,Luke Jackson,/players/j/jackslu01.shtml,Steve Cishek,/players/c/cishest01.shtml
+6,2019-04-04,away,ATL,L,Max Fried,/players/f/friedma01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+7,2019-04-05,away,MIL,L,Chase Anderson,/players/a/anderch01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+8,2019-04-06,away,MIL,W,Cole Hamels,/players/h/hamelco01.shtml,Corbin Burnes,/players/b/burneco01.shtml
+9,2019-04-07,away,MIL,L,Zach Davies,/players/d/davieza02.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+10,2019-04-08,home,PIT,W,Brad Brach,/players/b/brachbr01.shtml,Jameson Taillon,/players/t/taillja01.shtml
+11,2019-04-10,home,PIT,L,Jordan Lyles,/players/l/lylesjo01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+12,2019-04-11,home,PIT,W,Jose Quintana,/players/q/quintjo01.shtml,Joe Musgrove,/players/m/musgrjo01.shtml
+13,2019-04-12,home,LAA,W,Cole Hamels,/players/h/hamelco01.shtml,Tyler Skaggs,/players/s/skaggty01.shtml
+14,2019-04-13,home,LAA,L,Ty Buttrey,/players/b/buttrty01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+15,2019-04-15,away,MIA,W,Yu Darvish,/players/d/darviyu01.shtml,Trevor Richards,/players/r/richatr01.shtml
+16,2019-04-16,away,MIA,W,Jose Quintana,/players/q/quintjo01.shtml,Pablo Lopez,/players/l/lopezpa01.shtml
+17,2019-04-17,away,MIA,W,Cole Hamels,/players/h/hamelco01.shtml,Sandy Alcantara,/players/a/alcansa01.shtml
+18,2019-04-19,home,ARI,W,Kyle Hendricks,/players/h/hendrky01.shtml,Merrill Kelly,/players/k/kellyme01.shtml
+19,2019-04-20,home,ARI,L,Zack Greinke,/players/g/greinza01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+20,2019-04-21,home,ARI,W,Pedro Strop,/players/s/stroppe01.shtml,Archie Bradley,/players/b/bradlar01.shtml
+21,2019-04-23,home,LAD,W,Jose Quintana,/players/q/quintjo01.shtml,Kenta Maeda,/players/m/maedake01.shtml
+22,2019-04-24,home,LAD,W,Brad Brach,/players/b/brachbr01.shtml,Scott Alexander,/players/a/alexasc02.shtml
+23,2019-04-25,home,LAD,L,Pedro Baez,/players/b/baezpe01.shtml,Jon Lester,/players/l/lestejo01.shtml
+24,2019-04-26,away,ARI,L,Robbie Ray,/players/r/rayro02.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+25,2019-04-27,away,ARI,W,Yu Darvish,/players/d/darviyu01.shtml,Zack Godley,/players/g/godleza01.shtml
+26,2019-04-28,away,ARI,W,Tyler Chatwood,/players/c/chatwty01.shtml,Matt Andriese,/players/a/andrima01.shtml
+27,2019-04-30,away,SEA,W,Brad Brach,/players/b/brachbr01.shtml,Brandon Brennan,/players/b/brennbr01.shtml
+28,2019-05-01,away,SEA,W,Jon Lester,/players/l/lestejo01.shtml,Marco Gonzales,/players/g/gonzama02.shtml
+29,2019-05-03,home,STL,W,Kyle Hendricks,/players/h/hendrky01.shtml,Jack Flaherty,/players/f/flaheja01.shtml
+30,2019-05-04,home,STL,W,Brandon Kintzler,/players/k/kintzbr01.shtml,John Brebbia,/players/b/brebbjo01.shtml
+31,2019-05-05,home,STL,W,Jose Quintana,/players/q/quintjo01.shtml,Adam Wainwright,/players/w/wainwad01.shtml
+32,2019-05-06,home,MIA,L,Adam Conley,/players/c/conlead01.shtml,Pedro Strop,/players/s/stroppe01.shtml
+33,2019-05-07,home,MIA,W,Steve Cishek,/players/c/cishest01.shtml,Adam Conley,/players/c/conlead01.shtml
+34,2019-05-08,home,MIA,W,Carl Edwards,/players/e/edwarca01.shtml,Jose Quijada,/players/q/quijajo01.shtml
+35,2019-05-09,home,MIA,W,Mike Montgomery,/players/m/montgmi01.shtml,Trevor Richards,/players/r/richatr01.shtml
+36,2019-05-10,home,MIL,L,Gio Gonzalez,/players/g/gonzagi01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+37,2019-05-11,home,MIL,W,Tyler Chatwood,/players/c/chatwty01.shtml,Burch Smith,/players/s/smithbu03.shtml
+38,2019-05-12,home,MIL,W,Jon Lester,/players/l/lestejo01.shtml,Jhoulys Chacin,/players/c/chacijh01.shtml
+39,2019-05-14,away,CIN,W,Kyle Hendricks,/players/h/hendrky01.shtml,Tanner Roark,/players/r/roarkta01.shtml
+40,2019-05-15,away,CIN,L,Amir Garrett,/players/g/garream01.shtml,Brad Brach,/players/b/brachbr01.shtml
+41,2019-05-16,away,CIN,L,Luis Castillo,/players/c/castilu02.shtml,Jose Quintana,/players/q/quintjo01.shtml
+42,2019-05-17,away,WSN,W,Cole Hamels,/players/h/hamelco01.shtml,Max Scherzer,/players/s/scherma01.shtml
+43,2019-05-18,away,WSN,L,Stephen Strasburg,/players/s/strasst01.shtml,Jon Lester,/players/l/lestejo01.shtml
+44,2019-05-19,away,WSN,W,Kyle Hendricks,/players/h/hendrky01.shtml,Jeremy Hellickson,/players/h/hellije01.shtml
+45,2019-05-20,home,PHI,L,Hector Neris,/players/n/nerishe01.shtml,Kyle Ryan,/players/r/ryanky01.shtml
+46,2019-05-21,home,PHI,W,Kyle Ryan,/players/r/ryanky01.shtml,Juan Nicasio,/players/n/nicasju01.shtml
+47,2019-05-22,home,PHI,W,Tyler Chatwood,/players/c/chatwty01.shtml,Cole Irvin,/players/i/irvinco01.shtml
+48,2019-05-23,home,PHI,L,Aaron Nola,/players/n/nolaaa01.shtml,Jon Lester,/players/l/lestejo01.shtml
+49,2019-05-24,home,CIN,L,David Hernandez,/players/h/hernada01.shtml,Steve Cishek,/players/c/cishest01.shtml
+50,2019-05-25,home,CIN,W,Dillon Maples,/players/m/mapledi01.shtml,Jared Hughes,/players/h/hugheja02.shtml
+51,2019-05-26,home,CIN,L,Tanner Roark,/players/r/roarkta01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+52,2019-05-27,away,HOU,L,Gerrit Cole,/players/c/colege01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+53,2019-05-28,away,HOU,L,Josh James,/players/j/jamesjo02.shtml,Jon Lester,/players/l/lestejo01.shtml
+54,2019-05-29,away,HOU,W,Kyle Hendricks,/players/h/hendrky01.shtml,Wade Miley,/players/m/mileywa01.shtml
+55,2019-05-31,away,STL,L,Jordan Hicks,/players/h/hicksjo03.shtml,Mike Montgomery,/players/m/montgmi01.shtml
+56,2019-06-01,away,STL,L,John Gant,/players/g/gantjo01.shtml,Tyler Chatwood,/players/c/chatwty01.shtml
+57,2019-06-02,away,STL,L,Adam Wainwright,/players/w/wainwad01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+58,2019-06-03,home,LAA,W,Jon Lester,/players/l/lestejo01.shtml,Trevor Cahill,/players/c/cahiltr01.shtml
+59,2019-06-04,home,COL,W,Kyle Hendricks,/players/h/hendrky01.shtml,Jeff Hoffman,/players/h/hoffmje02.shtml
+60,2019-06-05,home,COL,W,Brandon Kintzler,/players/k/kintzbr01.shtml,German Marquez,/players/m/marquge01.shtml
+61,2019-06-06,home,COL,L,Peter Lambert,/players/l/lambepe01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+62,2019-06-07,home,STL,W,Cole Hamels,/players/h/hamelco01.shtml,Miles Mikolas,/players/m/mikolmi01.shtml
+63,2019-06-08,home,STL,W,Jon Lester,/players/l/lestejo01.shtml,John Brebbia,/players/b/brebbjo01.shtml
+64,2019-06-09,home,STL,W,Kyle Hendricks,/players/h/hendrky01.shtml,Adam Wainwright,/players/w/wainwad01.shtml
+65,2019-06-10,away,COL,L,Scott Oberg,/players/o/obergsc01.shtml,Steve Cishek,/players/c/cishest01.shtml
+66,2019-06-11,away,COL,L,Peter Lambert,/players/l/lambepe01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+67,2019-06-12,away,COL,W,Cole Hamels,/players/h/hamelco01.shtml,Antonio Senzatela,/players/s/senzaan01.shtml
+68,2019-06-13,away,LAD,L,Clayton Kershaw,/players/k/kershcl01.shtml,Jon Lester,/players/l/lestejo01.shtml
+69,2019-06-14,away,LAD,L,Rich Hill,/players/h/hillri01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+70,2019-06-15,away,LAD,W,Kyle Ryan,/players/r/ryanky01.shtml,Kenley Jansen,/players/j/janseke01.shtml
+71,2019-06-16,away,LAD,L,Ross Stripling,/players/s/stripro01.shtml,Steve Cishek,/players/c/cishest01.shtml
+72,2019-06-18,home,CHW,L,Evan Marshall,/players/m/marshev01.shtml,Pedro Strop,/players/s/stroppe01.shtml
+73,2019-06-19,home,CHW,W,Jon Lester,/players/l/lestejo01.shtml,Lucas Giolito,/players/g/giolilu01.shtml
+74,2019-06-20,home,NYM,W,Adbert Alzolay,/players/a/alzolad01.shtml,Walker Lockett,/players/l/lockewa01.shtml
+75,2019-06-21,home,NYM,L,Brooks Pounders,/players/p/poundbr01.shtml,Brad Brach,/players/b/brachbr01.shtml
+76,2019-06-22,home,NYM,L,Zack Wheeler,/players/w/wheelza01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+77,2019-06-23,home,NYM,W,Steve Cishek,/players/c/cishest01.shtml,Seth Lugo,/players/l/lugose01.shtml
+78,2019-06-24,home,ATL,W,Jon Lester,/players/l/lestejo01.shtml,Julio Teheran,/players/t/teherju01.shtml
+79,2019-06-25,home,ATL,L,Max Fried,/players/f/friedma01.shtml,Mike Montgomery,/players/m/montgmi01.shtml
+80,2019-06-26,home,ATL,L,Dallas Keuchel,/players/k/keuchda01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+81,2019-06-27,home,ATL,W,Tyler Chatwood,/players/c/chatwty01.shtml,Josh Tomlin,/players/t/tomlijo01.shtml
+82,2019-06-28,away,CIN,L,Sonny Gray,/players/g/grayso01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+83,2019-06-29,away,CIN,W,Jose Quintana,/players/q/quintjo01.shtml,Luis Castillo,/players/c/castilu02.shtml
+84,2019-06-30,away,CIN,L,Anthony DeSclafani,/players/d/desclan01.shtml,Jon Lester,/players/l/lestejo01.shtml
+85,2019-07-01,away,PIT,L,Trevor Williams,/players/w/willitr01.shtml,Adbert Alzolay,/players/a/alzolad01.shtml
+86,2019-07-02,away,PIT,L,Clay Holmes,/players/h/holmecl01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+87,2019-07-03,away,PIT,L,Richard Rodriguez,/players/r/rodriri05.shtml,Craig Kimbrel,/players/k/kimbrcr01.shtml
+88,2019-07-04,away,PIT,W,Jose Quintana,/players/q/quintjo01.shtml,Jordan Lyles,/players/l/lylesjo01.shtml
+89,2019-07-06,away,CHW,W,Jon Lester,/players/l/lestejo01.shtml,Lucas Giolito,/players/g/giolilu01.shtml
+90,2019-07-07,away,CHW,L,Ivan Nova,/players/n/novaiv01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+91,2019-07-12,home,PIT,W,Randy Rosario,/players/r/rosarra01.shtml,Kyle Crick,/players/c/crickky01.shtml
+92,2019-07-13,home,PIT,W,Jon Lester,/players/l/lestejo01.shtml,Jordan Lyles,/players/l/lylesjo01.shtml
+93,2019-07-14,home,PIT,W,Jose Quintana,/players/q/quintjo01.shtml,Trevor Williams,/players/w/willitr01.shtml
+94,2019-07-15,home,CIN,L,Luis Castillo,/players/c/castilu02.shtml,Steve Cishek,/players/c/cishest01.shtml
+95,2019-07-16,home,CIN,W,Steve Cishek,/players/c/cishest01.shtml,Raisel Iglesias,/players/i/iglesra01.shtml
+96,2019-07-17,home,CIN,W,Yu Darvish,/players/d/darviyu01.shtml,Sonny Gray,/players/g/grayso01.shtml
+97,2019-07-19,home,SDP,W,Pedro Strop,/players/s/stroppe01.shtml,Craig Stammen,/players/s/stammcr01.shtml
+98,2019-07-20,home,SDP,W,Jose Quintana,/players/q/quintjo01.shtml,Joey Lucchesi,/players/l/lucchjo01.shtml
+99,2019-07-21,home,SDP,L,Cal Quantrill,/players/q/quantca01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+100,2019-07-22,away,SFG,L,Trevor Gott,/players/g/gotttr01.shtml,Pedro Strop,/players/s/stroppe01.shtml
+101,2019-07-23,away,SFG,L,Sam Coonrod,/players/c/coonrsa01.shtml,Brad Brach,/players/b/brachbr01.shtml
+102,2019-07-24,away,SFG,W,Kyle Ryan,/players/r/ryanky01.shtml,Tyler Beede,/players/b/beedety01.shtml
+103,2019-07-26,away,MIL,L,Adrian Houser,/players/h/housead01.shtml,Brandon Kintzler,/players/k/kintzbr01.shtml
+104,2019-07-27,away,MIL,L,Freddy Peralta,/players/p/peralfr01.shtml,Craig Kimbrel,/players/k/kimbrcr01.shtml
+105,2019-07-28,away,MIL,W,Brad Brach,/players/b/brachbr01.shtml,Zach Davies,/players/d/davieza02.shtml
+106,2019-07-30,away,STL,L,Giovanny Gallegos,/players/g/gallegi01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+107,2019-07-31,away,STL,W,Kyle Hendricks,/players/h/hendrky01.shtml,Miles Mikolas,/players/m/mikolmi01.shtml
+108,2019-08-01,away,STL,L,Jack Flaherty,/players/f/flaheja01.shtml,Jon Lester,/players/l/lestejo01.shtml
+109,2019-08-02,home,MIL,W,Jose Quintana,/players/q/quintjo01.shtml,Zach Davies,/players/d/davieza02.shtml
+110,2019-08-03,home,MIL,W,Rowan Wick,/players/w/wickro01.shtml,Junior Guerra,/players/g/guerrju02.shtml
+111,2019-08-04,home,MIL,W,Yu Darvish,/players/d/darviyu01.shtml,Adrian Houser,/players/h/housead01.shtml
+112,2019-08-05,home,OAK,W,Rowan Wick,/players/w/wickro01.shtml,Blake Treinen,/players/t/treinbl01.shtml
+113,2019-08-06,home,OAK,L,Brett Anderson,/players/a/anderbr04.shtml,Jon Lester,/players/l/lestejo01.shtml
+114,2019-08-07,home,OAK,W,Jose Quintana,/players/q/quintjo01.shtml,Homer Bailey,/players/b/baileho02.shtml
+115,2019-08-08,away,CIN,W,Tyler Chatwood,/players/c/chatwty01.shtml,Kevin Gausman,/players/g/gausmke01.shtml
+116,2019-08-09,away,CIN,L,Trevor Bauer,/players/b/bauertr01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+117,2019-08-10,away,CIN,L,Sonny Gray,/players/g/grayso01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+118,2019-08-11,away,CIN,W,David Phelps,/players/p/phelpda01.shtml,Michael Lorenzen,/players/l/lorenmi01.shtml
+119,2019-08-13,away,PHI,L,Blake Parker,/players/p/parkebl01.shtml,Kyle Ryan,/players/r/ryanky01.shtml
+120,2019-08-14,away,PHI,L,Aaron Nola,/players/n/nolaaa01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+121,2019-08-15,away,PHI,L,Ranger Suarez,/players/s/suarera01.shtml,Pedro Strop,/players/s/stroppe01.shtml
+122,2019-08-16,away,PIT,L,Keone Kela,/players/k/kelake01.shtml,Brandon Kintzler,/players/k/kintzbr01.shtml
+123,2019-08-17,away,PIT,W,Jon Lester,/players/l/lestejo01.shtml,Steven Brault,/players/b/braulst01.shtml
+124,2019-08-18,away,PIT,W,Jose Quintana,/players/q/quintjo01.shtml,Mitch Keller,/players/k/kellemi03.shtml
+125,2019-08-20,home,SFG,W,Cole Hamels,/players/h/hamelco01.shtml,Fernando Abad,/players/a/abadfe01.shtml
+126,2019-08-21,home,SFG,W,Brandon Kintzler,/players/k/kintzbr01.shtml,Reyes Moronta,/players/m/moronre01.shtml
+127,2019-08-22,home,SFG,W,Kyle Hendricks,/players/h/hendrky01.shtml,Jeff Samardzija,/players/s/samarje01.shtml
+128,2019-08-23,home,WSN,L,Anibal Sanchez,/players/s/sanchan01.shtml,Jon Lester,/players/l/lestejo01.shtml
+129,2019-08-24,home,WSN,L,Wander Suero,/players/s/suerowa01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+130,2019-08-25,home,WSN,L,Daniel Hudson,/players/h/hudsoda01.shtml,Tyler Chatwood,/players/c/chatwty01.shtml
+131,2019-08-27,away,NYM,W,Yu Darvish,/players/d/darviyu01.shtml,Marcus Stroman,/players/s/stromma01.shtml
+132,2019-08-28,away,NYM,W,Kyle Ryan,/players/r/ryanky01.shtml,Noah Syndergaard,/players/s/syndeno01.shtml
+133,2019-08-29,away,NYM,W,Jon Lester,/players/l/lestejo01.shtml,Jacob deGrom,/players/d/degroja01.shtml
+134,2019-08-30,home,MIL,W,Jose Quintana,/players/q/quintjo01.shtml,Chase Anderson,/players/a/anderch01.shtml
+135,2019-08-31,home,MIL,L,Junior Guerra,/players/g/guerrju02.shtml,Cole Hamels,/players/h/hamelco01.shtml
+136,2019-09-01,home,MIL,L,Jay Jackson,/players/j/jacksja01.shtml,Tyler Chatwood,/players/c/chatwty01.shtml
+137,2019-09-02,home,SEA,W,David Phelps,/players/p/phelpda01.shtml,Matt Wisler,/players/w/wislema01.shtml
+138,2019-09-03,home,SEA,W,Jon Lester,/players/l/lestejo01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+139,2019-09-05,away,MIL,W,Jose Quintana,/players/q/quintjo01.shtml,Matt Albers,/players/a/alberma01.shtml
+140,2019-09-06,away,MIL,L,Zach Davies,/players/d/davieza02.shtml,Cole Hamels,/players/h/hamelco01.shtml
+141,2019-09-07,away,MIL,L,Josh Hader,/players/h/haderjo01.shtml,Brandon Kintzler,/players/k/kintzbr01.shtml
+142,2019-09-08,away,MIL,L,Brent Suter,/players/s/suterbr01.shtml,Jon Lester,/players/l/lestejo01.shtml
+143,2019-09-09,away,SDP,W,Kyle Hendricks,/players/h/hendrky01.shtml,Cal Quantrill,/players/q/quantca01.shtml
+144,2019-09-10,away,SDP,L,Michel Baez,/players/b/baezmi01.shtml,Steve Cishek,/players/c/cishest01.shtml
+145,2019-09-11,away,SDP,L,Chris Paddack,/players/p/paddach01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+146,2019-09-12,away,SDP,W,Yu Darvish,/players/d/darviyu01.shtml,Dinelson Lamet,/players/l/lametdi01.shtml
+147,2019-09-13,home,PIT,W,Jon Lester,/players/l/lestejo01.shtml,Steven Brault,/players/b/braulst01.shtml
+148,2019-09-14,home,PIT,W,Kyle Hendricks,/players/h/hendrky01.shtml,James Marvel,/players/m/marveja01.shtml
+149,2019-09-15,home,PIT,W,Brad Wieck,/players/w/wieckbr01.shtml,Trevor Williams,/players/w/willitr01.shtml
+150,2019-09-16,home,CIN,W,Alec Mills,/players/m/millsal02.shtml,Kevin Gausman,/players/g/gausmke01.shtml
+151,2019-09-17,home,CIN,L,Sonny Gray,/players/g/grayso01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+152,2019-09-18,home,CIN,L,Amir Garrett,/players/g/garream01.shtml,James Norwood,/players/n/norwoja01.shtml
+153,2019-09-19,home,STL,L,Andrew Miller,/players/m/millean01.shtml,Craig Kimbrel,/players/k/kimbrcr01.shtml
+154,2019-09-20,home,STL,L,Ryan Helsley,/players/h/helslry01.shtml,David Phelps,/players/p/phelpda01.shtml
+155,2019-09-21,home,STL,L,John Gant,/players/g/gantjo01.shtml,Craig Kimbrel,/players/k/kimbrcr01.shtml
+156,2019-09-22,home,STL,L,Tyler Webb,/players/w/webbty01.shtml,Yu Darvish,/players/d/darviyu01.shtml
+157,2019-09-24,away,PIT,L,Francisco Liriano,/players/l/liriafr01.shtml,Kyle Hendricks,/players/h/hendrky01.shtml
+158,2019-09-25,away,PIT,L,Michael Feliz,/players/f/felizmi01.shtml,Brad Wieck,/players/w/wieckbr01.shtml
+159,2019-09-26,away,PIT,L,Joe Musgrove,/players/m/musgrjo01.shtml,Jose Quintana,/players/q/quintjo01.shtml
+160,2019-09-27,away,STL,W,Brad Wieck,/players/w/wieckbr01.shtml,Andrew Miller,/players/m/millean01.shtml
+161,2019-09-28,away,STL,W,Steve Cishek,/players/c/cishest01.shtml,Adam Wainwright,/players/w/wainwad01.shtml
+162,2019-09-29,away,STL,L,Jack Flaherty,/players/f/flaheja01.shtml,Derek Holland,/players/h/hollade01.shtml

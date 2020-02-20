@@ -1,0 +1,187 @@
+Overall W-L%, Home W-L%, Away W-L%
+.599,.617,.580
+
+Opponent, W-L%
+ARI,.667
+BAL,.833
+BOS,.667
+CHW,.714
+CLE,.667
+COL,.000
+DET,1.000
+HOU,.368
+KCR,.714
+LAA,.474
+LAD,.500
+MIN,.714
+NYY,.500
+SDP,1.000
+SEA,.474
+SFG,.667
+TBR,.286
+TEX,.684
+TOR,1.000
+
+gm#, date, location, opp, w/l, win, win ref, loss, loss ref
+1,2018-03-29,home,LAA,W,Chris Hatcher,/players/h/hatchch02.shtml,Noe Ramirez,/players/r/ramirno01.shtml
+2,2018-03-30,home,LAA,L,Tyler Skaggs,/players/s/skaggty01.shtml,Sean Manaea,/players/m/manaese01.shtml
+3,2018-03-31,home,LAA,L,Matt Shoemaker,/players/s/shoemma01.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+4,2018-04-01,home,LAA,L,Shohei Ohtani,/players/o/ohtansh01.shtml,Daniel Gossett,/players/g/gosseda01.shtml
+5,2018-04-02,home,TEX,W,Chris Hatcher,/players/h/hatchch02.shtml,Kevin Jepsen,/players/j/jepseke01.shtml
+6,2018-04-03,home,TEX,L,Cole Hamels,/players/h/hamelco01.shtml,Kendall Graveman,/players/g/graveke01.shtml
+7,2018-04-04,home,TEX,W,Sean Manaea,/players/m/manaese01.shtml,Doug Fister,/players/f/fistedo01.shtml
+8,2018-04-05,home,TEX,L,Martin Perez,/players/p/perezma02.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+9,2018-04-06,away,LAA,L,Jim Johnson,/players/j/johnsji04.shtml,Blake Treinen,/players/t/treinbl01.shtml
+10,2018-04-07,away,LAA,W,Andrew Triggs,/players/t/triggan01.shtml,JC Ramirez,/players/r/ramirjc01.shtml
+11,2018-04-08,away,LAA,L,Shohei Ohtani,/players/o/ohtansh01.shtml,Kendall Graveman,/players/g/graveke01.shtml
+12,2018-04-10,away,LAD,L,Hyun-Jin Ryu,/players/r/ryuhy01.shtml,Sean Manaea,/players/m/manaese01.shtml
+13,2018-04-11,away,LAD,W,Daniel Mengden,/players/m/mengdda01.shtml,Alex Wood,/players/w/woodal02.shtml
+14,2018-04-13,away,SEA,L,Dan Altavilla,/players/a/altavda01.shtml,Danny Coulombe,/players/c/couloda01.shtml
+15,2018-04-14,away,SEA,L,Chasen Bradford,/players/b/bradfch02.shtml,Kendall Graveman,/players/g/graveke01.shtml
+16,2018-04-15,away,SEA,W,Sean Manaea,/players/m/manaese01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+17,2018-04-16,home,CHW,W,Daniel Mengden,/players/m/mengdda01.shtml,Reynaldo Lopez,/players/l/lopezre01.shtml
+18,2018-04-17,home,CHW,W,Trevor Cahill,/players/c/cahiltr01.shtml,Miguel Gonzalez,/players/g/gonzami03.shtml
+19,2018-04-18,home,CHW,W,Lou Trivino,/players/t/trivilo01.shtml,James Shields,/players/s/shielja02.shtml
+20,2018-04-20,home,BOS,L,Hector Velazquez,/players/v/velazhe01.shtml,Kendall Graveman,/players/g/graveke01.shtml
+21,2018-04-21,home,BOS,W,Sean Manaea,/players/m/manaese01.shtml,Chris Sale,/players/s/salech01.shtml
+22,2018-04-22,home,BOS,W,Blake Treinen,/players/t/treinbl01.shtml,David Price,/players/p/priceda01.shtml
+23,2018-04-23,away,TEX,W,Ryan Buchter,/players/b/buchtry01.shtml,Kevin Jepsen,/players/j/jepseke01.shtml
+24,2018-04-24,away,TEX,W,Andrew Triggs,/players/t/triggan01.shtml,Cole Hamels,/players/h/hamelco01.shtml
+25,2018-04-25,away,TEX,L,Jesse Chavez,/players/c/chaveje01.shtml,Kendall Graveman,/players/g/graveke01.shtml
+26,2018-04-27,away,HOU,W,Sean Manaea,/players/m/manaese01.shtml,Dallas Keuchel,/players/k/keuchda01.shtml
+27,2018-04-28,away,HOU,L,Lance McCullers,/players/m/mcculla02.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+28,2018-04-29,away,HOU,L,Will Harris,/players/h/harriwi10.shtml,Trevor Cahill,/players/c/cahiltr01.shtml
+29,2018-05-01,away,SEA,L,Felix Hernandez,/players/h/hernafe02.shtml,Andrew Triggs,/players/t/triggan01.shtml
+30,2018-05-02,away,SEA,W,Blake Treinen,/players/t/treinbl01.shtml,Edwin Diaz,/players/d/diazed04.shtml
+31,2018-05-03,away,SEA,L,Chasen Bradford,/players/b/bradfch02.shtml,Sean Manaea,/players/m/manaese01.shtml
+32,2018-05-04,home,BAL,W,Lou Trivino,/players/t/trivilo01.shtml,Brad Brach,/players/b/brachbr01.shtml
+33,2018-05-05,home,BAL,W,Chris Hatcher,/players/h/hatchch02.shtml,Pedro Araujo,/players/a/araujpe01.shtml
+34,2018-05-06,home,BAL,W,Andrew Triggs,/players/t/triggan01.shtml,Alex Cobb,/players/c/cobbal01.shtml
+35,2018-05-07,home,HOU,L,Dallas Keuchel,/players/k/keuchda01.shtml,Brett Anderson,/players/a/anderbr04.shtml
+36,2018-05-08,home,HOU,L,Lance McCullers,/players/m/mcculla02.shtml,Sean Manaea,/players/m/manaese01.shtml
+37,2018-05-09,home,HOU,L,Gerrit Cole,/players/c/colege01.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+38,2018-05-11,away,NYY,W,Kendall Graveman,/players/g/graveke01.shtml,Sonny Gray,/players/g/grayso01.shtml
+39,2018-05-12,away,NYY,L,A.J. Cole,/players/c/coleaj01.shtml,Chris Hatcher,/players/h/hatchch02.shtml
+40,2018-05-13,away,NYY,L,Luis Severino,/players/s/severlu01.shtml,Brett Anderson,/players/a/anderbr04.shtml
+41,2018-05-14,away,BOS,W,Sean Manaea,/players/m/manaese01.shtml,Rick Porcello,/players/p/porceri01.shtml
+42,2018-05-15,away,BOS,W,Daniel Mengden,/players/m/mengdda01.shtml,Eduardo Rodriguez,/players/r/rodried05.shtml
+43,2018-05-16,away,BOS,L,Chris Sale,/players/s/salech01.shtml,Trevor Cahill,/players/c/cahiltr01.shtml
+44,2018-05-17,away,TOR,W,Yusmeiro Petit,/players/p/petityu01.shtml,Aaron Sanchez,/players/s/sanchaa01.shtml
+45,2018-05-18,away,TOR,W,Danny Coulombe,/players/c/couloda01.shtml,Marco Estrada,/players/e/estrama01.shtml
+46,2018-05-19,away,TOR,W,Emilio Pagan,/players/p/paganem01.shtml,Tyler Clippard,/players/c/clippty01.shtml
+47,2018-05-20,away,TOR,W,Daniel Mengden,/players/m/mengdda01.shtml,Joe Biagini,/players/b/biagijo01.shtml
+48,2018-05-22,home,SEA,L,Nick Vincent,/players/v/vinceni01.shtml,Yusmeiro Petit,/players/p/petityu01.shtml
+49,2018-05-23,home,SEA,L,Marco Gonzales,/players/g/gonzama02.shtml,Daniel Gossett,/players/g/gosseda01.shtml
+50,2018-05-24,home,SEA,W,Yusmeiro Petit,/players/p/petityu01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+51,2018-05-25,home,ARI,L,Patrick Corbin,/players/c/corbipa01.shtml,Sean Manaea,/players/m/manaese01.shtml
+52,2018-05-26,home,ARI,W,Daniel Mengden,/players/m/mengdda01.shtml,Clay Buchholz,/players/b/buchhcl01.shtml
+53,2018-05-27,home,ARI,W,Frankie Montas,/players/m/montafr02.shtml,Zack Greinke,/players/g/greinza01.shtml
+54,2018-05-28,home,TBR,L,Ryne Stanek,/players/s/stanery01.shtml,Chris Hatcher,/players/h/hatchch02.shtml
+55,2018-05-29,home,TBR,L,Blake Snell,/players/s/snellbl01.shtml,Daniel Gossett,/players/g/gosseda01.shtml
+56,2018-05-30,home,TBR,L,Nathan Eovaldi,/players/e/eovalna01.shtml,Sean Manaea,/players/m/manaese01.shtml
+57,2018-05-31,home,TBR,W,Daniel Mengden,/players/m/mengdda01.shtml,Ryne Stanek,/players/s/stanery01.shtml
+58,2018-06-01,away,KCR,W,Frankie Montas,/players/m/montafr02.shtml,Ian Kennedy,/players/k/kenneia01.shtml
+59,2018-06-02,away,KCR,L,Tim Hill,/players/h/hillti01.shtml,Yusmeiro Petit,/players/p/petityu01.shtml
+60,2018-06-03,away,KCR,W,Lou Trivino,/players/t/trivilo01.shtml,Jakob Junis,/players/j/junisja01.shtml
+61,2018-06-05,away,TEX,L,Chris Martin,/players/m/martich02.shtml,Lou Trivino,/players/t/trivilo01.shtml
+62,2018-06-06,away,TEX,L,Bartolo Colon,/players/c/colonba01.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+63,2018-06-07,home,KCR,W,Paul Blackburn,/players/b/blackpa01.shtml,Jason Hammel,/players/h/hammeja01.shtml
+64,2018-06-08,home,KCR,W,Frankie Montas,/players/m/montafr02.shtml,Jakob Junis,/players/j/junisja01.shtml
+65,2018-06-09,home,KCR,L,Danny Duffy,/players/d/duffyda01.shtml,Chris Bassitt,/players/b/bassich01.shtml
+66,2018-06-10,home,KCR,W,Blake Treinen,/players/t/treinbl01.shtml,Jason Adam,/players/a/adamja01.shtml
+67,2018-06-12,home,HOU,L,Lance McCullers,/players/m/mcculla02.shtml,Daniel Mengden,/players/m/mengdda01.shtml
+68,2018-06-13,home,HOU,L,Gerrit Cole,/players/c/colege01.shtml,Paul Blackburn,/players/b/blackpa01.shtml
+69,2018-06-14,home,HOU,L,Justin Verlander,/players/v/verlaju01.shtml,Frankie Montas,/players/m/montafr02.shtml
+70,2018-06-15,home,LAA,L,Tyler Skaggs,/players/s/skaggty01.shtml,Chris Bassitt,/players/b/bassich01.shtml
+71,2018-06-16,home,LAA,W,Sean Manaea,/players/m/manaese01.shtml,Noe Ramirez,/players/r/ramirno01.shtml
+72,2018-06-17,home,LAA,W,Blake Treinen,/players/t/treinbl01.shtml,Jake Jewell,/players/j/jewelja01.shtml
+73,2018-06-19,away,SDP,W,Lou Trivino,/players/t/trivilo01.shtml,Adam Cimber,/players/c/cimbead01.shtml
+74,2018-06-20,away,SDP,W,Frankie Montas,/players/m/montafr02.shtml,Joey Lucchesi,/players/l/lucchjo01.shtml
+75,2018-06-22,away,CHW,W,Sean Manaea,/players/m/manaese01.shtml,James Shields,/players/s/shielja02.shtml
+76,2018-06-22,away,CHW,L,Lucas Giolito,/players/g/giolilu01.shtml,Chris Bassitt,/players/b/bassich01.shtml
+77,2018-06-23,away,CHW,W,Lou Trivino,/players/t/trivilo01.shtml,Juan Minaya,/players/m/minayju01.shtml
+78,2018-06-24,away,CHW,L,Carlos Rodon,/players/r/rodonca01.shtml,Paul Blackburn,/players/b/blackpa01.shtml
+79,2018-06-25,away,DET,W,Lou Trivino,/players/t/trivilo01.shtml,Shane Greene,/players/g/greensh02.shtml
+80,2018-06-26,away,DET,W,Ryan Buchter,/players/b/buchtry01.shtml,Shane Greene,/players/g/greensh02.shtml
+81,2018-06-27,away,DET,W,Chris Bassitt,/players/b/bassich01.shtml,Mike Fiers,/players/f/fiersmi01.shtml
+82,2018-06-28,away,DET,W,Sean Manaea,/players/m/manaese01.shtml,Michael Fulmer,/players/f/fulmemi01.shtml
+83,2018-06-29,home,CLE,W,Paul Blackburn,/players/b/blackpa01.shtml,Trevor Bauer,/players/b/bauertr01.shtml
+84,2018-06-30,home,CLE,W,Edwin Jackson,/players/j/jacksed01.shtml,Adam Plutko,/players/p/plutkad01.shtml
+85,2018-07-01,home,CLE,L,Mike Clevinger,/players/c/clevimi01.shtml,Frankie Montas,/players/m/montafr02.shtml
+86,2018-07-03,home,SDP,W,Emilio Pagan,/players/p/paganem01.shtml,Clayton Richard,/players/r/richacl01.shtml
+87,2018-07-04,home,SDP,W,Lou Trivino,/players/t/trivilo01.shtml,Jose Castillo,/players/c/castijo03.shtml
+88,2018-07-06,away,CLE,L,Carlos Carrasco,/players/c/carraca01.shtml,Paul Blackburn,/players/b/blackpa01.shtml
+89,2018-07-07,away,CLE,W,Blake Treinen,/players/t/treinbl01.shtml,Josh Tomlin,/players/t/tomlijo01.shtml
+90,2018-07-08,away,CLE,W,Brett Anderson,/players/a/anderbr04.shtml,Shane Bieber,/players/b/biebesh01.shtml
+91,2018-07-09,away,HOU,W,Frankie Montas,/players/m/montafr02.shtml,Brad Peacock,/players/p/peacobr01.shtml
+92,2018-07-10,away,HOU,L,Collin McHugh,/players/m/mchugco01.shtml,Blake Treinen,/players/t/treinbl01.shtml
+93,2018-07-11,away,HOU,W,Chris Bassitt,/players/b/bassich01.shtml,Lance McCullers,/players/m/mcculla02.shtml
+94,2018-07-12,away,HOU,W,Yusmeiro Petit,/players/p/petityu01.shtml,Chris Devenski,/players/d/devench02.shtml
+95,2018-07-13,away,SFG,L,Madison Bumgarner,/players/b/bumgama01.shtml,Edwin Jackson,/players/j/jacksed01.shtml
+96,2018-07-14,away,SFG,W,Yusmeiro Petit,/players/p/petityu01.shtml,Tony Watson,/players/w/watsoto01.shtml
+97,2018-07-15,away,SFG,W,Sean Manaea,/players/m/manaese01.shtml,Andrew Suarez,/players/s/suarean01.shtml
+98,2018-07-20,home,SFG,L,Dereck Rodriguez,/players/r/rodride01.shtml,Edwin Jackson,/players/j/jacksed01.shtml
+99,2018-07-21,home,SFG,W,Yusmeiro Petit,/players/p/petityu01.shtml,Will Smith,/players/s/smithwi04.shtml
+100,2018-07-22,home,SFG,W,Jeurys Familia,/players/f/familje01.shtml,Ty Blach,/players/b/blachty01.shtml
+101,2018-07-23,away,TEX,W,Brett Anderson,/players/a/anderbr04.shtml,Cole Hamels,/players/h/hamelco01.shtml
+102,2018-07-24,away,TEX,W,Jeurys Familia,/players/f/familje01.shtml,Austin Bibens-Dirkx,/players/b/bibenau01.shtml
+103,2018-07-25,away,TEX,W,Lou Trivino,/players/t/trivilo01.shtml,Jose Leclerc,/players/l/leclejo01.shtml
+104,2018-07-26,away,TEX,W,Trevor Cahill,/players/c/cahiltr01.shtml,Bartolo Colon,/players/c/colonba01.shtml
+105,2018-07-27,away,COL,L,Kyle Freeland,/players/f/freelky01.shtml,Sean Manaea,/players/m/manaese01.shtml
+106,2018-07-28,away,COL,L,Antonio Senzatela,/players/s/senzaan01.shtml,Brett Anderson,/players/a/anderbr04.shtml
+107,2018-07-29,away,COL,L,German Marquez,/players/m/marquge01.shtml,Frankie Montas,/players/m/montafr02.shtml
+108,2018-07-30,home,TOR,W,Edwin Jackson,/players/j/jacksed01.shtml,Marco Estrada,/players/e/estrama01.shtml
+109,2018-07-31,home,TOR,W,Trevor Cahill,/players/c/cahiltr01.shtml,Sam Gaviglio,/players/g/gavigsa01.shtml
+110,2018-08-01,home,TOR,W,Sean Manaea,/players/m/manaese01.shtml,Marcus Stroman,/players/s/stromma01.shtml
+111,2018-08-03,home,DET,W,Emilio Pagan,/players/p/paganem01.shtml,Buck Farmer,/players/f/farmebu01.shtml
+112,2018-08-04,home,DET,W,Edwin Jackson,/players/j/jacksed01.shtml,Jordan Zimmermann,/players/z/zimmejo02.shtml
+113,2018-08-05,home,DET,W,Trevor Cahill,/players/c/cahiltr01.shtml,Francisco Liriano,/players/l/liriafr01.shtml
+114,2018-08-07,home,LAD,L,Rich Hill,/players/h/hillri01.shtml,Sean Manaea,/players/m/manaese01.shtml
+115,2018-08-08,home,LAD,W,Jeurys Familia,/players/f/familje01.shtml,JT Chargois,/players/c/chargjt01.shtml
+116,2018-08-10,away,LAA,L,Jim Johnson,/players/j/johnsji04.shtml,Lou Trivino,/players/t/trivilo01.shtml
+117,2018-08-11,away,LAA,W,Edwin Jackson,/players/j/jacksed01.shtml,Tyler Skaggs,/players/s/skaggty01.shtml
+118,2018-08-12,away,LAA,W,Fernando Rodney,/players/r/rodnefe01.shtml,Jim Johnson,/players/j/johnsji04.shtml
+119,2018-08-13,home,SEA,W,Sean Manaea,/players/m/manaese01.shtml,Marco Gonzales,/players/g/gonzama02.shtml
+120,2018-08-14,home,SEA,W,Mike Fiers,/players/f/fiersmi01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+121,2018-08-15,home,SEA,L,James Pazos,/players/p/pazosja01.shtml,Yusmeiro Petit,/players/p/petityu01.shtml
+122,2018-08-17,home,HOU,W,Blake Treinen,/players/t/treinbl01.shtml,Tony Sipp,/players/s/sippto01.shtml
+123,2018-08-18,home,HOU,W,Trevor Cahill,/players/c/cahiltr01.shtml,Dallas Keuchel,/players/k/keuchda01.shtml
+124,2018-08-19,home,HOU,L,Justin Verlander,/players/v/verlaju01.shtml,Sean Manaea,/players/m/manaese01.shtml
+125,2018-08-20,home,TEX,W,Mike Fiers,/players/f/fiersmi01.shtml,Bartolo Colon,/players/c/colonba01.shtml
+126,2018-08-21,home,TEX,W,Brett Anderson,/players/a/anderbr04.shtml,Ariel Jurado,/players/j/juradar01.shtml
+127,2018-08-22,home,TEX,L,Mike Minor,/players/m/minormi01.shtml,Edwin Jackson,/players/j/jacksed01.shtml
+128,2018-08-23,away,MIN,L,Alan Busenitz,/players/b/busenal01.shtml,Trevor Cahill,/players/c/cahiltr01.shtml
+129,2018-08-24,away,MIN,W,Sean Manaea,/players/m/manaese01.shtml,Jake Odorizzi,/players/o/odorija01.shtml
+130,2018-08-25,away,MIN,W,Mike Fiers,/players/f/fiersmi01.shtml,Stephen Gonsalves,/players/g/gonsast01.shtml
+131,2018-08-26,away,MIN,W,Ryan Buchter,/players/b/buchtry01.shtml,Jose Berrios,/players/b/berrijo01.shtml
+132,2018-08-27,away,HOU,L,Gerrit Cole,/players/c/colege01.shtml,Brett Anderson,/players/a/anderbr04.shtml
+133,2018-08-28,away,HOU,W,Jeurys Familia,/players/f/familje01.shtml,Roberto Osuna,/players/o/osunaro01.shtml
+134,2018-08-29,away,HOU,L,Roberto Osuna,/players/o/osunaro01.shtml,Jeurys Familia,/players/f/familje01.shtml
+135,2018-08-30,home,SEA,L,Wade LeBlanc,/players/l/leblawa01.shtml,Frankie Montas,/players/m/montafr02.shtml
+136,2018-08-31,home,SEA,W,Yusmeiro Petit,/players/p/petityu01.shtml,Mike Leake,/players/l/leakemi01.shtml
+137,2018-09-01,home,SEA,L,James Paxton,/players/p/paxtoja01.shtml,Liam Hendriks,/players/h/hendrli01.shtml
+138,2018-09-02,home,SEA,W,Edwin Jackson,/players/j/jacksed01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+139,2018-09-03,home,NYY,W,Trevor Cahill,/players/c/cahiltr01.shtml,CC Sabathia,/players/s/sabatc.01.shtml
+140,2018-09-04,home,NYY,L,David Robertson,/players/r/roberda08.shtml,Fernando Rodney,/players/r/rodnefe01.shtml
+141,2018-09-05,home,NYY,W,Mike Fiers,/players/f/fiersmi01.shtml,Luis Severino,/players/s/severlu01.shtml
+142,2018-09-07,home,TEX,W,Yusmeiro Petit,/players/p/petityu01.shtml,Yovani Gallardo,/players/g/gallayo01.shtml
+143,2018-09-08,home,TEX,W,Ryan Buchter,/players/b/buchtry01.shtml,Chris Martin,/players/m/martich02.shtml
+144,2018-09-09,home,TEX,W,Shawn Kelley,/players/k/kellesh01.shtml,Ariel Jurado,/players/j/juradar01.shtml
+145,2018-09-11,away,BAL,W,Mike Fiers,/players/f/fiersmi01.shtml,Mike Wright,/players/w/wrighmi01.shtml
+146,2018-09-12,away,BAL,W,Daniel Mengden,/players/m/mengdda01.shtml,Andrew Cashner,/players/c/cashnan01.shtml
+147,2018-09-13,away,BAL,L,Dylan Bundy,/players/b/bundydy01.shtml,Brett Anderson,/players/a/anderbr04.shtml
+148,2018-09-14,away,TBR,W,Blake Treinen,/players/t/treinbl01.shtml,Jaime Schultz,/players/s/schulja02.shtml
+149,2018-09-15,away,TBR,L,Andrew Kittredge,/players/k/kittran01.shtml,Jeurys Familia,/players/f/familje01.shtml
+150,2018-09-16,away,TBR,L,Andrew Kittredge,/players/k/kittran01.shtml,Mike Fiers,/players/f/fiersmi01.shtml
+151,2018-09-18,home,LAA,L,Noe Ramirez,/players/r/ramirno01.shtml,Lou Trivino,/players/t/trivilo01.shtml
+152,2018-09-19,home,LAA,W,Brett Anderson,/players/a/anderbr04.shtml,Felix Pena,/players/p/penafe01.shtml
+153,2018-09-20,home,LAA,W,Edwin Jackson,/players/j/jacksed01.shtml,Matt Shoemaker,/players/s/shoemma01.shtml
+154,2018-09-21,home,MIN,W,Blake Treinen,/players/t/treinbl01.shtml,Matt Magill,/players/m/magilma01.shtml
+155,2018-09-22,home,MIN,W,Blake Treinen,/players/t/treinbl01.shtml,Trevor Hildenberger,/players/h/hildetr01.shtml
+156,2018-09-23,home,MIN,L,Kyle Gibson,/players/g/gibsoky01.shtml,Trevor Cahill,/players/c/cahiltr01.shtml
+157,2018-09-24,away,SEA,W,Ryan Buchter,/players/b/buchtry01.shtml,Shawn Armstrong,/players/a/armstsh01.shtml
+158,2018-09-25,away,SEA,L,Alex Colome,/players/c/colomal01.shtml,Emilio Pagan,/players/p/paganem01.shtml
+159,2018-09-26,away,SEA,W,Ryan Buchter,/players/b/buchtry01.shtml,Felix Hernandez,/players/h/hernafe02.shtml
+160,2018-09-28,away,LAA,L,Taylor Cole,/players/c/coleta01.shtml,Mike Fiers,/players/f/fiersmi01.shtml
+161,2018-09-29,away,LAA,W,Trevor Cahill,/players/c/cahiltr01.shtml,Tyler Skaggs,/players/s/skaggty01.shtml
+162,2018-09-30,away,LAA,L,Parker Bridwell,/players/b/bridwpa01.shtml,Chris Hatcher,/players/h/hatchch02.shtml

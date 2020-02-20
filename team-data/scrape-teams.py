@@ -1,65 +1,102 @@
-from urllib.request import urlopen as uReq
-#pip install bs4
-from bs4 import BeautifulSoup as soup
+from urllib.request import urlopen as ureq
+# pip install bs4
+from bs4 import BeautifulSoup as Soup
+from bs4 import Comment as Com
 
-teams = set(['LAA', 'CHC', 'SDP', 'MIA', 'ATL', 'BAL', 'ARI', 'BOS', 'WSN', 'PHI', 'NYM', 'MIN', 'TOR', 'OAK', 'SFG', 'COL', 'LAD', 'MIL', 'SEA', 'CIN', 'PIT', 'DET', 'HOU', 'KCR', 'CHW', 'CLE', 'TBR', 'NYY', 'STL', 'TEX'])
-years = set(['2019'])
 
-#team = "NYM"
-#year = "2019"
+def extract_data():
+    teams = {'LAA', 'CHC', 'SDP', 'MIA', 'ATL', 'BAL', 'ARI', 'BOS', 'WSN', 'PHI', 'NYM', 'MIN', 'TOR', 'OAK', 'SFG',
+             'COL', 'LAD', 'MIL', 'SEA', 'CIN', 'PIT', 'DET', 'HOU', 'KCR', 'CHW', 'CLE', 'TBR', 'NYY', 'STL', 'TEX'}
+    years = {'2018', '2019'}
+    # teams = {'NYM'}
 
-for year in years:
-    for team in teams:
-        myurl = 'https://www.baseball-reference.com/teams/'+ team + "/" + year + '-schedule-scores.shtml'
+    for year in years:
+        for team in teams:
+            myurl = 'https://www.baseball-reference.com/teams/' + team + "/" + year + '-schedule-scores.shtml'
 
-        filename = team + "-" + year + ".csv"
-        f = open(filename, "w")
-        header = "gm#, date, location, opp, w/l\n"
-        f.write(header)
+            # opening connection, grabbing page
+            uClient = ureq(myurl)
+            page_html = uClient.read()
+            uClient.close()
 
-        # opening connection, grabbing page
-        uClient = uReq(myurl)
-        page_html = uClient.read()
-        uClient.close()
+            # html parsing
+            page_soup = Soup(page_html, "html.parser")
 
-        # html parsing
-        page_soup = soup(page_html, "html.parser")
+            # open up team file
+            filename = team + "-" + year + ".csv"
+            f = open(filename, "w")
 
-        # grab each product
-        games_container = page_soup.findAll("table",{"id":"team_schedule"})
+            # read 'Team Win/Loss Splits Table'
+            year_container = page_soup.find("div", {"id": "all_win_loss"})
+            commentsoup = Soup(year_container.find(text=lambda text: isinstance(text, Com)), "html.parser")
 
-        games = games_container[0].tbody.findAll("tr",{"class":""})
+            # read year win/loss splits
+            year_header = "Overall W-L%, Home W-L%, Away W-L%\n"
+            f.write(year_header)
+            column_one = commentsoup.find("div", {"id": "win_loss_1"})
+            overall_win_loss = column_one.findAll("tr")[2].findAll("td")[5].text
+            home_win_loss = column_one.findAll("tr")[5].findAll("td")[5].text
+            away_win_loss = column_one.findAll("tr")[6].findAll("td")[5].text
+            f.write(overall_win_loss.replace(" ", "") + "," + home_win_loss.replace(" ", "") + ","
+                    + away_win_loss.replace(" ", "") + "\n\n")
 
-        for game in games:
-            try:
-                print(game)
-                gm_num_container = game.findAll("th",{"data-stat":"team_game"})
-                gm_num = gm_num_container[0].text
-                print(gm_num)
+            # read opponent win/loss split
+            opponent_header = "Opponent, W-L%\n"
+            f.write(opponent_header)
+            column_three = commentsoup.find("div", {"id": "win_loss_3"})
+            opponent_stat_container = column_three.findAll("tr")
+            for opponent_stat in opponent_stat_container[2:]:
+                opponent_name = opponent_stat.findAll("td")[0].text
+                opponent_win_loss = opponent_stat.findAll("td")[5].text
+                f.write(opponent_name + "," + opponent_win_loss.replace(" ", "") + "\n")
+            f.write("\n")
 
-                date_container = game.findAll("td",{"data-stat":"date_game"})
-                date = date_container[0]["csk"]
-                print(date)
+            # grab each game
+            game_header = "gm#, date, location, opp, w/l, win, win ref, loss, loss ref\n"
+            f.write(game_header)
+            games_container = page_soup.findAll("table", {"id": "team_schedule"})
+            games = games_container[0].tbody.findAll("tr", {"class": ""})
 
-                location_container = game.findAll("td",{"data-stat":"homeORvis"})
-                if (location_container[0].text == "@"):
-                    location = "away"
-                else:
-                    location = "home"
-                print(location)
+            for game in games:
+                # set defaults
+                num = date = location = opp = outcome = win = win_ref = loss = loss_ref = ""
 
-                opp_container = game.findAll("td",{"data-stat":"opp_ID"})
-                opp = opp_container[0].a.text
-                print(opp)
+                try:
+                    num_container = game.findAll("th", {"data-stat": "team_game"})
+                    num = num_container[0].text
 
-                outcome_container = game.findAll("td",{"data-stat":"win_loss_result"})
-                outcome = (outcome_container[0].text)[0]
-                print(outcome)
+                    date_container = game.findAll("td", {"data-stat": "date_game"})
+                    date = date_container[0]["csk"]
 
-                f.write(gm_num  + "," + date + "," + location + "," + opp + "," + outcome + "\n")
+                    location_container = game.findAll("td", {"data-stat": "homeORvis"})
+                    if location_container[0].text == "@":
+                        location = "away"
+                    else:
+                        location = "home"
 
-                teams.add(opp)
-            except:
-                print("There was an error on game")
+                    opp_container = game.findAll("td", {"data-stat": "opp_ID"})
+                    opp = opp_container[0].a.text
 
-f.close()
+                    outcome_container = game.findAll("td", {"data-stat": "win_loss_result"})
+                    outcome = outcome_container[0].text[0]
+
+                    win_container = game.findAll("td", {"data-stat": "winning_pitcher"})
+                    win = win_container[0].a["title"]
+                    win_ref = win_container[0].a["href"]
+
+                    loss_container = game.findAll("td", {"data-stat": "losing_pitcher"})
+                    loss = loss_container[0].a["title"]
+                    loss_ref = loss_container[0].a["href"]
+
+                except:
+                    print("There was an error for team " + team + " with year " + year + ", game number " + num)
+
+                # writing essential data
+                f.write(num + "," + date + "," + location + "," + opp + "," + outcome + "," + win +
+                        "," + win_ref + "," + loss + "," + loss_ref + "\n")
+
+            f.close()
+
+
+# main
+extract_data()
