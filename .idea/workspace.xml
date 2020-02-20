@@ -2,39 +2,69 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d19c1d49-083f-4daf-8813-f3e63a7346b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/ARI-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/ARI-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/ATL-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/ATL-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/BAL-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/BAL-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/BOS-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/BOS-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/CHC-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/CHC-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/CHW-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/CHW-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/CIN-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/CIN-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/CLE-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/CLE-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/COL-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/COL-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/DET-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/DET-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/HOU-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/HOU-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/KCR-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/KCR-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/LAA-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/LAA-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/LAD-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/LAD-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/MIA-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/MIA-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/MIL-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/MIL-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/MIN-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/MIN-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/NYM-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/NYM-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/NYY-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/NYY-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/OAK-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/OAK-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/PHI-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/PHI-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/PIT-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/PIT-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/SDP-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/SDP-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/SEA-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/SEA-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/SFG-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/SFG-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/STL-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/STL-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/TBR-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/TBR-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/TEX-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/TEX-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/TOR-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/TOR-2019.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/WSN-2018.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/team-data/WSN-2019.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team-data/scrape-teams.py" beforeDir="false" afterPath="$PROJECT_DIR$/team-data/scrape-teams.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/team-data/scrape-teams.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +75,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -60,11 +91,11 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ScrapeMLB/Mets-data/scrape-mets.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/teamdata/scrapedata.py" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunManager">
-    <configuration name="scrape-teams" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="scrapedata" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PredictMLB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -72,11 +103,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/team-data" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/teamdata" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/team-data/scrape-teams.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/teamdata/scrapedata.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -100,49 +131,68 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582150477407">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582220031818">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582220031818" />
     <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582150477407" />
-    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582156124823">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="678" y="353" width="627" height="398" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582219974846">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state x="678" y="353" width="627" height="398" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1052@67.27.1853.1052" timestamp="1582219974846" />
+    <state x="776" y="302" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582220030112">
+      <screen x="67" y="27" width="1853" height="1052" />
+    </state>
+    <state x="776" y="302" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1582220030112" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582156124823" />
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom" timestamp="1582158622246">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="189" key="GridCell.Tab.0.bottom" timestamp="1582229445987">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582158622246" />
-    <state width="1830" height="278" key="GridCell.Tab.0.center" timestamp="1582158622246">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="189" key="GridCell.Tab.0.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582229445987" />
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="189" key="GridCell.Tab.0.center" timestamp="1582229445986">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582158622246" />
-    <state width="1830" height="278" key="GridCell.Tab.0.left" timestamp="1582158622246">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="189" key="GridCell.Tab.0.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582229445986" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="189" key="GridCell.Tab.0.left" timestamp="1582229445986">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582158622246" />
-    <state width="1830" height="278" key="GridCell.Tab.0.right" timestamp="1582158622246">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="189" key="GridCell.Tab.0.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582229445986" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="189" key="GridCell.Tab.0.right" timestamp="1582229445987">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
-    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582158622246" />
-    <state width="1830" height="344" key="GridCell.Tab.1.bottom" timestamp="1582157358231">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="189" key="GridCell.Tab.0.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582229445987" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="342" key="GridCell.Tab.1.bottom" timestamp="1582229245235">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582229245235" />
     <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
-    <state width="1830" height="344" key="GridCell.Tab.1.center" timestamp="1582157358231">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="342" key="GridCell.Tab.1.center" timestamp="1582229245234">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582229245234" />
     <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
-    <state width="1830" height="344" key="GridCell.Tab.1.left" timestamp="1582157358231">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="342" key="GridCell.Tab.1.left" timestamp="1582229245234">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582229245234" />
     <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
-    <state width="1830" height="344" key="GridCell.Tab.1.right" timestamp="1582157358231">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1830" height="342" key="GridCell.Tab.1.right" timestamp="1582229245234">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582229245234" />
     <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
-    <state x="482" y="187" key="SettingsEditor" timestamp="1582151683273">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="482" y="179" width="1016" height="738" key="SettingsEditor" timestamp="1582218522810">
+      <screen x="67" y="27" width="1853" height="1052" />
     </state>
+    <state x="482" y="179" width="1016" height="738" key="SettingsEditor/67.27.1853.1052@67.27.1853.1052" timestamp="1582218522810" />
     <state x="482" y="187" key="SettingsEditor/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582151683273" />
+    <state x="653" y="377" key="com.intellij.ide.util.TipDialog" timestamp="1582217583494">
+      <screen x="67" y="27" width="1853" height="1052" />
+    </state>
+    <state x="653" y="377" key="com.intellij.ide.util.TipDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582217583494" />
   </component>
 </project>

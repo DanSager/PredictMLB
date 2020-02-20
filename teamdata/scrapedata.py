@@ -2,19 +2,49 @@ from urllib.request import urlopen as ureq
 # pip install bs4
 from bs4 import BeautifulSoup as Soup
 from bs4 import Comment as Com
+from teamdata.seasonstats import *
+
+import sqlite3 as sql
 
 
 def extract_data():
-    teams = {'LAA', 'CHC', 'SDP', 'MIA', 'ATL', 'BAL', 'ARI', 'BOS', 'WSN', 'PHI', 'NYM', 'MIN', 'TOR', 'OAK', 'SFG',
-             'COL', 'LAD', 'MIL', 'SEA', 'CIN', 'PIT', 'DET', 'HOU', 'KCR', 'CHW', 'CLE', 'TBR', 'NYY', 'STL', 'TEX'}
-    years = {'2018', '2019'}
+    teams = {'ATL', 'ARI', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
+             'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN'}
+    years = {'2017', '2018', '2019'}
     # teams = {'NYM'}
 
     for year in years:
+
+        # Create / Connect to db
+        dbname = 'teamstats_' + year + '.db'
+        statsdb = sql.connect(dbname)
+
+        # Create a cursor to navigate the db
+        statscursor = statsdb.cursor()
+
+        # Create table for 'WinLossSplit'
+        wlsplittable = "WinLossSplit"
+        query = """CREATE TABLE IF NOT EXISTS """ + wlsplittable + """ (
+                                team text,
+                                overall real,
+                                home real,
+                                away real
+                                )"""
+        statscursor.execute(query)
+
+        # Create table for 'TeamRivals'
+        rivalstable = "TeamRivals"
+        query = """CREATE TABLE IF NOT EXISTS """ + rivalstable + """ (
+                                        team text,
+                                        opp text,
+                                        overall real
+                                        )"""
+        statscursor.execute(query)
+
         for team in teams:
             myurl = 'https://www.baseball-reference.com/teams/' + team + "/" + year + '-schedule-scores.shtml'
 
-            # opening connection, grabbing page
+            # opening statsdbection, grabbing page
             uClient = ureq(myurl)
             page_html = uClient.read()
             uClient.close()
@@ -22,38 +52,49 @@ def extract_data():
             # html parsing
             page_soup = Soup(page_html, "html.parser")
 
-            # open up team file
-            filename = team + "-" + year + ".csv"
-            f = open(filename, "w")
+            # Create table for 'Team-Season'
+            scheduletable = team + "Schedule"
+            query = """CREATE TABLE IF NOT EXISTS """ + scheduletable + """ (
+                        num text,
+                        date text,
+                        location text,
+                        opp text,
+                        outcome text,
+                        win text,
+                        win_ref text,
+                        loss text,
+                        loss_ref text
+                        )"""
+            statscursor.execute(query)
 
             # read 'Team Win/Loss Splits Table'
             year_container = page_soup.find("div", {"id": "all_win_loss"})
             commentsoup = Soup(year_container.find(text=lambda text: isinstance(text, Com)), "html.parser")
 
             # read year win/loss splits
-            year_header = "Overall W-L%, Home W-L%, Away W-L%\n"
-            f.write(year_header)
             column_one = commentsoup.find("div", {"id": "win_loss_1"})
             overall_win_loss = column_one.findAll("tr")[2].findAll("td")[5].text
             home_win_loss = column_one.findAll("tr")[5].findAll("td")[5].text
             away_win_loss = column_one.findAll("tr")[6].findAll("td")[5].text
-            f.write(overall_win_loss.replace(" ", "") + "," + home_win_loss.replace(" ", "") + ","
-                    + away_win_loss.replace(" ", "") + "\n\n")
+            wlsplit = WinLossSplit(team, overall_win_loss, home_win_loss, away_win_loss)
+            if get_split_by_team(statscursor, wlsplittable, wlsplit):
+                update_split(statsdb, statscursor, wlsplittable, wlsplit)
+            else:
+                insert_split(statsdb, statscursor, wlsplittable, wlsplit)
 
             # read opponent win/loss split
-            opponent_header = "Opponent, W-L%\n"
-            f.write(opponent_header)
             column_three = commentsoup.find("div", {"id": "win_loss_3"})
             opponent_stat_container = column_three.findAll("tr")
             for opponent_stat in opponent_stat_container[2:]:
                 opponent_name = opponent_stat.findAll("td")[0].text
                 opponent_win_loss = opponent_stat.findAll("td")[5].text
-                f.write(opponent_name + "," + opponent_win_loss.replace(" ", "") + "\n")
-            f.write("\n")
+                rival = Rival(team, opponent_name, opponent_win_loss)
+                if get_rival_by_team(statscursor, rivalstable, rival):
+                    update_rival(statsdb, statscursor, rivalstable, rival)
+                else:
+                    insert_rival(statsdb, statscursor, rivalstable, rival)
 
             # grab each game
-            game_header = "gm#, date, location, opp, w/l, win, win ref, loss, loss ref\n"
-            f.write(game_header)
             games_container = page_soup.findAll("table", {"id": "team_schedule"})
             games = games_container[0].tbody.findAll("tr", {"class": ""})
 
@@ -91,11 +132,15 @@ def extract_data():
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
-                # writing essential data
-                f.write(num + "," + date + "," + location + "," + opp + "," + outcome + "," + win +
-                        "," + win_ref + "," + loss + "," + loss_ref + "\n")
+                # -- writing essential game data -- #
+                game_data = GameSchedule(num, date, location, opp, outcome, win, win_ref, loss, loss_ref)
+                # If game already exists: update data, else: create
+                if get_game_by_index(statscursor, scheduletable, game_data.num):
+                    update_game(statsdb, statscursor, scheduletable, game_data)
+                else:
+                    insert_game(statsdb, statscursor, scheduletable, game_data)
 
-            f.close()
+    statsdb.close()
 
 
 # main
