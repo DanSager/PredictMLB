@@ -41,6 +41,12 @@ class Rival:
         self.overall = overall
 
 
+class Team:
+    def __init__(self, team, year):
+        self.team = team
+        self.year = year
+
+
 def insert_game(statsdb, statscursor, table, stat):
     query = "INSERT INTO " + table + " VALUES (:num, :date, :location, :opp, :outcome, :win, :win_ref, :loss, :loss_ref)"
     with statsdb:
@@ -103,7 +109,20 @@ def get_rival_by_team(statscursor, table, stat):
 
 
 def get_game_by_opp(statscursor, opp):
+    # Bugged, needs work
     statscursor.execute("SELECT * FROM employee WHERE opp=:opp", {'opp': opp})
+    return statscursor.fetchall()
+
+
+def get_win_loss_split(statscursor, table, stat):
+    query = "SELECT * FROM " + table + " WHERE team=:team"
+    statscursor.execute(query, {'team': stat.team})
+    return statscursor.fetchone()
+
+
+def get_team_schedule(statscursor, table):
+    query = "SELECT * FROM " + table
+    statscursor.execute(query)
     return statscursor.fetchall()
 
 
