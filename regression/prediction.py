@@ -199,7 +199,7 @@ def execute(rebuild, predict_game, training_years):
 def main():
     """ Main Function """
 
-    training_years = ['2012', '2013', '2014', '2015', '2016']
+    training_years = ['2016']
 
     # game = 'date', 'home', 'away', 'winpitcher', 'losepitcher', 'winner'
     # predict = ['NA', 'NYM', 'TBR', 'Johan Santana', 'Mike Minor', 'NA']
