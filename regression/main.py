@@ -1,5 +1,9 @@
 # Import statements
-
+# from pydataset import data
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
 
 # Database related imports
 from teamdata.seasonstats import *
@@ -31,11 +35,15 @@ def load_team_schedule(teamName, year):
 
     teamSchedule = get_team_schedule(statscursor, table)
 
+    sched = pd.get_dummies(teamSchedule, drop_first=True)
+
     for game in teamSchedule: # num, date, location, opp, outcome, win, win_ref, loss, loss_ref
         location = game[2]
         oppName = game[3]
         local = Team(teamName, year)
         opp = Team(oppName, year)
+
+        titanic = pd.get_dummies(game, drop_first=True)
 
         wls_table = tables[0]
 

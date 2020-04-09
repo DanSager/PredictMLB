@@ -12,7 +12,7 @@ import sqlite3 as sql
 def extract_data():
     teams = ['ATL', 'ARI', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
              'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
-    years = ['2016']
+    years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
     # teams = {'NYM'}
 
     for year in years:

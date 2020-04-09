@@ -31,10 +31,10 @@ def remove(conn, c, stat):
 
 
 def extract_data():
-    # teams = {'LAA', 'CHC', 'SDP', 'MIA', 'ATL', 'BAL', 'ARI', 'BOS', 'WSN', 'PHI', 'NYM', 'MIN', 'TOR', 'OAK', 'SFG',
-    #          'COL', 'LAD', 'MIL', 'SEA', 'CIN', 'PIT', 'DET', 'HOU', 'KCR', 'CHW', 'CLE', 'TBR', 'NYY', 'STL', 'TEX'}
-    years = {'2019'}
-    teams = {'NYM'}
+    teams = {'LAA', 'CHC', 'SDP', 'MIA', 'ATL', 'BAL', 'ARI', 'BOS', 'WSN', 'PHI', 'NYM', 'MIN', 'TOR', 'OAK', 'SFG',
+             'COL', 'LAD', 'MIL', 'SEA', 'CIN', 'PIT', 'DET', 'HOU', 'KCR', 'CHW', 'CLE', 'TBR', 'NYY', 'STL', 'TEX'}
+    years = {'2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'}
+    # teams = {'NYM'}
 
     for year in years:
         for team in teams:
