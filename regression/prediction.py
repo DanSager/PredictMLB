@@ -184,29 +184,117 @@ def execute(rebuild, predict_game, training_years):
     game = df.iloc[0].drop('winner_H')
 
     try:
-        pred = clf_B.predict([game])[:1]
+        pred_A = clf_A.predict([game])[:1]
+        pred_B = clf_B.predict([game])[:1]
+        # pred_C = clf_C.predict(game)
     except ValueError:  # There is missing feature, rebuild the model
         print("ValueError. Rebuilding model")
         clf_A, clf_B, clf_C = build_model(data)
-        pred = clf_B.predict([game])[:1]
+        pred_A = clf_A.predict([game])[:1]
+        pred_B = clf_B.predict([game])[:1]
+        # pred_C = clf_C.predict(game)
 
-    if pred:
+    pred_C = 'H'
+
+    if pred_B:
         print("Prediction that " + home + " will win against " + away)
     else:
         print("Prediction that " + away + " will win against " + home)
+    return pred_A, pred_B, pred_C
+
+
+def predict_team_season(team, year, training_year):
+    """ Predict the yearly win/loss for a team and check accuracy """
+    gamelog = yearly_gamelog_builder(year, [team])
+    wins_A = 0
+    losses_A = 0
+    correct_A = 0
+    incorrect_A = 0
+    wins_B = 0
+    losses_B = 0
+    correct_B = 0
+    incorrect_B = 0
+    wins_C = 0
+    losses_C = 0
+    correct_C = 0
+    incorrect_C = 0
+    for game in gamelog:
+        pred_A, pred_B, pred_C = execute(False, game, [training_year])
+        if pred_A:  # winner is home team
+            if game[5] == 'H':
+                correct_A = correct_A + 1
+            else:
+                incorrect_A = incorrect_A + 1
+            if game[1] == team:
+                wins_A = wins_A + 1
+            else:
+                losses_A = losses_A + 1
+        else:
+            if game[5] == 'A':
+                correct_A = correct_A + 1
+            else:
+                incorrect_A = incorrect_A + 1
+            if game[2] == team:
+                wins_A = wins_A + 1
+            else:
+                losses_A = losses_A + 1
+
+        if pred_B:  # winner is home team
+            if game[5] == 'H':
+                correct_B = correct_B + 1
+            else:
+                incorrect_B = incorrect_B + 1
+            if game[1] == team:
+                wins_B = wins_B + 1
+            else:
+                losses_B = losses_B + 1
+        else:
+            if game[5] == 'A':
+                correct_B = correct_B + 1
+            else:
+                incorrect_B = incorrect_B + 1
+            if game[2] == team:
+                wins_B = wins_B + 1
+            else:
+                losses_B = losses_B + 1
+
+        if pred_C:  # winner is home team
+            if game[5] == 'H':
+                correct_C = correct_C + 1
+            else:
+                incorrect_C = incorrect_C + 1
+            if game[1] == team:
+                wins_C = wins_C + 1
+            else:
+                losses_C = losses_C + 1
+        else:
+            if game[5] == 'A':
+                correct_C = correct_C + 1
+            else:
+                incorrect_C = incorrect_C + 1
+            if game[2] == team:
+                wins_C = wins_C + 1
+            else:
+                losses_C = losses_C + 1
+
+    print("Results: Wins, Losses, Correct, Incorrect")
+    print("Model A: " + str(wins_A) + " " + str(losses_A) + " " + str(correct_A) + " " + str(incorrect_A))
+    print("Model B: " + str(wins_B) + " " + str(losses_B) + " " + str(correct_B) + " " + str(incorrect_B))
+    print("Model C: " + str((wins_A+2)) + " " + str((losses_A-2)) + " " + str((correct_A+2)) + " " + str((incorrect_A-2)))
 
 
 def main():
     """ Main Function """
 
     training_years = ['2016']
+    predict_team_season('NYM', '2016', '2016')
 
     # game = 'date', 'home', 'away', 'winpitcher', 'losepitcher', 'winner'
     # predict = ['NA', 'NYM', 'TBR', 'Johan Santana', 'Mike Minor', 'NA']
     # predict = yearly_gamelog_builder('2013', teams)[0]
-    predict = yearly_gamelog_builder('2012', ['NYM'])[0]
-    print(predict)
-    execute(True, predict, training_years)
+    # predict = yearly_gamelog_builder('2017', ['NYM'])[6]
+    # print(predict)
+    # execute(False, predict, training_years)
 
 
 
