@@ -14,16 +14,18 @@ class SeasonStats:
 
 
 class GameSchedule:
-    def __init__(self, num, date, location, opp, outcome, win, win_ref, loss, loss_ref):
+    def __init__(self, num, date, hometeam, awayteam, winner, runshome, runsaway, innings, day, winningpitcher, losingpitcher):
         self.num = num
         self.date = date
-        self.location = location
-        self.opp = opp
-        self.outcome = outcome
-        self.win = win
-        self.win_ref = win_ref
-        self.loss = loss
-        self.loss_ref = loss_ref
+        self.hometeam = hometeam
+        self.awayteam = awayteam
+        self.winner = winner
+        self.runshome = runshome
+        self.runsaway = runsaway
+        self.innings = innings
+        self.day = day
+        self.winningpitcher = winningpitcher
+        self.losingpitcher = losingpitcher
 
 
 class WinLossSplit:
@@ -48,12 +50,13 @@ class Team:
 
 
 def insert_game(statsdb, statscursor, table, stat):
-    query = "INSERT INTO " + table + " VALUES (:num, :date, :location, :opp, :outcome, :win, :win_ref, :loss, :loss_ref)"
+    query = "INSERT INTO " + table + " VALUES (:num, :date, :hometeam, :awayteam, :winner, :runshome, :runsaway, :innings, :day, :winningpitcher, :losingpitcher)"
     with statsdb:
         statscursor.execute(query,
-                            {'num': stat.num, 'date': stat.date, 'location': stat.location, 'opp': stat.opp,
-                             'outcome': stat.outcome,
-                             'win': stat.win, 'win_ref': stat.win_ref, 'loss': stat.loss, 'loss_ref': stat.loss_ref})
+                            {'num': stat.num, 'date': stat.date, 'hometeam': stat.hometeam, 'awayteam': stat.awayteam,
+                             'winner': stat.winner, 'runshome': stat.runshome, 'runsaway': stat.runsaway,
+                             'innings': stat.innings, 'day': stat.day, 'winningpitcher': stat.winningpitcher,
+                             'losingpitcher': stat.losingpitcher})
 
 
 def insert_split(statsdb, statscursor, table, stat):
@@ -69,13 +72,16 @@ def insert_rival(statsdb, statscursor, table, stat):
 
 
 def update_game(statsdb, statscursor, table, stat):
-    query = "UPDATE " + table + " SET date = :date, location = :location, opp = :opp, outcome = :outcome, " \
-                                "win = :win, win_ref = :win_ref, loss = :loss, loss_ref = :loss_ref WHERE num = :num"
+    query = "UPDATE " + table + " SET date = :date, hometeam = :hometeam, awayteam = :awayteam, winner = :winner, " \
+                                "runshome = :runshome, runsaway = :runsaway, innings = :innings, " \
+                                "day = :day, winningpitcher = :winningpitcher, losingpitcher = :losingpitcher " \
+                                "WHERE num = :num"
     with statsdb:
         statscursor.execute(query,
-                            {'num': stat.num, 'date': stat.date, 'location': stat.location, 'opp': stat.opp,
-                             'outcome': stat.outcome,
-                             'win': stat.win, 'win_ref': stat.win_ref, 'loss': stat.loss, 'loss_ref': stat.loss_ref})
+                            {'num': stat.num, 'date': stat.date, 'hometeam': stat.hometeam, 'awayteam': stat.awayteam,
+                             'winner': stat.winner, 'runshome': stat.runshome, 'runsaway': stat.runsaway,
+                             'innings': stat.innings, 'day': stat.day, 'winningpitcher': stat.winningpitcher,
+                             'losingpitcher': stat.losingpitcher})
 
 
 def update_split(statsdb, statscursor, table, stat):
