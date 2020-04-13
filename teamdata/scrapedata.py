@@ -45,6 +45,7 @@ def extract_data():
 
         for team in teams:
             myurl = 'https://www.baseball-reference.com/teams/' + team + "/" + year + '-schedule-scores.shtml'
+            # https://www.baseball-reference.com/teams/NYM/2012-schedule-scores.shtml
 
             # opening statsdbection, grabbing page
             uClient = ureq(myurl)
@@ -59,13 +60,15 @@ def extract_data():
             query = """CREATE TABLE IF NOT EXISTS """ + scheduletable + """ (
                         num text,
                         date text,
-                        location text,
-                        opp text,
-                        outcome text,
-                        win text,
-                        win_ref text,
-                        loss text,
-                        loss_ref text
+                        hometeam text,
+                        awayteam text,
+                        winner text,
+                        runshome text,
+                        runsaway text,
+                        innnings text,
+                        day text,
+                        winningpitcher text,
+                        lossingpitcher text
                         )"""
             statscursor.execute(query)
 
@@ -102,7 +105,9 @@ def extract_data():
 
             for game in games:
                 # set defaults
-                num = date = location = opp = outcome = win = win_ref = loss = loss_ref = ""
+                home = None
+                num = date = hometeam = awayteam = winner = runshome = runsaway = innings = day = \
+                    winningpitcher = lossingpitcher = ""
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -111,31 +116,72 @@ def extract_data():
                     date_container = game.findAll("td", {"data-stat": "date_game"})
                     date = date_container[0]["csk"]
 
-                    location_container = game.findAll("td", {"data-stat": "homeORvis"})
-                    if location_container[0].text == "@":
-                        location = "away"
-                    else:
-                        location = "home"
+                    team_container = game.findAll("td", {"data-stat": "team_ID"})
+                    team = team_container[0].text
 
                     opp_container = game.findAll("td", {"data-stat": "opp_ID"})
                     opp = opp_container[0].a.text
 
+                    location_container = game.findAll("td", {"data-stat": "homeORvis"})
+                    if location_container[0].text == "@":
+                        home = False
+                        hometeam = opp
+                        awayteam = team
+                    else:
+                        home = True
+                        hometeam = team
+                        awayteam = opp
+
                     outcome_container = game.findAll("td", {"data-stat": "win_loss_result"})
                     outcome = outcome_container[0].text[0]
+                    if outcome == "W":
+                        if home:
+                            winner = "home"
+                        else:
+                            winner = "away"
+                    else:
+                        if home:
+                            winner = "away"
+                        else:
+                            winner = "home"
 
-                    win_container = game.findAll("td", {"data-stat": "winning_pitcher"})
-                    win = win_container[0].a["title"]
-                    win_ref = win_container[0].a["href"]
+                    runsscored_container = game.findAll("td", {"data-stat": "R"})
+                    runsscored = runsscored_container[0].text
 
-                    loss_container = game.findAll("td", {"data-stat": "losing_pitcher"})
-                    loss = loss_container[0].a["title"]
-                    loss_ref = loss_container[0].a["href"]
+                    runsallowed_container = game.findAll("td", {"data-stat": "RA"})
+                    runsallowed = runsallowed_container[0].text
+
+                    if home:
+                        runshome = runsscored
+                        runsaway = runsallowed
+                    else:
+                        runshome = runsallowed
+                        runsaway = runsscored
+
+                    innings_container = game.findAll("td", {"data-stat": "extra_innings"})
+                    innings = innings_container[0].text
+                    if innings == "":
+                        innings = "9"
+
+                    dayornight_container = game.findAll("td", {"data-stat": "day_or_night"})
+                    dayornight = dayornight_container[0].text
+                    if dayornight == 'D':
+                        day = "1"
+                    else:
+                        day = "0"
+
+                    winningpitcher_container = game.findAll("td", {"data-stat": "winning_pitcher"})
+                    winningpitcher = winningpitcher_container[0].a["title"]
+
+                    lossingpitcher_container = game.findAll("td", {"data-stat": "losing_pitcher"})
+                    lossingpitcher = lossingpitcher_container[0].a["title"]
 
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
                 # -- writing essential game data -- #
-                game_data = GameSchedule(num, date, location, opp, outcome, win, win_ref, loss, loss_ref)
+                game_data = GameSchedule(num, date, hometeam, awayteam, winner, runshome, runsaway, innings, day,
+                                         winningpitcher, lossingpitcher)
                 # If game already exists: update data, else: create
                 if get_game_by_index(statscursor, scheduletable, game_data.num):
                     update_game(statsdb, statscursor, scheduletable, game_data)
