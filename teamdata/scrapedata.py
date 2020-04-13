@@ -10,7 +10,7 @@ import sqlite3 as sql
 
 
 def extract_data():
-    teams = ['ATL', 'ARI', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
+    teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
              'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
     years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
     # teams = {'NYM'}
@@ -68,7 +68,7 @@ def extract_data():
                         innnings text,
                         day text,
                         winningpitcher text,
-                        lossingpitcher text
+                        losingpitcher text
                         )"""
             statscursor.execute(query)
 
@@ -107,7 +107,7 @@ def extract_data():
                 # set defaults
                 home = None
                 num = date = hometeam = awayteam = winner = runshome = runsaway = innings = day = \
-                    winningpitcher = lossingpitcher = ""
+                    winningpitcher = losingpitcher = ""
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -173,15 +173,15 @@ def extract_data():
                     winningpitcher_container = game.findAll("td", {"data-stat": "winning_pitcher"})
                     winningpitcher = winningpitcher_container[0].a["title"]
 
-                    lossingpitcher_container = game.findAll("td", {"data-stat": "losing_pitcher"})
-                    lossingpitcher = lossingpitcher_container[0].a["title"]
+                    losingpitcher_container = game.findAll("td", {"data-stat": "losing_pitcher"})
+                    losingpitcher = losingpitcher_container[0].a["title"]
 
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
                 # -- writing essential game data -- #
                 game_data = GameSchedule(num, date, hometeam, awayteam, winner, runshome, runsaway, innings, day,
-                                         winningpitcher, lossingpitcher)
+                                         winningpitcher, losingpitcher)
                 # If game already exists: update data, else: create
                 if get_game_by_index(statscursor, scheduletable, game_data.num):
                     update_game(statsdb, statscursor, scheduletable, game_data)
