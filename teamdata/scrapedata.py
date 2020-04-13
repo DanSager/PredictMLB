@@ -62,13 +62,13 @@ def extract_data():
                         date text,
                         hometeam text,
                         awayteam text,
-                        winner text,
                         runshome text,
                         runsaway text,
                         innnings text,
                         day text,
                         winningpitcher text,
-                        losingpitcher text
+                        losingpitcher text,
+                        winner text
                         )"""
             statscursor.execute(query)
 
@@ -106,8 +106,8 @@ def extract_data():
             for game in games:
                 # set defaults
                 home = None
-                num = date = hometeam = awayteam = winner = runshome = runsaway = innings = day = \
-                    winningpitcher = losingpitcher = ""
+                num = date = hometeam = awayteam = runshome = runsaway = innings = day = \
+                    winningpitcher = losingpitcher = winner = ""
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -131,19 +131,6 @@ def extract_data():
                         home = True
                         hometeam = team
                         awayteam = opp
-
-                    outcome_container = game.findAll("td", {"data-stat": "win_loss_result"})
-                    outcome = outcome_container[0].text[0]
-                    if outcome == "W":
-                        if home:
-                            winner = "home"
-                        else:
-                            winner = "away"
-                    else:
-                        if home:
-                            winner = "away"
-                        else:
-                            winner = "home"
 
                     runsscored_container = game.findAll("td", {"data-stat": "R"})
                     runsscored = runsscored_container[0].text
@@ -176,12 +163,25 @@ def extract_data():
                     losingpitcher_container = game.findAll("td", {"data-stat": "losing_pitcher"})
                     losingpitcher = losingpitcher_container[0].a["title"]
 
+                    outcome_container = game.findAll("td", {"data-stat": "win_loss_result"})
+                    outcome = outcome_container[0].text[0]
+                    if outcome == "W":
+                        if home:
+                            winner = "home"
+                        else:
+                            winner = "away"
+                    else:
+                        if home:
+                            winner = "away"
+                        else:
+                            winner = "home"
+
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
                 # -- writing essential game data -- #
-                game_data = GameSchedule(num, date, hometeam, awayteam, winner, runshome, runsaway, innings, day,
-                                         winningpitcher, losingpitcher)
+                game_data = GameSchedule(num, date, hometeam, awayteam, runshome, runsaway, innings, day,
+                                         winningpitcher, losingpitcher, winner)
                 # If game already exists: update data, else: create
                 if get_game_by_index(statscursor, scheduletable, game_data.num):
                     update_game(statsdb, statscursor, scheduletable, game_data)

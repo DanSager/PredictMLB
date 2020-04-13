@@ -2,14 +2,12 @@
 import itertools
 import pickle
 import pandas as pd
-import numpy as np
 import xgboost as xgb
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
-from IPython.display import display
 from time import time
 
 # Database related imports
@@ -61,28 +59,34 @@ def train_predict(clf, x_train, x_test, y_train, y_test):
 
     # Print the results of prediction for both training and testing
     f1, acc = predict_labels(clf, x_train, y_train)
-    print(f1, acc)
     print("F1 score and accuracy score for training set: {:.4f} , {:.4f}.".format(f1, acc))
 
     f1, acc = predict_labels(clf, x_test, y_test)
     print("F1 score and accuracy score for test set: {:.4f} , {:.4f}.".format(f1, acc))
 
 
-def build_data(gamelog):  # x_train, x_test, y_train, y_test
+def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  # x_train, x_test, y_train, y_test
     """ Build the data used to fit the model, x_train, x_test, y_train, y_test """
-    # Date, Home Team, Away Team, Winner, Winning Pitcher, Losing Pitcher
-    df = pd.DataFrame(gamelog, columns=['date', 'home', 'away', 'winpitcher', 'losepitcher', 'winner'])
+    training_size = len(training_gamelog)
+    predict_size = len(predict_gamelog)
+    insert_gamelog(simplifed_predict_gamelog, training_gamelog)
+    gamelog = insert_gamelog(predict_gamelog, training_gamelog)
+
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+    df = pd.DataFrame(gamelog, columns=['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway',
+                                        'innings', 'day', 'winningpitcher', 'losingpitcher', 'winner'])
+    del df['num']
     del df['date']
     df = pd.get_dummies(df, drop_first=True)
 
     # Remove the test game from the training data
-    if 'winner_NA' in df.columns:
-        df = df.drop('winner_NA', axis=1)  # axis 0 is rows, axis 1 is columns
-    df_train = df.iloc[1:]
-    df_test = df.iloc[:1]
+    # if 'winner_NA' in df.columns:
+    #     df = df.drop('winner_NA', axis=1)  # axis 0 is rows, axis 1 is columns
+    df_train = df.iloc[:training_size]
+    df_predict = df.iloc[training_size:training_size+predict_size]
 
-    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('winner_H', axis=1), df_train['winner_H'])
-    return [x_train, x_test, y_train, y_test], df_test
+    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('winner_home', axis=1), df_train['winner_home'])
+    return [x_train, x_test, y_train, y_test], df_predict
 
 
 def build_model(data):
@@ -103,13 +107,16 @@ def build_model(data):
     pickle.dump(clf_A, open(filenameA, 'wb'))
     pickle.dump(clf_B, open(filenameB, 'wb'))
     pickle.dump(clf_C, open(filenameC, 'wb'))
-    return clf_A, clf_B, clf_C
+    return [clf_A, clf_B, clf_C]
 
 
-def insert_gamelog(game, gamelog):
+def insert_gamelog(predict_gamelog, training_gamelog):
     """ Insert front a game into the gamelog """
-    gamelog.insert(0, [game[0], game[1], game[2], game[3], game[4], 'NA'])
-    return gamelog
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+    for game in predict_gamelog:
+        training_gamelog.append(game)
+
+    return training_gamelog
 
 
 def load_model():
@@ -117,7 +124,70 @@ def load_model():
     clf_A = pickle.load(open(filenameA, 'rb'))
     clf_B = pickle.load(open(filenameB, 'rb'))
     clf_C = pickle.load(open(filenameC, 'rb'))
-    return clf_A, clf_B, clf_C
+    return [clf_A, clf_B, clf_C]
+
+
+def gamelog_builder(gamelog_years, included_teams):
+    """ Build gamelog dataset """
+    gamelog = []
+    included_teams_size = len(included_teams)
+    for year in gamelog_years:
+        for team in included_teams:
+            # Create / Connect to db
+            directory = 'teamdata/'
+
+            dbname = directory + 'teamstats_' + year + '.db'
+            statsdb = sql.connect(dbname)
+
+            # Create a cursor to navigate the db
+            statscursor = statsdb.cursor()
+
+            table = team + 'Schedule'
+            schedule = get_team_schedule(statscursor, table)
+
+            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+            for game in schedule:
+                game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
+                        game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
+
+                gamelog.append(game)
+
+    if included_teams_size > 1:
+        # Remove duplicates
+        gamelog.sort()
+        gamelog = list(k for k, _ in itertools.groupby(gamelog))
+    return gamelog
+
+
+def simplifed_gamelog_builder(gamelog_years, included_teams):
+    """ Build gamelog dataset """
+    gamelog = []
+    included_teams_size = len(included_teams)
+    for year in gamelog_years:
+        for team in included_teams:
+            # Create / Connect to db
+            directory = 'teamdata/'
+
+            dbname = directory + 'teamstats_' + year + '.db'
+            statsdb = sql.connect(dbname)
+
+            # Create a cursor to navigate the db
+            statscursor = statsdb.cursor()
+
+            table = team + 'Schedule'
+            schedule = get_team_schedule(statscursor, table)
+
+            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+            for game in schedule:
+                game = [None, None, game[2], game[3], None, None, None, None, game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), None]
+
+                gamelog.append(game)
+
+    if included_teams_size > 1:
+        # Remove duplicates
+        gamelog.sort()
+        gamelog = list(k for k, _ in itertools.groupby(gamelog))
+    return gamelog
 
 
 def yearly_gamelog_builder(year, included_teams):
@@ -125,7 +195,7 @@ def yearly_gamelog_builder(year, included_teams):
     gamelog = []
     for team in included_teams:
         # Create / Connect to db
-        directory = '../teamdata/'
+        directory = 'teamdata/'
 
         dbname = directory + 'teamstats_' + year + '.db'
         statsdb = sql.connect(dbname)
@@ -134,24 +204,12 @@ def yearly_gamelog_builder(year, included_teams):
         statscursor = statsdb.cursor()
 
         table = team + 'Schedule'
-
         schedule = get_team_schedule(statscursor, table)
 
-        for game in schedule:  # Date, Home Team, Away Team, Winning Pitcher, Losing Pitcher, Winner
-            if game[2] == 'home':
-                if game[4] == 'W':
-                    game = [game[1], team, game[3], game[5].replace(u'\xa0', u' '), game[7].replace(u'\xa0', u' '), 'H']
-                    # game = [game[1], team, game[3], 'H']
-                else:
-                    game = [game[1], team, game[3], game[5].replace(u'\xa0', u' '), game[7].replace(u'\xa0', u' '), 'A']
-                    # game = [game[1], team, game[3], 'A']
-            else:
-                if game[4] == 'W':
-                    game = [game[1], game[3], team, game[5].replace(u'\xa0', u' '), game[7].replace(u'\xa0', u' '), 'A']
-                    # game = [game[1], game[3], team, 'A']
-                else:
-                    game = [game[1], game[3], team, game[5].replace(u'\xa0', u' '), game[7].replace(u'\xa0', u' '), 'H']
-                    # game = [game[1], game[3], team, 'H']
+        # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+        for game in schedule:
+            game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
+                    game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
 
             gamelog.append(game)
 
@@ -170,8 +228,8 @@ def execute(rebuild, predict_game, training_years):
     if predict_game != '':
         gamelog = insert_gamelog(predict_game, gamelog)
 
-    home = gamelog[0][1]
-    away = gamelog[0][2]
+    home = gamelog[0][2]
+    away = gamelog[0][3]
 
     data, df = build_data(gamelog)  # x_train, x_test, y_train, y_test
 
@@ -181,7 +239,7 @@ def execute(rebuild, predict_game, training_years):
         clf_A, clf_B, clf_C = load_model()
 
     # Test Prediction
-    game = df.iloc[0].drop('winner_H')
+    game = df.iloc[0].drop('winner_home')
 
     try:
         pred_A = clf_A.predict([game])[:1]
@@ -202,100 +260,3 @@ def execute(rebuild, predict_game, training_years):
         print("Prediction that " + away + " will win against " + home)
     return pred_A, pred_B, pred_C
 
-
-def predict_team_season(team, year, training_year):
-    """ Predict the yearly win/loss for a team and check accuracy """
-    gamelog = yearly_gamelog_builder(year, [team])
-    wins_A = 0
-    losses_A = 0
-    correct_A = 0
-    incorrect_A = 0
-    wins_B = 0
-    losses_B = 0
-    correct_B = 0
-    incorrect_B = 0
-    wins_C = 0
-    losses_C = 0
-    correct_C = 0
-    incorrect_C = 0
-    for game in gamelog:
-        pred_A, pred_B, pred_C = execute(False, game, [training_year])
-        if pred_A:  # winner is home team
-            if game[5] == 'H':
-                correct_A = correct_A + 1
-            else:
-                incorrect_A = incorrect_A + 1
-            if game[1] == team:
-                wins_A = wins_A + 1
-            else:
-                losses_A = losses_A + 1
-        else:
-            if game[5] == 'A':
-                correct_A = correct_A + 1
-            else:
-                incorrect_A = incorrect_A + 1
-            if game[2] == team:
-                wins_A = wins_A + 1
-            else:
-                losses_A = losses_A + 1
-
-        if pred_B:  # winner is home team
-            if game[5] == 'H':
-                correct_B = correct_B + 1
-            else:
-                incorrect_B = incorrect_B + 1
-            if game[1] == team:
-                wins_B = wins_B + 1
-            else:
-                losses_B = losses_B + 1
-        else:
-            if game[5] == 'A':
-                correct_B = correct_B + 1
-            else:
-                incorrect_B = incorrect_B + 1
-            if game[2] == team:
-                wins_B = wins_B + 1
-            else:
-                losses_B = losses_B + 1
-
-        if pred_C:  # winner is home team
-            if game[5] == 'H':
-                correct_C = correct_C + 1
-            else:
-                incorrect_C = incorrect_C + 1
-            if game[1] == team:
-                wins_C = wins_C + 1
-            else:
-                losses_C = losses_C + 1
-        else:
-            if game[5] == 'A':
-                correct_C = correct_C + 1
-            else:
-                incorrect_C = incorrect_C + 1
-            if game[2] == team:
-                wins_C = wins_C + 1
-            else:
-                losses_C = losses_C + 1
-
-    print("Results: Wins, Losses, Correct, Incorrect")
-    print("Model A: " + str(wins_A) + " " + str(losses_A) + " " + str(correct_A) + " " + str(incorrect_A))
-    print("Model B: " + str(wins_B) + " " + str(losses_B) + " " + str(correct_B) + " " + str(incorrect_B))
-    print("Model C: " + str((wins_A+2)) + " " + str((losses_A-2)) + " " + str((correct_A+2)) + " " + str((incorrect_A-2)))
-
-
-def main():
-    """ Main Function """
-
-    training_years = ['2016']
-    predict_team_season('NYM', '2016', '2016')
-
-    # game = 'date', 'home', 'away', 'winpitcher', 'losepitcher', 'winner'
-    # predict = ['NA', 'NYM', 'TBR', 'Johan Santana', 'Mike Minor', 'NA']
-    # predict = yearly_gamelog_builder('2013', teams)[0]
-    # predict = yearly_gamelog_builder('2017', ['NYM'])[6]
-    # print(predict)
-    # execute(False, predict, training_years)
-
-
-
-main()

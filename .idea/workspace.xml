@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d19c1d49-083f-4daf-8813-f3e63a7346b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression/prediction.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/teamdata/scrapedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/teamdata/scrapedata.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/teamdata/seasonstats.py" beforeDir="false" afterPath="$PROJECT_DIR$/teamdata/seasonstats.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,24 +31,24 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/regression/prediction.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/regression/setup.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.scrapedata">
-    <configuration name="prediction" type="PythonConfigurationType" factoryName="Python">
+  <component name="RunManager" selected="Python.setup">
+    <configuration name="predict" type="PythonConfigurationType" factoryName="Python">
       <module name="PredictMLB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONUNBUFFERED" value="1 PYTHONDONTWRITEBYTECODE=1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/regression" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/prediction.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/predict.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -75,7 +78,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="scrapedata_csv" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python">
       <module name="PredictMLB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -83,11 +86,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/teamdata" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/teamdata/scrapedata-withcsv.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/setup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -97,9 +100,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.prediction" />
       <item itemvalue="Python.scrapedata" />
-      <item itemvalue="Python.scrapedata_csv" />
+      <item itemvalue="Python.predict" />
+      <item itemvalue="Python.setup" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -116,99 +119,102 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="584" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586791420346">
+    <state x="584" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586801228971">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582220031818" />
     <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582150477407" />
     <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1586443497739" />
-    <state x="584" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1586791420346" />
+    <state x="584" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1586801228971" />
     <state x="678" y="353" width="660" height="399" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1586207685400">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="678" y="353" width="627" height="398" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1052@67.27.1853.1052" timestamp="1582219974846" />
     <state x="678" y="353" width="660" height="399" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1586207685400" />
-    <state width="1908" height="679" key="DebuggerActiveHint" timestamp="1586794238259">
+    <state width="1957" height="679" key="DebuggerActiveHint" timestamp="1586802392419">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1418" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1586455424835" />
-    <state width="1908" height="679" key="DebuggerActiveHint/67.27.2493.1413@67.27.2493.1413" timestamp="1586794238259" />
-    <state x="776" y="302" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586443496343">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1957" height="679" key="DebuggerActiveHint/67.27.2493.1413@67.27.2493.1413" timestamp="1586802392419" />
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl" timestamp="1586801153555">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="776" y="302" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1582220030112" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582156124823" />
     <state x="776" y="302" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586443496343" />
-    <state width="1684" height="320" key="GridCell.Tab.0.bottom" timestamp="1586795588885">
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1586801153555" />
+    <state width="1719" height="320" key="GridCell.Tab.0.bottom" timestamp="1586809226929">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.bottom/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="1684" height="320" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1586795588885" />
-    <state width="1684" height="320" key="GridCell.Tab.0.center" timestamp="1586795588885">
+    <state width="1719" height="320" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1586809226929" />
+    <state width="1719" height="320" key="GridCell.Tab.0.center" timestamp="1586809226929">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.center/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="1684" height="320" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1586795588885" />
-    <state width="1684" height="320" key="GridCell.Tab.0.left" timestamp="1586795588884">
+    <state width="1719" height="320" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1586809226929" />
+    <state width="1719" height="320" key="GridCell.Tab.0.left" timestamp="1586809226929">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.left/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="1684" height="320" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1586795588884" />
-    <state width="1684" height="320" key="GridCell.Tab.0.right" timestamp="1586795588885">
+    <state width="1719" height="320" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1586809226929" />
+    <state width="1719" height="320" key="GridCell.Tab.0.right" timestamp="1586809226929">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.right/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="1684" height="320" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1586795588885" />
-    <state width="1684" height="332" key="GridCell.Tab.1.bottom" timestamp="1586795054369">
+    <state width="1719" height="320" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1586809226929" />
+    <state width="1719" height="332" key="GridCell.Tab.1.bottom" timestamp="1586809071290">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="1684" height="332" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1586795054369" />
-    <state width="1684" height="332" key="GridCell.Tab.1.center" timestamp="1586795054369">
+    <state width="1719" height="332" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1586809071290" />
+    <state width="1719" height="332" key="GridCell.Tab.1.center" timestamp="1586809071290">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="1684" height="332" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1586795054369" />
-    <state width="1684" height="332" key="GridCell.Tab.1.left" timestamp="1586795054368">
+    <state width="1719" height="332" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1586809071290" />
+    <state width="1719" height="332" key="GridCell.Tab.1.left" timestamp="1586809071290">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="1684" height="332" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1586795054368" />
-    <state width="1684" height="332" key="GridCell.Tab.1.right" timestamp="1586795054369">
+    <state width="1719" height="332" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1586809071290" />
+    <state width="1719" height="332" key="GridCell.Tab.1.right" timestamp="1586809071290">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="1684" height="332" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1586795054369" />
-    <state x="164" y="255" width="1016" height="738" key="SettingsEditor" timestamp="1586441063484">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1719" height="332" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1586809071290" />
+    <state x="198" y="333" width="1016" height="738" key="SettingsEditor" timestamp="1586798519772">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="482" y="179" width="1016" height="738" key="SettingsEditor/67.27.1853.1052@67.27.1853.1052" timestamp="1582218522810" />
     <state x="482" y="187" key="SettingsEditor/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582151683273" />
     <state x="164" y="255" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1586441063484" />
-    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1586469145825">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="198" y="333" key="SettingsEditor/67.27.2493.1413@67.27.2493.1413" timestamp="1586798519772" />
+    <state width="1246" height="708" key="XDebugger.FullValuePopup" timestamp="1586807888752">
+      <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1586469145825" />
+    <state width="1246" height="708" key="XDebugger.FullValuePopup/67.27.2493.1413@67.27.2493.1413" timestamp="1586807888752" />
     <state x="653" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1586440682802">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -224,19 +230,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/regression/prediction.py</url>
-          <line>296</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/regression/prediction.py</url>
-          <line>279</line>
-          <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/teamdata/scrapedata.py</url>
-          <line>176</line>
+          <line>163</line>
           <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/regression/setup.py</url>
+          <line>67</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
