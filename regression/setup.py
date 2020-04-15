@@ -8,25 +8,34 @@ directory = 'regression/testing/'
 filename = directory + now.strftime('test-results_%d-%m-%Y--%H-%M-%S.log')
 
 
-def assess_prediction(actual_results, predictions):
-    """ Access if our prediction is correct or not """
-    correct = incorrect = 0
-    for i in range(len(predictions)):
-        if actual_results[i]:
-            if predictions[i]:
-                correct = correct + 1
-            else:
-                incorrect = incorrect + 1
-        else:
-            if predictions[i]:
-                incorrect = incorrect + 1
-            else:
-                correct = correct + 1
+def write_evalutated_results(file, results):
+    """ Print the results of the machine learning test """
+    LR_correct = 0
+    LR_incorrect = 0
+    LR_p_correct = 0
+    LR_p_incorrect = 0
+    SVC_correct = 0
+    SVC_incorrect = 0
+    census_correct = 0
+    census_incorrect = 0
+    for value in results:
+        LR_correct = LR_correct + value[0][0]
+        LR_incorrect = LR_incorrect + value[0][1]
+        LR_p_correct = LR_p_correct + value[1][0]
+        LR_p_incorrect = LR_p_incorrect + value[1][1]
+        SVC_correct = SVC_correct + value[2][0]
+        SVC_incorrect = SVC_incorrect + value[2][1]
+        census_correct = census_correct + value[3][0]
+        census_incorrect = census_incorrect + value[3][1]
 
-    print(correct / (correct + incorrect))
-    print(correct, incorrect)
-    print(' ')
-    return [correct, incorrect]
+    file.write("LogisticRegression, correct: " + str(LR_correct) + ", incorrect: " + str(LR_incorrect) +
+               ", percentage: " + str(LR_correct / (LR_correct + LR_incorrect)) + '\n')
+    file.write("LogisticRegression_prior, correct: " + str(LR_p_correct) + ", incorrect: " + str(LR_p_incorrect) +
+               ", percentage: " + str(LR_p_correct / (LR_p_correct + LR_p_incorrect)) + '\n')
+    file.write("State Vector Machine, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
+               ", percentage: " + str(SVC_correct / (SVC_correct + SVC_incorrect)) + '\n')
+    file.write("Census, correct: " + str(census_correct) + ", incorrect: " + str(census_incorrect) +
+               ", percentage: " + str(census_correct / (census_correct + census_incorrect)) + '\n')
 
 
 def predict_team_season_binary(file, team, testing_year, training_years, prior_year):
@@ -34,11 +43,11 @@ def predict_team_season_binary(file, team, testing_year, training_years, prior_y
     file.write("Executing predict_team_season_binary\n")
     predict_gamelog = gamelog_builder(testing_year, [team])
     simplifed_predict_gamelog = simplifed_gamelog_builder(testing_year, [team])
-    training_gamelog = gamelog_builder(training_years, teams)
+    # training_gamelog = gamelog_builder(training_years, teams)
     prior_gamelog = gamelog_builder(prior_year, [team])
 
     # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
-    data, df = build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog)
+    # data, df = build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog)
     data_p, df_p = build_data(predict_gamelog, simplifed_predict_gamelog, prior_gamelog)
     # games = df.drop('winner_home', axis=1)
     # data = x_train, x_test, y_train, y_test
@@ -47,20 +56,29 @@ def predict_team_season_binary(file, team, testing_year, training_years, prior_y
     clf_LR, clf_LR_p, clf_SVC, clf_XGB = load_model()
 
     # Test loaded models
-    sample_game = df.iloc[0].drop('winner_home')
+    # sample_game = df.iloc[0].drop('winner_home')
     sample_game_p = df_p.iloc[0].drop('winner_home')
 
     try:
-        p = clf_LR.predict([sample_game])[:1]
+        # p = clf_LR.predict([sample_game])[:1]
         p = clf_LR_p.predict([sample_game_p])[:1]
-        p = clf_SVC.predict([sample_game])[:1]
+        # p = clf_SVC.predict([sample_game])[:1]
     except ValueError as err:
         print("ValueError loaded model: " + str(predict_gamelog[0]))
         print("ValueError: {0}\n".format(err))
         # Build new models
-        clf_LR = build_model_LR(data, filenameLR)
+        # clf_LR = build_model_LR(data, filenameLR)
         clf_LR_p = build_model_LR(data_p, filenameLR_p)
-        clf_SVC = build_model_SVC(data, filenameSVC)
+        # clf_SVC = build_model_SVC(data, filenameSVC)
+        # clf_XGB = build_model_XGB(data, filenameXGB)
+        print("Rebuilt models\n")
+    except AttributeError as err:
+        print("AttributeError loaded model: " + str(predict_gamelog[0]))
+        print("AttributeError: {0}\n".format(err))
+        # Build new models
+        # clf_LR = build_model_LR(data, filenameLR)
+        clf_LR_p = build_model_LR(data_p, filenameLR_p)
+        # clf_SVC = build_model_SVC(data, filenameSVC)
         # clf_XGB = build_model_XGB(data, filenameXGB)
         print("Rebuilt models\n")
 
@@ -80,26 +98,26 @@ def predict_team_season_binary(file, team, testing_year, training_years, prior_y
     # predictions_XGB = []
     for i in range(games_count):
 
-        game = df.iloc[i].drop('winner_home')
+        # game = df.iloc[i].drop('winner_home')
         game_p = df_p.iloc[i].drop('winner_home')
         # game_xgb = games.iloc[i:i+1]
 
         try:
-            prediction_LR = clf_LR.predict([game])[:1]
-            predictions_LR.append(prediction_LR)
+            # prediction_LR = clf_LR.predict([game])[:1]
+            # predictions_LR.append(prediction_LR)
             prediction_LR_p = clf_LR_p.predict([game_p])[:1]
             predictions_LR_p.append(prediction_LR_p)
-            prediction_SVC = clf_SVC.predict([game])[:1]
-            predictions_SVC.append(prediction_SVC)
+            # prediction_SVC = clf_SVC.predict([game])[:1]
+            # predictions_SVC.append(prediction_SVC)
             # prediction_XGB = clf_XGB.predict_proba(game_xgb)
             # predictions_XGB.append(prediction_XGB)
 
         except ValueError as err:
             print("ValueError with game: " + str(predict_gamelog[i]))
             print("ValueError: {0}".format(err))
-            clf_LR = build_model_LR(data, filenameLR)
+            # clf_LR = build_model_LR(data, filenameLR)
             clf_LR_p = build_model_LR(data_p, filenameLR_p)
-            clf_SVC = build_model_SVC(data, filenameSVC)
+            # clf_SVC = build_model_SVC(data, filenameSVC)
             continue
         except TypeError as err:
             print("TypeError with game: " + str(predict_gamelog[i]))
@@ -112,6 +130,7 @@ def predict_team_season_binary(file, team, testing_year, training_years, prior_y
 
     # predictions_XGB2 = clf_XGB.predict(games)
 
+    assess_LR_p = assess_prediction(actual_results, predictions_LR_p)
     census = []
     for i in range(len(predictions_LR)):
         sums = predictions_LR[i] + predictions_LR_p[i] + predictions_SVC[i]
@@ -191,7 +210,7 @@ def predict_team_season_proba(file, team, testing_year, training_years, prior_ye
     # Gather real results - for comparison
     actual_results = []
     for game in predict_gamelog:
-        if game[10] == 'home':
+        if game[14] == 'home':
             actual_results.append(1)
         else:
             actual_results.append(0)
@@ -330,32 +349,7 @@ def execute_season(year, execute_teams):
                    ('%s' % ', '.join(map(str, prediction_year))) + " season\n")
 
     # LR Total Results
-    LR_correct = 0
-    LR_incorrect = 0
-    LR_p_correct = 0
-    LR_p_incorrect = 0
-    SVC_correct = 0
-    SVC_incorrect = 0
-    census_correct = 0
-    census_incorrect = 0
-    for value in results:
-        LR_correct = LR_correct + value[0][0]
-        LR_incorrect = LR_incorrect + value[0][1]
-        LR_p_correct = LR_p_correct + value[1][0]
-        LR_p_incorrect = LR_p_incorrect + value[1][1]
-        SVC_correct = SVC_correct + value[2][0]
-        SVC_incorrect = SVC_incorrect + value[2][1]
-        census_correct = census_correct + value[3][0]
-        census_incorrect = census_incorrect + value[3][1]
-
-    file.write("LogisticRegression, correct: " + str(LR_correct) + ", incorrect: " + str(LR_incorrect) +
-               ", percentage: " + str(LR_correct / (LR_correct + LR_incorrect)) + '\n')
-    file.write("LogisticRegression_prior, correct: " + str(LR_p_correct) + ", incorrect: " + str(LR_p_incorrect) +
-               ", percentage: " + str(LR_p_correct / (LR_p_correct + LR_p_incorrect)) + '\n')
-    file.write("State Vector Machine, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
-               ", percentage: " + str(SVC_correct / (SVC_correct + SVC_incorrect)) + '\n')
-    file.write("Census, correct: " + str(census_correct) + ", incorrect: " + str(census_incorrect) +
-               ", percentage: " + str(census_correct / (census_correct + census_incorrect)) + '\n')
+    write_evalutated_results(file, results)
 
     file.close()
 
@@ -363,7 +357,8 @@ def execute_season(year, execute_teams):
 def main():
     """ Main """
     # int 'year', list [str 'names']
-    execute_season(2019, ['NYM'])
+    # execute_season(2019, ['NYM'])
+    execute_season(2013, ['ARI'])
 
 
 # Call main

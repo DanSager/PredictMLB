@@ -6,12 +6,11 @@ from teamdata.seasonstats import *
 
 import sqlite3 as sql
 
-# TODO: add season schedules to the db via https://www.baseball-reference.com/leagues/MLB/2019-schedule.shtml
-
 
 def extract_data():
-    teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
-             'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
+    teams = ['ARI']
+    # teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
+    #          'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
     years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
     # teams = {'NYM'}
 
@@ -68,11 +67,15 @@ def extract_data():
                         innings text,
                         day text,
                         homepitcher text,
+                        homepitcher_wlp text,
                         homepitcher_era text,
                         homepitcher_whip text,
+                        homepitcher_fip text,
                         awaypitcher text,
+                        awaypitcher_wlp text,
                         awaypitcher_era text,
                         awaypitcher_whip text,
+                        awaypitcher_fip text,
                         winner text
                         )"""
             statscursor.execute(query)
@@ -111,9 +114,12 @@ def extract_data():
             for game in games:
                 # set defaults
                 home = None
-                num = date = hometeam = awayteam = runshome = runsaway = innings = day = homepitcher = awaypitcher = \
-                    homepitcher_era = awaypitcher_era = homepitcher_whip = awaypitcher_whip = winner = ""
+                num = date = hometeam = awayteam = runshome = runsaway = innings = day = homepitcher = awaypitcher = winner = ""
                 homepitcher_ref = awaypitcher_ref = ""
+                homepitcher_wlp = awaypitcher_wlp = "0.500"
+                homepitcher_era = awaypitcher_era = '4.5'
+                homepitcher_whip = awaypitcher_whip = '1.300'
+                homepitcher_fip = awaypitcher_fip = '4.5'
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -215,42 +221,51 @@ def extract_data():
                     homepitcher_stats_container = homepitcher_page_soup.findAll("table", {"id": "pitching_standard"})
                     homepitcher_seasons = homepitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
 
-                    homepitcher_era = '3.0'
-                    homepitcher_whip = '0.000'
                     for season in homepitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
                         if season_num == previous_year:
+                            wlp_container = season.findAll("td", {"data-stat": "win_loss_perc"})
+                            wlp = wlp_container[0].text
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
                             whip_container = season.findAll("td", {"data-stat": "whip"})
                             whip = whip_container[0].text
+                            fip_container = season.findAll("td", {"data-stat": "fip"})
+                            fip = fip_container[0].text
+                            homepitcher_wlp = wlp
                             homepitcher_era = era
                             homepitcher_whip = whip
+                            homepitcher_fip = fip
 
                     awaypitcher_stats_container = awaypitcher_page_soup.findAll("table", {"id": "pitching_standard"})
                     awaypitcher_seasons = awaypitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
 
-                    awaypitcher_era = '3.0'
-                    awaypitcher_whip = '0.000'
                     for season in awaypitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
                         if season_num == previous_year:
+                            wlp_container = season.findAll("td", {"data-stat": "win_loss_perc"})
+                            wlp = wlp_container[0].text
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
                             whip_container = season.findAll("td", {"data-stat": "whip"})
                             whip = whip_container[0].text
+                            fip_container = season.findAll("td", {"data-stat": "fip"})
+                            fip = fip_container[0].text
+                            awaypitcher_wlp = wlp
                             awaypitcher_era = era
                             awaypitcher_whip = whip
+                            awaypitcher_fip = fip
 
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
                 # -- writing essential game data -- #
                 game_data = GameSchedule(num, date, hometeam, awayteam, runshome, runsaway, innings, day,
-                                         homepitcher, homepitcher_era, homepitcher_whip, awaypitcher, awaypitcher_era,
-                                         awaypitcher_whip, winner)
+                                         homepitcher, homepitcher_wlp, homepitcher_era, homepitcher_whip,
+                                         homepitcher_fip, awaypitcher, awaypitcher_wlp, awaypitcher_era,
+                                         awaypitcher_whip, awaypitcher_fip, winner)
                 # If game already exists: update data, else: create
                 if get_game_by_index(statscursor, scheduletable, game_data.num):
                     update_game(statsdb, statscursor, scheduletable, game_data)

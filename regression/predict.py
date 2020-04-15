@@ -189,6 +189,8 @@ def gamelog_builder(gamelog_years, included_teams):
                 game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
                         game[8].replace(u'\xa0', u' '), game[9], game[10], game[11].replace(u'\xa0', u' '), game[12],
                         game[13], game[14]]
+                # game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
+                #         game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
 
                 gamelog.append(game)
 
@@ -232,3 +234,24 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
         gamelog = sorted(gamelog, key=lambda x: x[1])
         gamelog = list(k for k, _ in itertools.groupby(gamelog))
     return gamelog
+
+
+def assess_prediction(actual_results, predictions):
+    """ Access if our prediction is correct or not """
+    correct = incorrect = 0
+    for i in range(len(predictions)):
+        if actual_results[i]:
+            if predictions[i]:
+                correct = correct + 1
+            else:
+                incorrect = incorrect + 1
+        else:
+            if predictions[i]:
+                incorrect = incorrect + 1
+            else:
+                correct = correct + 1
+
+    print(correct / (correct + incorrect))
+    print(correct, incorrect)
+    print(' ')
+    return [correct, incorrect]
