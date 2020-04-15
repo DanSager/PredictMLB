@@ -21,10 +21,10 @@ teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', '
 years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
 
 sav_directory = 'regression/models/'
-filenameLR = sav_directory + 'finalized_clf_LR.sav'
-filenameLR_p = sav_directory + 'finalized_clf_LR_p.sav'
-filenameSVC = sav_directory + 'finalized_clf_SVC.sav'
-filenameXGB = sav_directory + 'finalized_clf_XGB.sav'
+filenameLR = sav_directory + 'clf_LR.sav'
+filenameLR_p = sav_directory + 'clf_LR_p.sav'
+filenameSVC = sav_directory + 'clf_SVC.sav'
+filenameXGB = sav_directory + 'clf_XGB.sav'
 
 
 def train_classifier(clf, x_train, y_train):
@@ -78,7 +78,8 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
 
     # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, awaypitcher, winner
     df = pd.DataFrame(temp, columns=['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway',
-                                     'innings', 'day', 'homepitcher', 'awaypitcher', 'winner'])
+                                     'innings', 'day', 'homepitcher', 'homepitcher_era', 'homepitcher_whip',
+                                     'awaypitcher', 'awaypitcher_era', 'awaypitcher_whip', 'winner'])
     del df['num']
     del df['date']
     # TODO test the effects of removing 'del df['date']
@@ -156,7 +157,8 @@ def insert_gamelog(predict_gamelog, training_gamelog):
     temp = []
     for game in training_gamelog:
         temp.append(game)
-    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, awaypitcher, winner
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
+    # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
     for game in predict_gamelog:
         temp.append(game)
 
@@ -181,10 +183,12 @@ def gamelog_builder(gamelog_years, included_teams):
             table = team + 'Schedule'
             schedule = get_team_schedule(statscursor, table)
 
-            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
+            # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
                 game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
-                        game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
+                        game[8].replace(u'\xa0', u' '), game[9], game[10], game[11].replace(u'\xa0', u' '), game[12],
+                        game[13], game[14]]
 
                 gamelog.append(game)
 
@@ -214,10 +218,11 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
             table = team + 'Schedule'
             schedule = get_team_schedule(statscursor, table)
 
-            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher, winner
+            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
+            # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
                 game = [None, None, game[2], game[3], None, None, None, game[7], game[8].replace(u'\xa0', u' '),
-                        game[9].replace(u'\xa0', u' '), None]
+                        game[9], game[10], game[11].replace(u'\xa0', u' '), game[12], game[13], None]
                 # game = [None, None, game[2], game[3], None, None, None, game[7], None, None, None]
 
                 gamelog.append(game)

@@ -68,7 +68,11 @@ def extract_data():
                         innings text,
                         day text,
                         homepitcher text,
+                        homepitcher_era text,
+                        homepitcher_whip text,
                         awaypitcher text,
+                        awaypitcher_era text,
+                        awaypitcher_whip text,
                         winner text
                         )"""
             statscursor.execute(query)
@@ -107,8 +111,8 @@ def extract_data():
             for game in games:
                 # set defaults
                 home = None
-                num = date = hometeam = awayteam = runshome = runsaway = innings = day = \
-                    homepitcher = awaypitcher = homepitcher_era = awaypitcher_era = winner = ""
+                num = date = hometeam = awayteam = runshome = runsaway = innings = day = homepitcher = awaypitcher = \
+                    homepitcher_era = awaypitcher_era = homepitcher_whip = awaypitcher_whip = winner = ""
                 homepitcher_ref = awaypitcher_ref = ""
 
                 try:
@@ -212,32 +216,41 @@ def extract_data():
                     homepitcher_seasons = homepitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
 
                     homepitcher_era = '3.0'
+                    homepitcher_whip = '0.000'
                     for season in homepitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
                         if season_num == previous_year:
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
+                            whip_container = season.findAll("td", {"data-stat": "whip"})
+                            whip = whip_container[0].text
                             homepitcher_era = era
+                            homepitcher_whip = whip
 
                     awaypitcher_stats_container = awaypitcher_page_soup.findAll("table", {"id": "pitching_standard"})
                     awaypitcher_seasons = awaypitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
 
                     awaypitcher_era = '3.0'
+                    awaypitcher_whip = '0.000'
                     for season in awaypitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
                         if season_num == previous_year:
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
+                            whip_container = season.findAll("td", {"data-stat": "whip"})
+                            whip = whip_container[0].text
                             awaypitcher_era = era
+                            awaypitcher_whip = whip
 
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
                 # -- writing essential game data -- #
                 game_data = GameSchedule(num, date, hometeam, awayteam, runshome, runsaway, innings, day,
-                                         homepitcher, awaypitcher, winner)
+                                         homepitcher, homepitcher_era, homepitcher_whip, awaypitcher, awaypitcher_era,
+                                         awaypitcher_whip, winner)
                 # If game already exists: update data, else: create
                 if get_game_by_index(statscursor, scheduletable, game_data.num):
                     update_game(statsdb, statscursor, scheduletable, game_data)
