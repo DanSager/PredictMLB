@@ -1,0 +1,300 @@
+Predicting for team: ARI
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 87, incorrect: 75, percentage: 0.5370370370370371
+LogisticRegression_prior, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+State Vector Machine, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Census, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Predicted ARIseason in 210.3980 seconds
+
+Predicting for team: ATL
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 88, incorrect: 74, percentage: 0.5432098765432098
+LogisticRegression_prior, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+State Vector Machine, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Census, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+Predicted ATLseason in 210.5987 seconds
+
+Predicting for team: BAL
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 85, incorrect: 77, percentage: 0.5246913580246914
+LogisticRegression_prior, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+State Vector Machine, correct: 87, incorrect: 75, percentage: 0.5370370370370371
+Census, correct: 87, incorrect: 75, percentage: 0.5370370370370371
+Predicted BALseason in 214.5934 seconds
+
+Predicting for team: BOS
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+State Vector Machine, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Census, correct: 92, incorrect: 70, percentage: 0.5679012345679012
+Predicted BOSseason in 211.2010 seconds
+
+Predicting for team: CHC
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 91, incorrect: 71, percentage: 0.5617283950617284
+State Vector Machine, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Census, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+Predicted CHCseason in 211.8689 seconds
+
+Predicting for team: CHW
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+LogisticRegression_prior, correct: 102, incorrect: 60, percentage: 0.6296296296296297
+State Vector Machine, correct: 100, incorrect: 62, percentage: 0.6172839506172839
+Census, correct: 102, incorrect: 60, percentage: 0.6296296296296297
+Predicted CHWseason in 212.5720 seconds
+
+Predicting for team: CIN
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 91, incorrect: 71, percentage: 0.5617283950617284
+LogisticRegression_prior, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+State Vector Machine, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+Census, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Predicted CINseason in 212.7879 seconds
+
+Predicting for team: CLE
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+LogisticRegression_prior, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+State Vector Machine, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Census, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+Predicted CLEseason in 209.5584 seconds
+
+Predicting for team: COL
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+LogisticRegression_prior, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+State Vector Machine, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+Census, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Predicted COLseason in 209.9480 seconds
+
+Predicting for team: DET
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+LogisticRegression_prior, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+State Vector Machine, correct: 100, incorrect: 62, percentage: 0.6172839506172839
+Census, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+Predicted DETseason in 211.0058 seconds
+
+Predicting for team: HOU
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+LogisticRegression_prior, correct: 105, incorrect: 57, percentage: 0.6481481481481481
+State Vector Machine, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+Census, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+Predicted HOUseason in 212.4200 seconds
+
+Predicting for team: KCR
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 88, incorrect: 74, percentage: 0.5432098765432098
+LogisticRegression_prior, correct: 92, incorrect: 70, percentage: 0.5679012345679012
+State Vector Machine, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Census, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+Predicted KCRseason in 213.0453 seconds
+
+Predicting for team: LAA
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+LogisticRegression_prior, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+State Vector Machine, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Census, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Predicted LAAseason in 212.2444 seconds
+
+Predicting for team: LAD
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 84, incorrect: 78, percentage: 0.5185185185185185
+LogisticRegression_prior, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+State Vector Machine, correct: 92, incorrect: 70, percentage: 0.5679012345679012
+Census, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+Predicted LADseason in 212.8818 seconds
+
+Predicting for team: MIA
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+State Vector Machine, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Census, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Predicted MIAseason in 212.1493 seconds
+
+Predicting for team: MIL
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 87, incorrect: 75, percentage: 0.5370370370370371
+LogisticRegression_prior, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+State Vector Machine, correct: 101, incorrect: 61, percentage: 0.6234567901234568
+Census, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Predicted MILseason in 208.2682 seconds
+
+Predicting for team: MIN
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+LogisticRegression_prior, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+State Vector Machine, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+Census, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Predicted MINseason in 211.5288 seconds
+
+Predicting for team: NYM
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+LogisticRegression_prior, correct: 92, incorrect: 70, percentage: 0.5679012345679012
+State Vector Machine, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+Census, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+Predicted NYMseason in 213.5021 seconds
+
+Predicting for team: NYY
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+LogisticRegression_prior, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+State Vector Machine, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+Census, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+Predicted NYYseason in 215.6635 seconds
+
+Predicting for team: OAK
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+LogisticRegression_prior, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+State Vector Machine, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+Census, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Predicted OAKseason in 210.2510 seconds
+
+Predicting for team: PHI
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 88, incorrect: 74, percentage: 0.5432098765432098
+LogisticRegression_prior, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+State Vector Machine, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Census, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Predicted PHIseason in 209.3476 seconds
+
+Predicting for team: PIT
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+State Vector Machine, correct: 90, incorrect: 72, percentage: 0.5555555555555556
+Census, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Predicted PITseason in 212.0791 seconds
+
+Predicting for team: SDP
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 87, incorrect: 75, percentage: 0.5370370370370371
+LogisticRegression_prior, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+State Vector Machine, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+Census, correct: 91, incorrect: 71, percentage: 0.5617283950617284
+Predicted SDPseason in 212.5220 seconds
+
+Predicting for team: SEA
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 88, incorrect: 74, percentage: 0.5432098765432098
+LogisticRegression_prior, correct: 103, incorrect: 59, percentage: 0.6358024691358025
+State Vector Machine, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Census, correct: 100, incorrect: 62, percentage: 0.6172839506172839
+Predicted SEAseason in 209.9487 seconds
+
+Predicting for team: SFG
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 85, incorrect: 77, percentage: 0.5246913580246914
+LogisticRegression_prior, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+State Vector Machine, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Census, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Predicted SFGseason in 213.7980 seconds
+
+Predicting for team: STL
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 92, incorrect: 70, percentage: 0.5679012345679012
+LogisticRegression_prior, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+State Vector Machine, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Census, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+Predicted STLseason in 212.3563 seconds
+
+Predicting for team: TBR
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 94, incorrect: 68, percentage: 0.5802469135802469
+LogisticRegression_prior, correct: 86, incorrect: 76, percentage: 0.5308641975308642
+State Vector Machine, correct: 102, incorrect: 60, percentage: 0.6296296296296297
+Census, correct: 99, incorrect: 63, percentage: 0.6111111111111112
+Predicted TBRseason in 210.7072 seconds
+
+Predicting for team: TEX
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+State Vector Machine, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Census, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Predicted TEXseason in 210.2081 seconds
+
+Predicting for team: TOR
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+LogisticRegression_prior, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+State Vector Machine, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Census, correct: 96, incorrect: 66, percentage: 0.5925925925925926
+Predicted TORseason in 210.7649 seconds
+
+Predicting for team: WSN
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+LogisticRegression, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+LogisticRegression_prior, correct: 98, incorrect: 64, percentage: 0.6049382716049383
+State Vector Machine, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Census, correct: 97, incorrect: 65, percentage: 0.5987654320987654
+Predicted WSNseason in 212.1245 seconds
+

@@ -18,9 +18,11 @@ teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', '
          'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
 years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
 
-filenameA = 'finalized_clf_A.sav'
-filenameB = 'finalized_clf_B.sav'
-filenameC = 'finalized_clf_C.sav'
+sav_directory = 'regression/models/'
+filenameLR = sav_directory + 'finalized_clf_LR.sav'
+filenameLR_p = sav_directory + 'finalized_clf_LR_p.sav'
+filenameSVC = sav_directory + 'finalized_clf_SVC.sav'
+filenameXGB = sav_directory + 'finalized_clf_XGB.sav'
 
 
 def train_classifier(clf, x_train, y_train):
@@ -69,14 +71,15 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     """ Build the data used to fit the model, x_train, x_test, y_train, y_test """
     training_size = len(training_gamelog)
     predict_size = len(predict_gamelog)
-    insert_gamelog(simplifed_predict_gamelog, training_gamelog)
-    gamelog = insert_gamelog(predict_gamelog, training_gamelog)
+    temp = insert_gamelog(simplifed_predict_gamelog, training_gamelog)
+    temp = insert_gamelog(predict_gamelog, temp)
 
-    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
-    df = pd.DataFrame(gamelog, columns=['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway',
-                                        'innings', 'day', 'winningpitcher', 'losingpitcher', 'winner'])
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, awaypitcher, winner
+    df = pd.DataFrame(temp, columns=['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway',
+                                     'innings', 'day', 'homepitcher', 'awaypitcher', 'winner'])
     del df['num']
     del df['date']
+    # TODO test the effects of removing 'del df['date']
     df = pd.get_dummies(df, drop_first=True)
 
     # Remove the test game from the training data
@@ -89,42 +92,62 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     return [x_train, x_test, y_train, y_test], df_predict
 
 
-def build_model(data):
+def build_model_LR(data, file):
     """ Build different regression models """
+    clf_LR = LogisticRegression(solver='lbfgs', random_state=42)
 
-    clf_A = LogisticRegression(solver='lbfgs', random_state=42)
-    clf_B = SVC(random_state=912, kernel='rbf')
-    clf_C = xgb.XGBClassifier(seed=82)
-
-    # train_predict(clf_A, x_train, y_train, x_test, y_test)
-    train_predict(clf_A, data[0], data[1], data[2], data[3])
-    print('')
-    train_predict(clf_B, data[0], data[1], data[2], data[3])
-    print('')
-    train_predict(clf_C, data[0], data[1], data[2], data[3])
+    train_predict(clf_LR, data[0], data[1], data[2], data[3])
     print('')
 
-    pickle.dump(clf_A, open(filenameA, 'wb'))
-    pickle.dump(clf_B, open(filenameB, 'wb'))
-    pickle.dump(clf_C, open(filenameC, 'wb'))
-    return [clf_A, clf_B, clf_C]
+    pickle.dump(clf_LR, open(file, 'wb'))
+    return clf_LR
 
 
-def insert_gamelog(predict_gamelog, training_gamelog):
-    """ Insert front a game into the gamelog """
-    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
-    for game in predict_gamelog:
-        training_gamelog.append(game)
+def build_model_SVC(data, file):
+    """ Build different regression models """
+    clf_SVC = SVC(random_state=912, kernel='rbf')
 
-    return training_gamelog
+    train_predict(clf_SVC, data[0], data[1], data[2], data[3])
+    print('')
+
+    pickle.dump(clf_SVC, open(file, 'wb'))
+    return clf_SVC
+
+
+def build_model_XGB(data, file):
+    """ Build different regression models """
+    clf_XGB = xgb.XGBClassifier(max_depth=6, eta=0.05, min_child_weight=3, subsample=.8, silent=0, num_round=200)
+
+    train_predict(clf_XGB, data[0], data[1], data[2], data[3])
+    print('')
+
+    pickle.dump(clf_XGB, open(file, 'wb'))
+    return clf_XGB
 
 
 def load_model():
     """ Load clf models """
-    clf_A = pickle.load(open(filenameA, 'rb'))
-    clf_B = pickle.load(open(filenameB, 'rb'))
-    clf_C = pickle.load(open(filenameC, 'rb'))
-    return [clf_A, clf_B, clf_C]
+    try:
+        clf_LR = pickle.load(open(filenameLR, 'rb'))
+        clf_LR_p = pickle.load(open(filenameLR_p, 'rb'))
+        clf_SVC = pickle.load(open(filenameSVC, 'rb'))
+        clf_XGB = pickle.load(open(filenameXGB, 'rb'))
+    except FileNotFoundError:
+        print(FileNotFoundError)
+        return [], [], [], []
+    return clf_LR, clf_LR_p, clf_SVC, clf_XGB
+
+
+def insert_gamelog(predict_gamelog, training_gamelog):
+    """ Insert front a game into the gamelog """
+    temp = []
+    for game in training_gamelog:
+        temp.append(game)
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+    for game in predict_gamelog:
+        temp.append(game)
+
+    return temp
 
 
 def gamelog_builder(gamelog_years, included_teams):
@@ -154,7 +177,8 @@ def gamelog_builder(gamelog_years, included_teams):
 
     if included_teams_size > 1:
         # Remove duplicates
-        gamelog.sort()
+        # gamelog.sort()
+        gamelog = sorted(gamelog, key=lambda x: x[1])
         gamelog = list(k for k, _ in itertools.groupby(gamelog))
     return gamelog
 
@@ -166,9 +190,9 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
     for year in gamelog_years:
         for team in included_teams:
             # Create / Connect to db
-            directory = 'teamdata/'
+            db_directory = 'teamdata/'
 
-            dbname = directory + 'teamstats_' + year + '.db'
+            dbname = db_directory + 'teamstats_' + year + '.db'
             statsdb = sql.connect(dbname)
 
             # Create a cursor to navigate the db
@@ -177,9 +201,11 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
             table = team + 'Schedule'
             schedule = get_team_schedule(statscursor, table)
 
-            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher, winner
             for game in schedule:
-                game = [None, None, game[2], game[3], None, None, None, None, game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), None]
+                game = [None, None, game[2], game[3], None, None, None, game[7], game[8].replace(u'\xa0', u' '),
+                        game[9].replace(u'\xa0', u' '), None]
+                # game = [None, None, game[2], game[3], None, None, None, game[7], None, None, None]
 
                 gamelog.append(game)
 
@@ -217,46 +243,3 @@ def yearly_gamelog_builder(year, included_teams):
     gamelog.sort()
     gamelog = list(k for k, _ in itertools.groupby(gamelog))
     return gamelog
-
-
-def execute(rebuild, predict_game, training_years):
-    """ Execute model and predict winner """
-    gamelog = []
-    for year in training_years:
-        gamelog = gamelog + yearly_gamelog_builder(year, teams)
-
-    if predict_game != '':
-        gamelog = insert_gamelog(predict_game, gamelog)
-
-    home = gamelog[0][2]
-    away = gamelog[0][3]
-
-    data, df = build_data(gamelog)  # x_train, x_test, y_train, y_test
-
-    if rebuild:
-        clf_A, clf_B, clf_C = build_model(data)
-    else:
-        clf_A, clf_B, clf_C = load_model()
-
-    # Test Prediction
-    game = df.iloc[0].drop('winner_home')
-
-    try:
-        pred_A = clf_A.predict([game])[:1]
-        pred_B = clf_B.predict([game])[:1]
-        # pred_C = clf_C.predict(game)
-    except ValueError:  # There is missing feature, rebuild the model
-        print("ValueError. Rebuilding model")
-        clf_A, clf_B, clf_C = build_model(data)
-        pred_A = clf_A.predict([game])[:1]
-        pred_B = clf_B.predict([game])[:1]
-        # pred_C = clf_C.predict(game)
-
-    pred_C = 'H'
-
-    if pred_B:
-        print("Prediction that " + home + " will win against " + away)
-    else:
-        print("Prediction that " + away + " will win against " + home)
-    return pred_A, pred_B, pred_C
-
