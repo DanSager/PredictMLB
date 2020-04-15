@@ -1,10 +1,12 @@
+""" Support functions used to setup machine learning models as well as executing them """
+
 # Import statements
 import itertools
 import pickle
 import pandas as pd
 import xgboost as xgb
 from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
+# from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import f1_score
@@ -114,9 +116,20 @@ def build_model_SVC(data, file):
     return clf_SVC
 
 
+def build_model_SVC_proba(data, file):
+    """ Build different regression models """
+    clf_SVC = SVC(random_state=912, kernel='rbf', probability=True)
+
+    train_predict(clf_SVC, data[0], data[1], data[2], data[3])
+    print('')
+
+    pickle.dump(clf_SVC, open(file, 'wb'))
+    return clf_SVC
+
+
 def build_model_XGB(data, file):
     """ Build different regression models """
-    clf_XGB = xgb.XGBClassifier(max_depth=6, eta=0.05, min_child_weight=3, subsample=.8, silent=0, num_round=200)
+    clf_XGB = xgb.XGBClassifier(max_depth=6)
 
     train_predict(clf_XGB, data[0], data[1], data[2], data[3])
     print('')
@@ -143,7 +156,7 @@ def insert_gamelog(predict_gamelog, training_gamelog):
     temp = []
     for game in training_gamelog:
         temp.append(game)
-    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
+    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, awaypitcher, winner
     for game in predict_gamelog:
         temp.append(game)
 
@@ -211,35 +224,6 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
 
     if included_teams_size > 1:
         # Remove duplicates
-        gamelog.sort()
+        gamelog = sorted(gamelog, key=lambda x: x[1])
         gamelog = list(k for k, _ in itertools.groupby(gamelog))
-    return gamelog
-
-
-def yearly_gamelog_builder(year, included_teams):
-    """ Build gamelog dataset """
-    gamelog = []
-    for team in included_teams:
-        # Create / Connect to db
-        directory = 'teamdata/'
-
-        dbname = directory + 'teamstats_' + year + '.db'
-        statsdb = sql.connect(dbname)
-
-        # Create a cursor to navigate the db
-        statscursor = statsdb.cursor()
-
-        table = team + 'Schedule'
-        schedule = get_team_schedule(statscursor, table)
-
-        # num, date, hometeam, awayteam, runshome, runsaway, innings, day, winningpitcher, losingpitcher, winner
-        for game in schedule:
-            game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
-                    game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
-
-            gamelog.append(game)
-
-    # Remove duplicates
-    gamelog.sort()
-    gamelog = list(k for k, _ in itertools.groupby(gamelog))
     return gamelog

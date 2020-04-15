@@ -1,0 +1,16 @@
+Predicting for team: NYM
+Predicting with prediction year: [2019]
+Predicting with training years: [2016, 2017, 2018]
+Predicting with prior year: [2018]
+Executing predict_team_season_binary
+LogisticRegression, correct: 83, incorrect: 79, percentage: 0.5123456790123457
+LogisticRegression_prior, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+State Vector Machine, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+Census, correct: 95, incorrect: 67, percentage: 0.5864197530864198
+Predicted NYM season in 7.6216 seconds
+
+Overall stats for NYM 2019 season
+LogisticRegression, correct: 83, incorrect: 79, percentage: 0.5123456790123457
+LogisticRegression_prior, correct: 89, incorrect: 73, percentage: 0.5493827160493827
+State Vector Machine, correct: 93, incorrect: 69, percentage: 0.5740740740740741
+Census, correct: 95, incorrect: 67, percentage: 0.5864197530864198

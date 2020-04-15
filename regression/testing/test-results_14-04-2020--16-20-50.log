@@ -1,2 +1,0 @@
-Predicting for team: ARIPredicting with prediction year: [2019]Predicting with training years: [2016, 2017, 2018]Predicting with prior year: [2018]LogisticRegression, correct: 86 incorrect: 76LogisticRegression_prior, correct: 99 incorrect: 63State Vector Machine, correct: 97 incorrect: 65Census, correct: 94 incorrect: 68Predicted ARIseason in 217.3262 seconds
-Predicting for team: ATLPredicting with prediction year: [2019]Predicting with training years: [2016, 2017, 2018]Predicting with prior year: [2018]

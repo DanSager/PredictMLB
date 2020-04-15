@@ -65,7 +65,7 @@ def extract_data():
                         awayteam text,
                         runshome text,
                         runsaway text,
-                        innnings text,
+                        innings text,
                         day text,
                         homepitcher text,
                         awaypitcher text,
@@ -108,7 +108,8 @@ def extract_data():
                 # set defaults
                 home = None
                 num = date = hometeam = awayteam = runshome = runsaway = innings = day = \
-                    homepitcher = awaypitcher = winner = ""
+                    homepitcher = awaypitcher = homepitcher_era = awaypitcher_era = winner = ""
+                homepitcher_ref = awaypitcher_ref = ""
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -173,16 +174,63 @@ def extract_data():
 
                     winningpitcher_container = game.findAll("td", {"data-stat": "winning_pitcher"})
                     winningpitcher = winningpitcher_container[0].a["title"]
+                    winningpitcher_ref = winningpitcher_container[0].a["href"]
 
                     losingpitcher_container = game.findAll("td", {"data-stat": "losing_pitcher"})
                     losingpitcher = losingpitcher_container[0].a["title"]
+                    losingpitcher_ref = losingpitcher_container[0].a["href"]
 
                     if winner == "home":
                         homepitcher = winningpitcher
+                        homepitcher_ref = winningpitcher_ref
                         awaypitcher = losingpitcher
+                        awaypitcher_ref = losingpitcher_ref
                     else:
                         homepitcher = losingpitcher
+                        homepitcher_ref = losingpitcher_ref
                         awaypitcher = winningpitcher
+                        awaypitcher_ref = winningpitcher_ref
+
+                    # https://www.baseball-reference.com/players/s/syndeno01.shtml
+                    previous_year = str((int(year))-1)
+                    homepitcher_url = 'https://www.baseball-reference.com' + homepitcher_ref
+                    awaypitcher_url = 'https://www.baseball-reference.com' + awaypitcher_ref
+
+                    # opening statsdbection, grabbing page
+                    homepitcher_Client = ureq(homepitcher_url)
+                    homepitcher_page_html = homepitcher_Client.read()
+                    homepitcher_Client.close()
+                    awaypitcher_Client = ureq(awaypitcher_url)
+                    awaypitcher_page_html = awaypitcher_Client.read()
+                    awaypitcher_Client.close()
+
+                    # html parsing
+                    homepitcher_page_soup = Soup(homepitcher_page_html, "html.parser")
+                    awaypitcher_page_soup = Soup(awaypitcher_page_html, "html.parser")
+
+                    homepitcher_stats_container = homepitcher_page_soup.findAll("table", {"id": "pitching_standard"})
+                    homepitcher_seasons = homepitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
+
+                    homepitcher_era = '3.0'
+                    for season in homepitcher_seasons:
+                        season_num_container = season.findAll("th", {"data-stat": "year_ID"})
+                        season_num = season_num_container[0].text
+                        if season_num == previous_year:
+                            era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
+                            era = era_container[0].text
+                            homepitcher_era = era
+
+                    awaypitcher_stats_container = awaypitcher_page_soup.findAll("table", {"id": "pitching_standard"})
+                    awaypitcher_seasons = awaypitcher_stats_container[0].tbody.findAll("tr", {"class": "full"})
+
+                    awaypitcher_era = '3.0'
+                    for season in awaypitcher_seasons:
+                        season_num_container = season.findAll("th", {"data-stat": "year_ID"})
+                        season_num = season_num_container[0].text
+                        if season_num == previous_year:
+                            era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
+                            era = era_container[0].text
+                            awaypitcher_era = era
 
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
