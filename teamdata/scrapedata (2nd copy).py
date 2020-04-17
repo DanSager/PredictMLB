@@ -8,11 +8,10 @@ import sqlite3 as sql
 
 
 def extract_data():
-    # teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
-    #          'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
-    # years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-    years = ['2018', '2019']
-    teams = ['NYM']
+    teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
+             'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
+    years = ['2013']
+    # teams = ['ARI']
 
     for year in years:
 
@@ -58,25 +57,25 @@ def extract_data():
             # Create table for 'Team-Season'
             scheduletable = team + "Schedule"
             query = """CREATE TABLE IF NOT EXISTS """ + scheduletable + """ (
-                        num INTEGER,
-                        date TEXT,
-                        hometeam TEXT,
-                        awayteam TEXT,
-                        runshome INTEGER,
-                        runsaway INTEGER,
-                        innings INTEGER,
-                        day INTEGER,
-                        homepitcher TEXT,
-                        homepitcher_wlp REAL,
-                        homepitcher_era REAL,
-                        homepitcher_whip REAL,
-                        homepitcher_fip REAL,
-                        awaypitcher TEXT,
-                        awaypitcher_wlp REAL,
-                        awaypitcher_era REAL,
-                        awaypitcher_whip REAL,
-                        awaypitcher_fip REAL,
-                        winner TEXT
+                        num text,
+                        date text,
+                        hometeam text,
+                        awayteam text,
+                        runshome text,
+                        runsaway text,
+                        innings text,
+                        day text,
+                        homepitcher text,
+                        homepitcher_wlp text,
+                        homepitcher_era text,
+                        homepitcher_whip text,
+                        homepitcher_fip text,
+                        awaypitcher text,
+                        awaypitcher_wlp text,
+                        awaypitcher_era text,
+                        awaypitcher_whip text,
+                        awaypitcher_fip text,
+                        winner text
                         )"""
             statscursor.execute(query)
 
@@ -116,10 +115,10 @@ def extract_data():
                 home = None
                 num = date = hometeam = awayteam = runshome = runsaway = innings = day = homepitcher = awaypitcher = winner = ""
                 homepitcher_ref = awaypitcher_ref = ""
-                homepitcher_wlp = awaypitcher_wlp = 0.500
-                homepitcher_era = awaypitcher_era = 4.5
-                homepitcher_whip = awaypitcher_whip = 1.300
-                homepitcher_fip = awaypitcher_fip = 4.5
+                homepitcher_wlp = awaypitcher_wlp = "0.500"
+                homepitcher_era = awaypitcher_era = '4.5'
+                homepitcher_whip = awaypitcher_whip = '1.300'
+                homepitcher_fip = awaypitcher_fip = '4.5'
 
                 try:
                     num_container = game.findAll("th", {"data-stat": "team_game"})
@@ -224,23 +223,17 @@ def extract_data():
                     for season in homepitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
-                        if season_num == year:
+                        if season_num == previous_year:
                             wlp_container = season.findAll("td", {"data-stat": "win_loss_perc"})
                             wlp = wlp_container[0].text
-                            if wlp == "" or wlp == "inf":
+                            if wlp == "":
                                 wlp = homepitcher_wlp
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
-                            if era == "" or era == "inf":
-                                era = homepitcher_era
                             whip_container = season.findAll("td", {"data-stat": "whip"})
                             whip = whip_container[0].text
-                            if whip == "" or whip == "inf":
-                                whip = homepitcher_whip
                             fip_container = season.findAll("td", {"data-stat": "fip"})
                             fip = fip_container[0].text
-                            if fip == "" or fip == "inf":
-                                fip = homepitcher_fip
                             homepitcher_wlp = wlp
                             homepitcher_era = era
                             homepitcher_whip = whip
@@ -255,20 +248,14 @@ def extract_data():
                         if season_num == previous_year:
                             wlp_container = season.findAll("td", {"data-stat": "win_loss_perc"})
                             wlp = wlp_container[0].text
-                            if wlp == "" or wlp == "inf":
+                            if wlp == "":
                                 wlp = awaypitcher_wlp
                             era_container = season.findAll("td", {"data-stat": "earned_run_avg"})
                             era = era_container[0].text
-                            if era == "" or era == "inf":
-                                era = awaypitcher_era
                             whip_container = season.findAll("td", {"data-stat": "whip"})
                             whip = whip_container[0].text
-                            if whip == "" or whip == "inf":
-                                whip = awaypitcher_whip
                             fip_container = season.findAll("td", {"data-stat": "fip"})
                             fip = fip_container[0].text
-                            if fip == "" or fip == "inf":
-                                fip = awaypitcher_fip
                             awaypitcher_wlp = wlp
                             awaypitcher_era = era
                             awaypitcher_whip = whip

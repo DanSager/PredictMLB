@@ -16,6 +16,7 @@ from time import time
 from teamdata.seasonstats import *
 import sqlite3 as sql
 
+# Variables
 teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
          'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
 years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
@@ -25,6 +26,11 @@ filenameLR = sav_directory + 'clf_LR.sav'
 filenameLR_p = sav_directory + 'clf_LR_p.sav'
 filenameSVC = sav_directory + 'clf_SVC.sav'
 filenameXGB = sav_directory + 'clf_XGB.sav'
+
+data_columns = ['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway', 'innings', 'day',
+                'homepitcher', 'homepitcher_wlp', 'homepitcher_era', 'homepitcher_whip', 'homepitcher_fip',
+                'awaypitcher', 'awaypitcher_wlp', 'awaypitcher_era', 'awaypitcher_whip', 'awaypitcher_fip',
+                'winner']
 
 
 def train_classifier(clf, x_train, y_train):
@@ -76,12 +82,13 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     temp = insert_gamelog(simplifed_predict_gamelog, training_gamelog)
     temp = insert_gamelog(predict_gamelog, temp)
 
-    # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, awaypitcher, winner
-    df = pd.DataFrame(temp, columns=['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway',
-                                     'innings', 'day', 'homepitcher', 'homepitcher_era', 'homepitcher_whip',
-                                     'awaypitcher', 'awaypitcher_era', 'awaypitcher_whip', 'winner'])
+    df = pd.DataFrame(temp, columns=data_columns)
+    df = df.fillna(df.mean())
     del df['num']
     del df['date']
+    # del df['runshome']
+    # del df['runsaway']
+    # del df['innings']
     # TODO test the effects of removing 'del df['date']
     df = pd.get_dummies(df, drop_first=True)
 
@@ -91,13 +98,14 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     df_train = df.iloc[:training_size]
     df_predict = df.iloc[training_size:training_size+predict_size]
 
-    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('winner_home', axis=1), df_train['winner_home'])
+    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('winner_home', axis=1), df_train['winner_home'],
+                                                        random_state=42)
     return [x_train, x_test, y_train, y_test], df_predict
 
 
 def build_model_LR(data, file):
     """ Build different regression models """
-    clf_LR = LogisticRegression(solver='lbfgs', random_state=42)
+    clf_LR = LogisticRegression(solver='lbfgs', random_state=42, max_iter=25000)
 
     train_predict(clf_LR, data[0], data[1], data[2], data[3])
     print('')
@@ -145,11 +153,11 @@ def load_model():
         clf_LR = pickle.load(open(filenameLR, 'rb'))
         clf_LR_p = pickle.load(open(filenameLR_p, 'rb'))
         clf_SVC = pickle.load(open(filenameSVC, 'rb'))
-        clf_XGB = pickle.load(open(filenameXGB, 'rb'))
+        # clf_XGB = pickle.load(open(filenameXGB, 'rb'))
     except FileNotFoundError:
         print(FileNotFoundError)
-        return [], [], [], []
-    return clf_LR, clf_LR_p, clf_SVC, clf_XGB
+        return [], [], []
+    return clf_LR, clf_LR_p, clf_SVC
 
 
 def insert_gamelog(predict_gamelog, training_gamelog):
@@ -187,8 +195,9 @@ def gamelog_builder(gamelog_years, included_teams):
             # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
                 game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
-                        game[8].replace(u'\xa0', u' '), game[9], game[10], game[11].replace(u'\xa0', u' '), game[12],
-                        game[13], game[14]]
+                        game[8].replace(u'\xa0', u' '), game[9], game[10], game[11], game[12],
+                        game[13].replace(u'\xa0', u' '), game[14], game[15], game[16], game[17],
+                        game[18]]
                 # game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
                 #         game[8].replace(u'\xa0', u' '), game[9].replace(u'\xa0', u' '), game[10]]
 
@@ -223,8 +232,10 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
             # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
             # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
-                game = [None, None, game[2], game[3], None, None, None, game[7], game[8].replace(u'\xa0', u' '),
-                        game[9], game[10], game[11].replace(u'\xa0', u' '), game[12], game[13], None]
+                game = [None, None, game[2], game[3], None, None, None, game[7],
+                        game[8].replace(u'\xa0', u' '), None, None, None, None,
+                        game[13].replace(u'\xa0', u' '), None, None, None, None,
+                        None]
                 # game = [None, None, game[2], game[3], None, None, None, game[7], None, None, None]
 
                 gamelog.append(game)
