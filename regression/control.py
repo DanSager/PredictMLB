@@ -1,7 +1,7 @@
 """ Gather human predictions based on the same info the algorithm has """
 from regression.predict import *
 
-directory = 'regression/human_sample/'
+directory = 'regression/control/'
 
 
 def main(year, team, name):
@@ -57,7 +57,7 @@ def main(year, team, name):
     h_file.close()
 
 
-def assess(name):  #Human prediction accuracy, correct: 93, incorrect: 69, percentage: 0.574074074
+def assess(name):
     predictions = []
     filename_s = directory + name + '.txt'
     with open(filename_s) as file_in:

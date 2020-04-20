@@ -59,14 +59,13 @@ def write_evalutated_results(file, results):
                ", percentage: " + str(census_correct / (census_correct + census_incorrect)) + '\n')
 
 
-def predict_team_season_bo1(file, team, testing_year, training_years, prior_year, model):
+def predict_team_season_bo1(file, team, testing_year, training_years, prior_year, clf_name):
     """ Predict the yearly win/loss for a team and check accuracy """
     file.write("Executing predict_team_season_bo1\n")
-    training_predict_gamelog = gamelog_builder(testing_year, [team])
-    # simplifed_predict_gamelog = simplifed_gamelog_builder(testing_year, [team])
-    testing_predict_gamelog = testing_gamelog_builder(prior_year, testing_year, [team])
-    training_gamelog = gamelog_builder(training_years, teams)
-    prior_gamelog = gamelog_builder(prior_year, [team])
+    training_predict_gamelog = build_gamelog([testing_year], [team])
+    testing_predict_gamelog = build_testing_gamelog(prior_year, testing_year, [team])
+    training_gamelog = build_gamelog(training_years, teams)
+    prior_gamelog = build_gamelog([prior_year], [team])
 
     # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
     data, df = build_data(training_predict_gamelog, testing_predict_gamelog, training_gamelog)
@@ -76,17 +75,17 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
     # LR, SVC, KNC, RFC, XGB, LR_p, = load_model()
 
     # Build new models
-    if model == ML_algorithms[0]:
+    if clf_name == ML_algorithms[0]:
         LR = build_LR(data, filenameLR)
-    elif model == ML_algorithms[1]:
+    elif clf_name == ML_algorithms[1]:
         SVC = build_SVC(data, filenameSVC)
-    elif model == ML_algorithms[2]:
+    elif clf_name == ML_algorithms[2]:
         KNC = build_KNC(data, filenameKNC)
-    elif model == ML_algorithms[3]:
+    elif clf_name == ML_algorithms[3]:
         RFC = build_RFC(data, filenameRFC)
-    elif model == ML_algorithms[4]:
+    elif clf_name == ML_algorithms[4]:
         XGB = build_XGB(data, filenameXGB)
-    elif model == ML_algorithms[5]:
+    elif clf_name == ML_algorithms[5]:
         LR_p = build_LR(data_p, filenameLR_p)
 
     # Gather real results - for comparison
@@ -102,7 +101,7 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
     # Test Prediction
     games_count = len(training_predict_gamelog)
     predictions = []
-    if model == ML_algorithms[4]:
+    if clf_name == ML_algorithms[4]:
         games = df.drop('win_1', axis=1)
         predictions = XGB.predict(games)
     else:
@@ -112,33 +111,33 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
             game_p = df_p.iloc[i].drop('win_1')
 
             try:
-                if model == ML_algorithms[0]:
+                if clf_name == ML_algorithms[0]:
                     prediction_LR = LR.predict([game])[:1]
                     predictions.append(prediction_LR[0])
-                elif model == ML_algorithms[1]:
+                elif clf_name == ML_algorithms[1]:
                     prediction_SVC = SVC.predict([game])[:1]
                     predictions.append(prediction_SVC[0])
-                elif model == ML_algorithms[2]:
+                elif clf_name == ML_algorithms[2]:
                     prediction_KNC = KNC.predict([game])[:1]
                     predictions.append(prediction_KNC[0])
-                elif model == ML_algorithms[3]:
+                elif clf_name == ML_algorithms[3]:
                     prediction_RFC = RFC.predict([game])[:1]
                     predictions.append(prediction_RFC[0])
-                elif model == ML_algorithms[5]:
+                elif clf_name == ML_algorithms[5]:
                     prediction_LR_p = LR_p.predict([game_p])[:1]
                     predictions.append(prediction_LR_p[0])
             except ValueError as err:
                 print("ValueError with game: " + str(training_predict_gamelog[i]))
                 print("ValueError: {0}".format(err))
-                if model == ML_algorithms[0]:
+                if clf_name == ML_algorithms[0]:
                     LR = build_LR(data, filenameLR)
-                elif model == ML_algorithms[1]:
+                elif clf_name == ML_algorithms[1]:
                     SVC = build_SVC(data, filenameSVC)
-                elif model == ML_algorithms[2]:
+                elif clf_name == ML_algorithms[2]:
                     KNC = build_KNC(data, filenameKNC)
-                elif model == ML_algorithms[3]:
+                elif clf_name == ML_algorithms[3]:
                     RFC = build_RFC(data, filenameRFC)
-                elif model == ML_algorithms[5]:
+                elif clf_name == ML_algorithms[5]:
                     LR_p = build_LR(data_p, filenameLR_p)
                 continue
             except TypeError as err:
@@ -147,14 +146,14 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
 
             # UPDATE DATA AFTER EVERY GAME
             prior_gamelog.append(testing_predict_gamelog[i])
-            if model == ML_algorithms[5]:
+            if clf_name == ML_algorithms[5]:
                 data_p, df_p = build_data(training_predict_gamelog, testing_predict_gamelog, prior_gamelog)
                 LR_p = build_LR(data_p, filenameLR_p)
 
-    print(('[%s]' % ', '.join(map(str, predictions))))
+    print("Predictions " + ('[%s]' % ', '.join(map(str, predictions))))
     file.write(('[%s]' % ', '.join(map(str, predictions))) + '\n')
     assess = assess_prediction(actual_results, predictions)
-    file.write(model + " , correct: " + str(assess[0]) + ", incorrect: " + str(assess[1]) +
+    file.write(clf_name + " , correct: " + str(assess[0]) + ", incorrect: " + str(assess[1]) +
                ", percentage: " + str(assess[0] / (assess[0] + assess[1])) + '\n')
     return assess
 
@@ -162,11 +161,10 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
 def predict_team_season_bo5(file, team, testing_year, training_years, prior_year):
     """ Predict the yearly win/loss for a team and check accuracy """
     file.write("Executing predict_team_season_bo5\n")
-    training_predict_gamelog = gamelog_builder(testing_year, [team])
-    # simplifed_predict_gamelog = simplifed_gamelog_builder(testing_year, [team])
-    testing_predict_gamelog = testing_gamelog_builder(prior_year, testing_year, [team])
-    training_gamelog = gamelog_builder(training_years, teams)
-    prior_gamelog = gamelog_builder(prior_year, [team])
+    training_predict_gamelog = build_gamelog(testing_year, [team])
+    testing_predict_gamelog = build_testing_gamelog(prior_year, testing_year, [team])
+    training_gamelog = build_gamelog(training_years, teams)
+    prior_gamelog = build_gamelog([prior_year], [team])
 
     # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
     data, df = build_data(training_predict_gamelog, testing_predict_gamelog, training_gamelog)
@@ -288,8 +286,8 @@ def execute_season_bo1(year, execute_teams, model_name):
     for i in range(num_of_training_years):
         if year - i - 1 >= minimum_year:
             training_years.insert(0, str(year - i - 1))
-    prior_year = [str(year - 1)]
-    prediction_year = [str(year)]
+    prior_year = str(year - 1)
+    prediction_year = str(year)
     results = []
 
     for team in execute_teams:
@@ -338,8 +336,8 @@ def execute_season_bo5(year, execute_teams):
     for i in range(num_of_training_years):
         if year - i - 1 >= minimum_year:
             training_years.insert(0, str(year - i - 1))
-    prior_year = [str(year - 1)]
-    prediction_year = [str(year)]
+    prior_year = str(year - 1)
+    prediction_year = str(year)
     results = []
 
     for team in execute_teams:
@@ -382,8 +380,8 @@ def test():
 def main():
     """ Main """
     # int 'year', list [str 'names']
-    execute_season_bo5(2019, ['ARI'])
-    # execute_season_bo1(2019, ['ARI'], ML_algorithms[2])
+    execute_season_bo1(2019, ['ARI'], ML_algorithms[2])
+    # execute_season_bo5(2019, ['ARI'])
 
 
 # Call main

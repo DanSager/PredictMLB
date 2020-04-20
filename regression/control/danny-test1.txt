@@ -161,5 +161,5 @@
 0
 0
 
-Human prediction accuracy, correct: 93, incorrect: 69, percentage: 0.574074074
+Human prediction accuracy, correct: 93, incorrect: 69, percentage: 0.5740740740740741
 ARI 2019
