@@ -338,7 +338,7 @@ def main():
     """ Main """
     # int 'year', list [str 'names']
     # execute_season_bo5(2015, ['NYM'])
-    execute_season_bo1(2018, ['NYM'], ML_algorithms[2])
+    execute_season_bo1(2018, ['NYM'], ML_algorithms[5])
 
 
 # Call main

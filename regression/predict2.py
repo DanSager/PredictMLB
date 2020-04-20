@@ -30,9 +30,9 @@ filenameRFC = sav_directory + 'RFC.sav'
 filenameXGB = sav_directory + 'XGB.sav'
 filenameLR_p = sav_directory + 'LR_p.sav'
 
-features = ['num', 'date', 'team', 'opponent', 'home', 'runs', 'runsallowed', 'innings', 'day', 'pitcher',
+features = ['num', 'date', 'season', 'team', 'opponent', 'home', 'runs', 'runsallowed', 'innings', 'day', 'pitcher',
             'pitcher_wlp', 'pitcher_era', 'pitcher_whip', 'pitcher_fip', 'opp_pitcher', 'opp_pitcher_wlp',
-            'opp_pitcher_era', 'opp_pitcher_whip', 'opp_pitcher_fip', 'win']
+            'opp_pitcher_era', 'opp_pitcher_whip', 'opp_pitcher_fip', 'team_loc_wlp', 'opp_loc_wlp', 'win']
 
 
 def train_classifier(clf, x_train, y_train):
@@ -95,12 +95,12 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     #del df['runsallowed']
     del df['pitcher_wlp']
     #del df['pitcher_era']
-    del df['pitcher_fip']
-    del df['pitcher_whip']
+    #del df['pitcher_fip']
+    #del df['pitcher_whip']
     del df['opp_pitcher_wlp']
     #del df['opp_pitcher_era']
-    del df['opp_pitcher_whip']
-    del df['opp_pitcher_fip']
+    #del df['opp_pitcher_whip']
+    #del df['opp_pitcher_fip']
     # TODO test the effects of removing 'del df['date']
     df = pd.get_dummies(df, drop_first=True)
 
@@ -214,11 +214,25 @@ def gamelog_builder(gamelog_years, included_teams):
             table = team + 'Schedule'
             schedule = get_team_schedule(statscursor, table)
 
-            # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
-            # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
+            winlosssplit_tname = 'WinLossSplit'
+            winlosssplit_table = get_team_schedule(statscursor, winlosssplit_tname)
+
             for game in schedule:
-                game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7], game[8], game[9], game[10],
-                        game[11], game[12], game[13], game[14], game[15], game[16], game[17], game[18], game[19]]
+                team_location_wlp = opponent_location_wlp = 0.000
+                for stat in winlosssplit_table:
+                    if stat[0] == team:
+                        if game[4] == '1':
+                            team_location_wlp = stat[2]
+                        else:
+                            team_location_wlp = stat[3]
+                    if stat[0] == game[3]:
+                        if game[4] == '0':
+                            opponent_location_wlp = stat[2]
+                        else:
+                            opponent_location_wlp = stat[3]
+
+                game = [game[0], game[1], year, game[2], game[3], game[4], game[5], game[6], game[7], game[8], game[9], game[10],
+                        game[11], game[12], game[13], game[14], game[15], game[16], game[17], game[18], team_location_wlp, opponent_location_wlp, game[19]]
 
                 gamelog.append(game)
 
@@ -289,6 +303,9 @@ def testing_gamelog_builder(prior_year, year, included_teams):
         prior_table = team + 'Schedule'
         prior_schedule = get_team_schedule(prior_statscursor, prior_table)
 
+        winlosssplit_tname = 'WinLossSplit'
+        winlosssplit_table = get_team_schedule(prior_statscursor, winlosssplit_tname)
+
         # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
         # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
         for i in range(len(schedule)):
@@ -310,8 +327,23 @@ def testing_gamelog_builder(prior_year, year, included_teams):
                     opp_pitcher_era = game[11]
                     opp_pitcher_whip = game[12]
                     opp_pitcher_fip = game[13]
-            game = [game[0], game[1], game[2], game[3], game[4], None, None, None, game[8], game[9],
-                    pitcher_wlp, pitcher_era, pitcher_whip, pitcher_fip, game[14], opp_pitcher_wlp, opp_pitcher_era, opp_pitcher_whip, opp_pitcher_fip, None]
+
+            team_location_wlp = opponent_location_wlp = 0.000
+            for stat in winlosssplit_table:
+                if stat[0] == team:
+                    if game[4] == '1':
+                        team_location_wlp = stat[2]
+                    else:
+                        team_location_wlp = stat[3]
+                if stat[0] == game[3]:
+                    if game[4] == '0':
+                        opponent_location_wlp = stat[2]
+                    else:
+                        opponent_location_wlp = stat[3]
+
+            game = [game[0], game[1], year[0], game[2], game[3], game[4], None, None, None, game[8], game[9],
+                    pitcher_wlp, pitcher_era, pitcher_whip, pitcher_fip, game[14], opp_pitcher_wlp, opp_pitcher_era,
+                    opp_pitcher_whip, opp_pitcher_fip, team_location_wlp, opponent_location_wlp, None]
 
             gamelog.append(game)
 

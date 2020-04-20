@@ -8,7 +8,7 @@ now = datetime.datetime.now()
 directory = 'regression/testing/'
 filename = directory + now.strftime('test-results_%d-%m-%Y--%H-%M-%S.log')
 minimum_year = 2012
-num_of_training_years = 3
+num_of_training_years = 5
 
 
 def write_evalutated_results(file, results):
@@ -66,7 +66,7 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
     # simplifed_predict_gamelog = simplifed_gamelog_builder(testing_year, [team])
     testing_predict_gamelog = testing_gamelog_builder(prior_year, testing_year, [team])
     training_gamelog = gamelog_builder(training_years, teams)
-    prior_gamelog = gamelog_builder(prior_year, teams)
+    prior_gamelog = gamelog_builder(prior_year, [team])
 
     # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
     data, df = build_data(training_predict_gamelog, testing_predict_gamelog, training_gamelog)
@@ -235,7 +235,7 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
 
     census = []
     for i in range(len(predictions_LR)):
-        sums = predictions_LR[i] + predictions_SVC[i] + predictions_KNC[i] + predictions_RFC[i] + predictions_XGB[i]
+        sums = predictions_LR[i] + predictions_SVC[i] + predictions_KNC[i] + predictions_RFC[i] + predictions_LR_p[i]
         if sums > 2:
             census.append(1)
         else:
@@ -374,8 +374,8 @@ def test():
 def main():
     """ Main """
     # int 'year', list [str 'names']
-    execute_season_bo5(2019, teams)
-    # execute_season_bo1(2019, ['TOR'], ML_algorithms[2])
+    # execute_season_bo5(2019, ['WSN'])
+    execute_season_bo1(2019, teams, ML_algorithms[5])
 
 
 # Call main
