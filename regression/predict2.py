@@ -14,7 +14,7 @@ from sklearn.metrics import f1_score
 from time import time
 
 # Database related imports
-from teamdata.seasonstats import *
+from teamdata.seasonstats2 import *
 import sqlite3 as sql
 
 # Variables
@@ -30,10 +30,9 @@ filenameRFC = sav_directory + 'RFC.sav'
 filenameXGB = sav_directory + 'XGB.sav'
 filenameLR_p = sav_directory + 'LR_p.sav'
 
-features = ['num', 'date', 'hometeam', 'awayteam', 'runshome', 'runsaway', 'innings', 'day',
-            'homepitcher', 'home_wlp', 'home_era', 'home_whip', 'home_fip',
-            'awaypitcher', 'away_wlp', 'away_era', 'away_whip', 'away_fip',
-            'winner']
+features = ['num', 'date', 'team', 'opponent', 'home', 'runs', 'runsallowed', 'innings', 'day', 'pitcher',
+            'pitcher_wlp', 'pitcher_era', 'pitcher_whip', 'pitcher_fip', 'opp_pitcher', 'opp_pitcher_wlp',
+            'opp_pitcher_era', 'opp_pitcher_whip', 'opp_pitcher_fip', 'win']
 
 
 def train_classifier(clf, x_train, y_train):
@@ -89,9 +88,19 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     df = df.fillna(df.mean())
     del df['num']
     del df['date']
-    del df['runshome']
-    del df['runsaway']
-    del df['innings']
+    #del df['day']
+    #del df['home']
+    #del df['innings']
+    #del df['runs']
+    #del df['runsallowed']
+    del df['pitcher_wlp']
+    #del df['pitcher_era']
+    del df['pitcher_fip']
+    del df['pitcher_whip']
+    del df['opp_pitcher_wlp']
+    #del df['opp_pitcher_era']
+    del df['opp_pitcher_whip']
+    del df['opp_pitcher_fip']
     # TODO test the effects of removing 'del df['date']
     df = pd.get_dummies(df, drop_first=True)
 
@@ -101,7 +110,7 @@ def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  #
     df_train = df.iloc[:training_size]
     df_predict = df.iloc[training_size:training_size+predict_size]
 
-    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('winner_home', axis=1), df_train['winner_home'],
+    x_train, x_test, y_train, y_test = train_test_split(df_train.drop('win_1', axis=1), df_train['win_1'],
                                                         random_state=42)
     return [x_train, x_test, y_train, y_test], df_predict
 
@@ -208,12 +217,8 @@ def gamelog_builder(gamelog_years, included_teams):
             # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
             # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
-                game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7],
-                        # game[8].replace(u'\xa0', u' '),
-                        # game[13].replace(u'\xa0', u' '), (game[9]-game[14]), (game[10]-game[15]), (game[11]-game[16]), (game[12]-game[17]),
-                        game[8].replace(u'\xa0', u' '), game[9], game[10], game[11], game[12],
-                        game[13].replace(u'\xa0', u' '), game[14], game[15], game[16], game[17],
-                        game[18]]
+                game = [game[0], game[1], game[2], game[3], game[4], game[5], game[6], game[7], game[8], game[9], game[10],
+                        game[11], game[12], game[13], game[14], game[15], game[16], game[17], game[18], game[19]]
 
                 gamelog.append(game)
 
@@ -246,12 +251,9 @@ def simplifed_gamelog_builder(gamelog_years, included_teams):
             # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
             # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
             for game in schedule:
-                game = [None, game[1], game[2], game[3], None, None, None, game[7],
-                        # game[8].replace(u'\xa0', u' '),
-                        # game[13].replace(u'\xa0', u' '), (game[9]-game[14]), (game[10]-game[15]), (game[11]-game[16]), (game[12]-game[17]),
-                        game[8].replace(u'\xa0', u' '), None, None, None, None,
-                        game[13].replace(u'\xa0', u' '), None, None, None, None,
-                        None]
+                game = [game[0], game[1], game[2], game[3], game[4], None, None, None, game[8], game[9],
+                        None, None, None, None, game[14], None, None, None, None, None]
+                       # game[10], game[11], game[12], game[13], game[14], game[15], game[16], game[17], game[18], None]
 
                 gamelog.append(game)
 
@@ -290,35 +292,26 @@ def testing_gamelog_builder(prior_year, year, included_teams):
         # num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_era,
         # homepitcher_whip, awaypitcher, awaypitcher_era, awaypitcher_whip, winner
         for i in range(len(schedule)):
-            homepitcher_wlp = awaypitcher_wlp = 0.500
-            homepitcher_era = awaypitcher_era = 4.5
-            homepitcher_whip = awaypitcher_whip = 1.300
-            homepitcher_fip = awaypitcher_fip = 4.5
-            homepitcher_name = schedule[i][8]
+            pitcher_wlp = opp_pitcher_wlp = 0.500
+            pitcher_era = opp_pitcher_era = 4.5
+            pitcher_whip = opp_pitcher_whip = 1.300
+            pitcher_fip = opp_pitcher_fip = 4.5
+            pitcher_name = schedule[i][9]
             for game in prior_schedule:
-                if game[8] == homepitcher_name:
-                    homepitcher_wlp = game[9]
-                    homepitcher_era = game[10]
-                    homepitcher_whip = game[11]
-                    homepitcher_fip = game[12]
-            awaypitcher_name = schedule[i][13]
+                if game[9] == pitcher_name:
+                    pitcher_wlp = game[10]
+                    pitcher_era = game[11]
+                    pitcher_whip = game[12]
+                    pitcher_fip = game[13]
+            awaypitcher_name = schedule[i][14]
             for game in prior_schedule:
-                if game[8] == awaypitcher_name:
-                    awaypitcher_wlp = game[9]
-                    awaypitcher_era = game[10]
-                    awaypitcher_whip = game[11]
-                    awaypitcher_fip = game[12]
-            game = [None, schedule[i][1], schedule[i][2], schedule[i][3], None, None, None, schedule[i][7],
-                    schedule[i][8].replace(u'\xa0', u' '), prior_schedule[i][9], prior_schedule[i][10], prior_schedule[i][11], prior_schedule[i][12],
-                    schedule[i][13].replace(u'\xa0', u' '), prior_schedule[i][14], prior_schedule[i][15], prior_schedule[i][16], prior_schedule[i][17],
-                    None]
-        #for game in schedule:
-        #     game = [None, game[1], game[2], game[3], None, None, None, game[7],
-                    # game[8].replace(u'\xa0', u' '),
-                    # game[13].replace(u'\xa0', u' '), (game[9]-game[14]), (game[10]-game[15]), (game[11]-game[16]), (game[12]-game[17]),
-            #         game[8].replace(u'\xa0', u' '), None, None, None, None,
-            #         game[13].replace(u'\xa0', u' '), None, None, None, None,
-            #         None]
+                if game[9] == awaypitcher_name:
+                    opp_pitcher_wlp = game[10]
+                    opp_pitcher_era = game[11]
+                    opp_pitcher_whip = game[12]
+                    opp_pitcher_fip = game[13]
+            game = [game[0], game[1], game[2], game[3], game[4], None, None, None, game[8], game[9],
+                    pitcher_wlp, pitcher_era, pitcher_whip, pitcher_fip, game[14], opp_pitcher_wlp, opp_pitcher_era, opp_pitcher_whip, opp_pitcher_fip, None]
 
             gamelog.append(game)
 

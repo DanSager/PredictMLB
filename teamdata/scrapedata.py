@@ -252,7 +252,7 @@ def extract_data():
                     for season in awaypitcher_seasons:
                         season_num_container = season.findAll("th", {"data-stat": "year_ID"})
                         season_num = season_num_container[0].text
-                        if season_num == previous_year:
+                        if season_num == year:
                             wlp_container = season.findAll("td", {"data-stat": "win_loss_perc"})
                             wlp = wlp_container[0].text
                             if wlp == "" or wlp == "inf":
@@ -277,7 +277,7 @@ def extract_data():
                 except:
                     print("There was an error for team " + team + " with year " + year + ", game number " + num)
 
-                # -- writing essential game data -- #
+                # Writing essential game data
                 game_data = GameSchedule(num, date, hometeam, awayteam, runshome, runsaway, innings, day,
                                          homepitcher, homepitcher_wlp, homepitcher_era, homepitcher_whip,
                                          homepitcher_fip, awaypitcher, awaypitcher_wlp, awaypitcher_era,
