@@ -14,28 +14,29 @@ class SeasonStats:
 
 
 class GameSchedule:
-    def __init__(self, num, date, hometeam, awayteam, runshome, runsaway, innings, day, homepitcher, homepitcher_wlp,
-                 homepitcher_era, homepitcher_whip, homepitcher_fip, awaypitcher, awaypitcher_wlp, awaypitcher_era,
-                 awaypitcher_whip, awaypitcher_fip, winner):
+    def __init__(self, num, date, team, opponent, home, runs, runsallowed, innings, day, pitcher, pitcher_wlp,
+                 pitcher_era, pitcher_whip, pitcher_fip, opp_pitcher, opp_pitcher_wlp, opp_pitcher_era,
+                 opp_pitcher_whip, opp_pitcher_fip, win):
         self.num = num
         self.date = date
-        self.hometeam = hometeam
-        self.awayteam = awayteam
-        self.runshome = runshome
-        self.runsaway = runsaway
+        self.team = team
+        self.opponent = opponent
+        self.home = home
+        self.runs = runs
+        self.runsallowed = runsallowed
         self.innings = innings
         self.day = day
-        self.homepitcher = homepitcher
-        self.homepitcher_wlp = homepitcher_wlp
-        self.homepitcher_era = homepitcher_era
-        self.homepitcher_whip = homepitcher_whip
-        self.homepitcher_fip = homepitcher_fip
-        self.awaypitcher = awaypitcher
-        self.awaypitcher_wlp = awaypitcher_wlp
-        self.awaypitcher_era = awaypitcher_era
-        self.awaypitcher_whip = awaypitcher_whip
-        self.awaypitcher_fip = awaypitcher_fip
-        self.winner = winner
+        self.pitcher = pitcher
+        self.pitcher_wlp = pitcher_wlp
+        self.pitcher_era = pitcher_era
+        self.pitcher_whip = pitcher_whip
+        self.pitcher_fip = pitcher_fip
+        self.opp_pitcher = opp_pitcher
+        self.opp_pitcher_wlp = opp_pitcher_wlp
+        self.opp_pitcher_era = opp_pitcher_era
+        self.opp_pitcher_whip = opp_pitcher_whip
+        self.opp_pitcher_fip = opp_pitcher_fip
+        self.win = win
 
 
 class WinLossSplit:
@@ -60,20 +61,21 @@ class Team:
 
 
 def insert_game(statsdb, statscursor, table, stat):
-    query = "INSERT INTO " + table + " VALUES (:num, :date, :hometeam, :awayteam, :runshome, :runsaway, :innings, " \
-                                     ":day, :homepitcher, :homepitcher_wlp, :homepitcher_era, :homepitcher_whip, " \
-                                     ":homepitcher_fip, :awaypitcher, :awaypitcher_wlp, :awaypitcher_era, " \
-                                     ":awaypitcher_whip, :awaypitcher_fip, :winner)"
+    query = "INSERT INTO " + table + " VALUES (:num, :date, :team, :opponent, :home, :runs, :runsallowed, " \
+                                     ":innings, " \
+                                     ":day, :pitcher, :pitcher_wlp, :pitcher_era, :pitcher_whip, " \
+                                     ":pitcher_fip, :opp_pitcher, :opp_pitcher_wlp, :opp_pitcher_era, " \
+                                     ":opp_pitcher_whip, :opp_pitcher_fip, :win)"
     with statsdb:
         statscursor.execute(query,
-                            {'num': stat.num, 'date': stat.date, 'hometeam': stat.hometeam, 'awayteam': stat.awayteam,
-                             'runshome': stat.runshome, 'runsaway': stat.runsaway,
-                             'innings': stat.innings, 'day': stat.day, 'homepitcher': stat.homepitcher,
-                             'homepitcher_wlp': stat.homepitcher_wlp, 'homepitcher_era': stat.homepitcher_era,
-                             'homepitcher_whip': stat.homepitcher_whip, 'homepitcher_fip': stat.homepitcher_fip,
-                             'awaypitcher': stat.awaypitcher, 'awaypitcher_wlp': stat.awaypitcher_wlp,
-                             'awaypitcher_era': stat.awaypitcher_era, 'awaypitcher_whip': stat.awaypitcher_whip,
-                             'awaypitcher_fip': stat.awaypitcher_fip, 'winner': stat.winner})
+                            {'num': stat.num, 'date': stat.date, 'team': stat.team, 'opponent': stat.opponent,
+                             'home': stat.home, 'runs': stat.runs, 'runsallowed': stat.runsallowed,
+                             'innings': stat.innings, 'day': stat.day, 'pitcher': stat.pitcher,
+                             'pitcher_wlp': stat.pitcher_wlp, 'pitcher_era': stat.pitcher_era,
+                             'pitcher_whip': stat.pitcher_whip, 'pitcher_fip': stat.pitcher_fip,
+                             'opp_pitcher': stat.opp_pitcher, 'opp_pitcher_wlp': stat.opp_pitcher_wlp,
+                             'opp_pitcher_era': stat.opp_pitcher_era, 'opp_pitcher_whip': stat.opp_pitcher_whip,
+                             'opp_pitcher_fip': stat.opp_pitcher_fip, 'win': stat.win})
 
 
 def insert_split(statsdb, statscursor, table, stat):
@@ -89,24 +91,25 @@ def insert_rival(statsdb, statscursor, table, stat):
 
 
 def update_game(statsdb, statscursor, table, stat):
-    query = "UPDATE " + table + " SET date = :date, hometeam = :hometeam, awayteam = :awayteam, " \
-                                "runshome = :runshome, runsaway = :runsaway, innings = :innings, " \
-                                "day = :day, homepitcher = :homepitcher, homepitcher_wlp = :homepitcher_wlp, " \
-                                "homepitcher_era = :homepitcher_era, homepitcher_fip = :homepitcher_fip, " \
-                                "homepitcher_whip = :homepitcher_whip, awaypitcher = :awaypitcher , " \
-                                "awaypitcher_wlp = :awaypitcher_wlp, awaypitcher_era = :awaypitcher_era, " \
-                                "awaypitcher_whip = :awaypitcher_whip, awaypitcher_fip = :awaypitcher_fip, " \
-                                "winner = :winner WHERE num = :num"
+    query = "UPDATE " + table + " SET date = :date, team = :team, opponent = :opponent, home = :home, " \
+                                "runs = :runs, runsallowed = :runsallowed, innings = :innings, " \
+                                "day = :day, pitcher = :pitcher, pitcher_wlp = :pitcher_wlp, " \
+                                "pitcher_era = :pitcher_era, pitcher_fip = :pitcher_fip, " \
+                                "pitcher_whip = :pitcher_whip, opp_pitcher = :opp_pitcher , " \
+                                "opp_pitcher_wlp = :opp_pitcher_wlp, opp_pitcher_era = :opp_pitcher_era, " \
+                                "opp_pitcher_whip = :opp_pitcher_whip, opp_pitcher_fip = :opp_pitcher_fip, " \
+                                "win = :win WHERE num = :num"
     with statsdb:
         statscursor.execute(query,
-                            {'num': stat.num, 'date': stat.date, 'hometeam': stat.hometeam, 'awayteam': stat.awayteam,
-                             'runshome': stat.runshome, 'runsaway': stat.runsaway, 'innings': stat.innings,
-                             'day': stat.day, 'homepitcher': stat.homepitcher, 'homepitcher_wlp': stat.homepitcher_wlp,
-                             'homepitcher_era': stat.homepitcher_era, 'homepitcher_whip': stat.homepitcher_whip,
-                             'homepitcher_fip': stat.homepitcher_fip, 'awaypitcher': stat.awaypitcher,
-                             'awaypitcher_wlp': stat.awaypitcher_wlp, 'awaypitcher_era': stat.awaypitcher_era,
-                             'awaypitcher_whip': stat.awaypitcher_whip, 'awaypitcher_fip': stat.awaypitcher_fip,
-                             'winner': stat.winner})
+                            {'num': stat.num, 'date': stat.date, 'team': stat.team, 'opponent': stat.opponent,
+                             'home': stat.home, 'runs': stat.runs, 'runsallowed': stat.runsallowed,
+                             'innings': stat.innings,
+                             'day': stat.day, 'pitcher': stat.pitcher, 'pitcher_wlp': stat.pitcher_wlp,
+                             'pitcher_era': stat.pitcher_era, 'pitcher_whip': stat.pitcher_whip,
+                             'pitcher_fip': stat.pitcher_fip, 'opp_pitcher': stat.opp_pitcher,
+                             'opp_pitcher_wlp': stat.opp_pitcher_wlp, 'opp_pitcher_era': stat.opp_pitcher_era,
+                             'opp_pitcher_whip': stat.opp_pitcher_whip, 'opp_pitcher_fip': stat.opp_pitcher_fip,
+                             'win': stat.win})
 
 
 def update_split(statsdb, statscursor, table, stat):
