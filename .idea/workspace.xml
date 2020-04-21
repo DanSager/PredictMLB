@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d19c1d49-083f-4daf-8813-f3e63a7346b7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression/setup.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Y2pB2h1qEzMmTERN37xnhGrgNb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/regression/control.py" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/regression" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.setup">
+    <configuration name="control" type="PythonConfigurationType" factoryName="Python">
+      <module name="PredictMLB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/control.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scrapedata" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="PredictMLB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/teamdata" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/teamdata/scrapedata.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python">
+      <module name="PredictMLB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.scrapedata" />
+      <item itemvalue="Python.control" />
+      <item itemvalue="Python.setup" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d19c1d49-083f-4daf-8813-f3e63a7346b7" name="Default Changelist" comment="" />
+      <created>1582150404812</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582150404812</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587415450413">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582220031818" />
+    <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582150477407" />
+    <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1586443497739" />
+    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1587415450413" />
+    <state x="889" y="464" width="586" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587396566318">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="678" y="353" width="627" height="398" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1052@67.27.1853.1052" timestamp="1582219974846" />
+    <state x="678" y="353" width="660" height="399" key="#com.intellij.fileTypes.FileTypeChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1586207685400" />
+    <state x="889" y="464" width="586" height="396" key="#com.intellij.fileTypes.FileTypeChooser/67.27.2493.1413@67.27.2493.1413" timestamp="1587396566318" />
+    <state width="1957" height="679" key="DebuggerActiveHint" timestamp="1587073410327">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1418" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1586455424835" />
+    <state width="1957" height="679" key="DebuggerActiveHint/67.27.2493.1413@67.27.2493.1413" timestamp="1587073410327" />
+    <state x="1432" y="362" width="309" height="516" key="EnvironmentVariablesDialog" timestamp="1587415427006">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="1432" y="362" width="309" height="516" key="EnvironmentVariablesDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1587415427006" />
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587409443025">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="776" y="302" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1582220030112" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582156124823" />
+    <state x="776" y="302" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586443496343" />
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1587409443025" />
+    <state width="2470" height="201" key="GridCell.Tab.0.bottom" timestamp="1587432525819">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="189" key="GridCell.Tab.0.bottom/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
+    <state width="1830" height="342" key="GridCell.Tab.0.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
+    <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="299" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
+    <state width="2470" height="201" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587432525819" />
+    <state width="2470" height="201" key="GridCell.Tab.0.center" timestamp="1587432525819">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="189" key="GridCell.Tab.0.center/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
+    <state width="1830" height="342" key="GridCell.Tab.0.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
+    <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="299" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
+    <state width="2470" height="201" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587432525819" />
+    <state width="2470" height="201" key="GridCell.Tab.0.left" timestamp="1587432525818">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="189" key="GridCell.Tab.0.left/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
+    <state width="1830" height="342" key="GridCell.Tab.0.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
+    <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="299" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
+    <state width="2470" height="201" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587432525818" />
+    <state width="2470" height="201" key="GridCell.Tab.0.right" timestamp="1587432525819">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="189" key="GridCell.Tab.0.right/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
+    <state width="1830" height="342" key="GridCell.Tab.0.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
+    <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
+    <state width="1830" height="299" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
+    <state width="2470" height="201" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587432525819" />
+    <state width="2470" height="581" key="GridCell.Tab.1.bottom" timestamp="1587425676847">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
+    <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
+    <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
+    <state width="2470" height="581" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
+    <state width="2470" height="581" key="GridCell.Tab.1.center" timestamp="1587425676847">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
+    <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
+    <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
+    <state width="2470" height="581" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
+    <state width="2470" height="581" key="GridCell.Tab.1.left" timestamp="1587425676846">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
+    <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
+    <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
+    <state width="2470" height="581" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.1.right" timestamp="1587425676847">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
+    <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
+    <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
+    <state width="2470" height="581" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
+    <state x="198" y="333" width="1016" height="738" key="SettingsEditor" timestamp="1586798519772">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="482" y="179" width="1016" height="738" key="SettingsEditor/67.27.1853.1052@67.27.1853.1052" timestamp="1582218522810" />
+    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582151683273" />
+    <state x="164" y="255" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1586441063484" />
+    <state x="198" y="333" key="SettingsEditor/67.27.2493.1413@67.27.2493.1413" timestamp="1586798519772" />
+    <state width="1246" height="708" key="XDebugger.FullValuePopup" timestamp="1587398286352">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1586469145825" />
+    <state width="1246" height="708" key="XDebugger.FullValuePopup/67.27.2493.1413@67.27.2493.1413" timestamp="1587398286352" />
+    <state x="653" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1586440682802">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="653" y="369" key="com.intellij.ide.util.TipDialog/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329455335" />
+    <state x="653" y="377" key="com.intellij.ide.util.TipDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582217583494" />
+    <state x="653" y="369" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1586440682802" />
+    <state x="1369" y="347" width="672" height="678" key="search.everywhere.popup" timestamp="1586793277925">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="1369" y="347" width="672" height="678" key="search.everywhere.popup/67.27.2493.1413@67.27.2493.1413" timestamp="1586793277925" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/regression/control.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/regression/predict.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
