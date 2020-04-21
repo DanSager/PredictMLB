@@ -408,7 +408,10 @@ def execute_season_bo5(year, forecast_teams):
 def main():
     """ Main """
     # execute_season_bo1(2019, ['ARI'], ML_algorithms[5])
-    execute_season_bo5(2019, ['BAL'])
+
+    execute_season_bo5(2017, teams)
+    execute_season_bo5(2018, teams)
+    execute_season_bo5(2019, teams)
 
 
 # Call main
