@@ -46,7 +46,7 @@ def write_evalutated_results(logfile, results):
         XGB_correct = XGB_correct + value[4][0]
         XGB_incorrect = XGB_incorrect + value[4][1]
         LR_p_correct = LR_p_correct + value[5][0]
-        LR_p_incorrect = LR_p_incorrect + value[6][1]
+        LR_p_incorrect = LR_p_incorrect + value[5][1]
         census_correct = census_correct + value[6][0]
         census_incorrect = census_incorrect + value[6][1]
 
