@@ -1,3 +1,5 @@
+""" Scrape webdata about various mlb teams via baseball-reference.com """
+
 from urllib.request import urlopen as ureq
 # pip install bs4
 from bs4 import BeautifulSoup as Soup
@@ -6,13 +8,17 @@ from teamdata.seasonstats import *
 
 import sqlite3 as sql
 
+# https://www.baseball-reference.com/teams/NYM/2012-schedule-scores.shtml
+# https://www.baseball-reference.com/players/s/syndeno01.shtml
+
 
 def extract_data():
+    """
+    Extract data from the baseball-reference.com reguarding team stats in addition to their pitchers.
+    """
     teams = ['ARI', 'ATL', 'BAL', 'BOS', 'CHC', 'CHW', 'CIN', 'CLE', 'COL', 'DET', 'HOU', 'KCR', 'LAA', 'LAD', 'MIA',
              'MIL', 'MIN', 'NYM', 'NYY', 'OAK', 'PHI', 'PIT', 'SDP', 'SEA', 'SFG', 'STL', 'TBR', 'TEX', 'TOR', 'WSN']
-    # years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
-    years = ['2016', '2017']
-    # teams = ['NYM']
+    years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
 
     for year in years:
 
@@ -45,7 +51,6 @@ def extract_data():
         for team in teams:
             myurl = 'https://www.baseball-reference.com/teams/' + team + "/" + year + '-schedule-scores.shtml'
             # https://www.baseball-reference.com/teams/NYM/2012-schedule-scores.shtml
-            # https://www.baseball-reference.com/teams/tgl.cgi?team=NYM&t=p&year=2019#all_team_pitching_gamelogs
 
             # opening statsdbection, grabbing page
             uClient = ureq(myurl)

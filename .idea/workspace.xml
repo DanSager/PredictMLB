@@ -3,17 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d19c1d49-083f-4daf-8813-f3e63a7346b7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression/human_sample.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression/human_sample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression/human_sample/danny-test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/regression/human_sample/danny-test1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/regression/control.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression/control.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/regression/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression/predict2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/regression/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/regression/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regression/setup2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/teamdata/scrapedata-withcsv.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/teamdata/scrapedata.py" beforeDir="false" afterPath="$PROJECT_DIR$/teamdata/scrapedata.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teamdata/scrapedata2.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/teamdata/seasonstats.py" beforeDir="false" afterPath="$PROJECT_DIR$/teamdata/seasonstats.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teamdata/seasonstats2.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +37,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/teamdata/scrapedata2 (3rd copy).py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/regression/control.py" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
@@ -53,19 +47,20 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.setup">
-    <configuration name="human" type="PythonConfigurationType" factoryName="Python">
+    <configuration name="control" type="PythonConfigurationType" factoryName="Python">
       <module name="PredictMLB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/human_sample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/regression/control.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,6 +75,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/teamdata" />
@@ -101,6 +97,7 @@
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="PYTHONDONTWRITEBYTECODE" value="1" />
       </envs>
       <option name="SDK_HOME" value="/usr/bin/python3.6" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -118,7 +115,7 @@
     </configuration>
     <list>
       <item itemvalue="Python.scrapedata" />
-      <item itemvalue="Python.human" />
+      <item itemvalue="Python.control" />
       <item itemvalue="Python.setup" />
     </list>
   </component>
@@ -136,13 +133,13 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587396943747">
+    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587415450413">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1052@67.27.1853.1052" timestamp="1582220031818" />
     <state x="451" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582150477407" />
     <state x="451" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1586443497739" />
-    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1587396943747" />
+    <state x="832" y="278" width="1519" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1587415450413" />
     <state x="889" y="464" width="586" height="396" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587396566318">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -154,73 +151,77 @@
     </state>
     <state width="1418" height="506" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1586455424835" />
     <state width="1957" height="679" key="DebuggerActiveHint/67.27.2493.1413@67.27.2493.1413" timestamp="1587073410327" />
-    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587182159375">
+    <state x="1432" y="362" width="309" height="516" key="EnvironmentVariablesDialog" timestamp="1587415427006">
+      <screen x="67" y="27" width="2493" height="1413" />
+    </state>
+    <state x="1432" y="362" width="309" height="516" key="EnvironmentVariablesDialog/67.27.2493.1413@67.27.2493.1413" timestamp="1587415427006" />
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl" timestamp="1587409443025">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state x="776" y="302" key="FileChooserDialogImpl/67.27.1853.1052@67.27.1853.1052" timestamp="1582220030112" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582156124823" />
     <state x="776" y="302" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1586443496343" />
-    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1587182159375" />
-    <state width="2470" height="468" key="GridCell.Tab.0.bottom" timestamp="1587408359811">
+    <state x="1021" y="396" width="424" height="484" key="FileChooserDialogImpl/67.27.2493.1413@67.27.2493.1413" timestamp="1587409443025" />
+    <state width="2470" height="581" key="GridCell.Tab.0.bottom" timestamp="1587425676846">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.bottom/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="2470" height="468" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587408359811" />
-    <state width="2470" height="468" key="GridCell.Tab.0.center" timestamp="1587408359811">
+    <state width="2470" height="581" key="GridCell.Tab.0.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.0.center" timestamp="1587425676846">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.center/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="2470" height="468" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587408359811" />
-    <state width="2470" height="468" key="GridCell.Tab.0.left" timestamp="1587408359811">
+    <state width="2470" height="581" key="GridCell.Tab.0.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.0.left" timestamp="1587425676846">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.left/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="2470" height="468" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587408359811" />
-    <state width="2470" height="468" key="GridCell.Tab.0.right" timestamp="1587408359811">
+    <state width="2470" height="581" key="GridCell.Tab.0.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.0.right" timestamp="1587425676846">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="189" key="GridCell.Tab.0.right/67.27.1853.1052/1920.0.960.540/2880.0.960.540@67.27.1853.1052" timestamp="1582329754205" />
     <state width="1830" height="342" key="GridCell.Tab.0.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="278" key="GridCell.Tab.0.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582160696648" />
     <state width="1830" height="299" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474579445" />
-    <state width="2470" height="468" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587408359811" />
-    <state width="2470" height="320" key="GridCell.Tab.1.bottom" timestamp="1587399507331">
+    <state width="2470" height="581" key="GridCell.Tab.0.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.1.bottom" timestamp="1587425676847">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.bottom/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="2470" height="320" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587399507331" />
-    <state width="2470" height="320" key="GridCell.Tab.1.center" timestamp="1587399507331">
+    <state width="2470" height="581" key="GridCell.Tab.1.bottom/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
+    <state width="2470" height="581" key="GridCell.Tab.1.center" timestamp="1587425676847">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.center/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="2470" height="320" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587399507331" />
-    <state width="2470" height="320" key="GridCell.Tab.1.left" timestamp="1587399507331">
+    <state width="2470" height="581" key="GridCell.Tab.1.center/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
+    <state width="2470" height="581" key="GridCell.Tab.1.left" timestamp="1587425676846">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827184" />
     <state width="1830" height="344" key="GridCell.Tab.1.left/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="2470" height="320" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587399507331" />
-    <state width="2470" height="320" key="GridCell.Tab.1.right" timestamp="1587399507331">
+    <state width="2470" height="581" key="GridCell.Tab.1.left/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676846" />
+    <state width="2470" height="581" key="GridCell.Tab.1.right" timestamp="1587425676847">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
     <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1052@67.27.1853.1052" timestamp="1582235827185" />
     <state width="1830" height="344" key="GridCell.Tab.1.right/67.27.1853.1053/1920.0.1920.1080@67.27.1853.1053" timestamp="1582157358231" />
     <state width="1830" height="342" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1586474524241" />
-    <state width="2470" height="320" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587399507331" />
+    <state width="2470" height="581" key="GridCell.Tab.1.right/67.27.2493.1413@67.27.2493.1413" timestamp="1587425676847" />
     <state x="198" y="333" width="1016" height="738" key="SettingsEditor" timestamp="1586798519772">
       <screen x="67" y="27" width="2493" height="1413" />
     </state>
@@ -248,14 +249,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/teamdata/scrapedata.py</url>
-          <line>266</line>
-          <option name="timeStamp" value="29" />
+          <url>file://$PROJECT_DIR$/regression/control.py</url>
+          <line>58</line>
+          <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/regression/setup.py</url>
-          <line>150</line>
-          <option name="timeStamp" value="111" />
+          <url>file://$PROJECT_DIR$/regression/predict.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="124" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

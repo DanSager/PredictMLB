@@ -1,19 +1,9 @@
-class SeasonStats:
-    """A sample stats class"""
-
-    def __init__(self, team, year):
-        self.team = team
-        self.year = year
-
-    @property
-    def email(self):
-        return '{}-{}@gmail.com'.format(self.team, self.year)
-
-    def __repr__(self):
-        return "SeasonStats('{}', '{}')".format(self.team, self.year)
+""" Contains function definitions for the sqlite database aswell as data structures to hold the data """
 
 
 class GameSchedule:
+    """ Holds all schedule related data """
+
     def __init__(self, num, date, team, opponent, home, runs, runsallowed, innings, day, pitcher, pitcher_wlp,
                  pitcher_era, pitcher_whip, pitcher_fip, opp_pitcher, opp_pitcher_wlp, opp_pitcher_era,
                  opp_pitcher_whip, opp_pitcher_fip, win):
@@ -40,6 +30,7 @@ class GameSchedule:
 
 
 class WinLossSplit:
+    """ Holds all winlosssplit related data """
     def __init__(self, team, overall, home, away):
         self.team = team
         self.overall = overall
@@ -48,19 +39,15 @@ class WinLossSplit:
 
 
 class Rival:
+    """ Holds all rival related data """
     def __init__(self, team, opp, overall):
         self.team = team
         self.opp = opp
         self.overall = overall
 
 
-class Team:
-    def __init__(self, team, year):
-        self.team = team
-        self.year = year
-
-
 def insert_game(statsdb, statscursor, table, stat):
+    """ Holds insert_game db related data """
     query = "INSERT INTO " + table + " VALUES (:num, :date, :team, :opponent, :home, :runs, :runsallowed, " \
                                      ":innings, " \
                                      ":day, :pitcher, :pitcher_wlp, :pitcher_era, :pitcher_whip, " \
@@ -79,18 +66,21 @@ def insert_game(statsdb, statscursor, table, stat):
 
 
 def insert_split(statsdb, statscursor, table, stat):
+    """ Holds insert_split db related data """
     query = "INSERT INTO " + table + " VALUES (:team, :overall, :home, :away)"
     with statsdb:
         statscursor.execute(query, {'team': stat.team, 'overall': stat.overall, 'home': stat.home, 'away': stat.away})
 
 
 def insert_rival(statsdb, statscursor, table, stat):
+    """ Holds insert_rival db related data """
     query = "INSERT INTO " + table + " VALUES (:team, :opp, :overall)"
     with statsdb:
         statscursor.execute(query, {'team': stat.team, 'opp': stat.opp, 'overall': stat.overall})
 
 
 def update_game(statsdb, statscursor, table, stat):
+    """ Holds update_game db related data """
     query = "UPDATE " + table + " SET date = :date, team = :team, opponent = :opponent, home = :home, " \
                                 "runs = :runs, runsallowed = :runsallowed, innings = :innings, " \
                                 "day = :day, pitcher = :pitcher, pitcher_wlp = :pitcher_wlp, " \
@@ -113,54 +103,63 @@ def update_game(statsdb, statscursor, table, stat):
 
 
 def update_split(statsdb, statscursor, table, stat):
+    """ Holds update_split db related data """
     query = "UPDATE " + table + " SET overall = :overall, home = :home, away = :away WHERE team = :team"
     with statsdb:
         statscursor.execute(query, {'team': stat.team, 'overall': stat.overall, 'home': stat.home, 'away': stat.away})
 
 
 def update_rival(statsdb, statscursor, table, stat):
+    """ Holds update_rival db related data """
     query = "UPDATE " + table + " SET overall = :overall WHERE team = :team AND opp = :opp"
     with statsdb:
         statscursor.execute(query, {'team': stat.team, 'opp': stat.opp, 'overall': stat.overall})
 
 
 def get_game_by_index(statscursor, table, index):
+    """ Holds get_game_by_index db related data """
     query = "SELECT * FROM " + table + " WHERE num=:num"
     statscursor.execute(query, {'num': index})
     return statscursor.fetchone()
 
 
 def get_split_by_team(statscursor, table, stat):
+    """ Holds get_split_by_team db related data """
     query = "SELECT * FROM " + table + " WHERE team=:team"
     statscursor.execute(query, {'team': stat.team})
     return statscursor.fetchone()
 
 
 def get_rival_by_team(statscursor, table, stat):
+    """ Holds get_rival_by_team db related data """
     query = "SELECT * FROM " + table + " WHERE team=:team AND opp=:opp"
     statscursor.execute(query, {'team': stat.team, 'opp': stat.opp})
     return statscursor.fetchone()
 
 
 def get_game_by_opp(statscursor, opp):
+    """ Holds get_game_by_opp db related data """
     # Bugged, needs work
     statscursor.execute("SELECT * FROM employee WHERE opp=:opp", {'opp': opp})
     return statscursor.fetchall()
 
 
 def get_win_loss_split(statscursor, table, stat):
+    """ Holds get_win_loss_split db related data """
     query = "SELECT * FROM " + table + " WHERE team=:team"
     statscursor.execute(query, {'team': stat.team})
     return statscursor.fetchone()
 
 
 def get_team_schedule(statscursor, table):
+    """ Holds get_team_schedule db related data """
     query = "SELECT * FROM " + table
     statscursor.execute(query)
     return statscursor.fetchall()
 
 
 def remove_game(statsdb, statscursor, table, index):
+    """ Holds remove_game db related data """
     query = "DELETE from " + table + " WHERE num = :num"
     with statsdb:
         statscursor.execute(query, {'num': index})
