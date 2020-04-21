@@ -1,7 +1,6 @@
 """ Support functions used to setup machine learning models as well as executing them """
 
 # Import statements
-import itertools
 import pickle
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
@@ -9,8 +8,6 @@ from sklearn.svm import SVC as SupportVectorClassification
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
 from time import time
 
 # Database related imports
@@ -36,7 +33,7 @@ features = ['season', 'team', 'opponent', 'home', 'runs', 'runsallowed', 'inning
             'opp_pitcher_era', 'opp_pitcher_whip', 'opp_pitcher_fip', 'team_loc_wlp', 'opp_loc_wlp', 'win']
 
 
-def train_classifier(clf, x_train, x_test, y_train, y_test):
+def train_classifier(clf, x_train, y_train):
     """ Train the classifer. """
     print("Training a " + clf.__class__.__name__ + " using a training set size of " + str(len(x_train)))
 
@@ -45,54 +42,51 @@ def train_classifier(clf, x_train, x_test, y_train, y_test):
     clf.fit(x_train, y_train)
     end = time()
 
-    print("Trained model in {:.4f} seconds".format(end - start) + '\n')
+    print("Trained classifier in {:.4f} seconds".format(end - start) + '\n')
 
 
-def build_data(predict_gamelog, simplifed_predict_gamelog, training_gamelog):  # x_train, x_test, y_train, y_test
-    """ Build the data used to fit the model, x_train, x_test, y_train, y_test """
+def build_data(prediction_gamelog, training_gamelog):
+    """
+    Build the data used to fit the model, x_train, x_test, y_train, y_test.
+    :param prediction_gamelog: list of list - Used to input feature values from test data. From build_testing_gamelog().
+    :param training_gamelog: list of list - Used to fit the data. From build_gamelog().
+    """
     training_size = len(training_gamelog)
-    predict_size = len(predict_gamelog)
-    temp = insert_gamelog(simplifed_predict_gamelog, training_gamelog)
-    temp = insert_gamelog(predict_gamelog, temp)
+    temp = insert_gamelog(prediction_gamelog, training_gamelog)
 
+    # Create dataframe from training_gamelog and predicition gamelog
     df = pd.DataFrame(temp, columns=features)
     df = df.fillna(df.mean())
-    #del df['day']
-    #del df['home']
+
+    # Remove unwanted feature. They lower accuracy. Overfitting?
     del df['innings']
     del df['runs']
     del df['runsallowed']
     del df['pitcher_wlp']
     del df['pitcher_era']
-    #del df['pitcher_whip']
-    #del df['pitcher_fip']
     del df['opp_pitcher_wlp']
     del df['opp_pitcher_era']
-    #del df['opp_pitcher_whip']
-    #del df['opp_pitcher_fip']
-    # TODO test the effects of removing 'del df['date']
+
     df = pd.get_dummies(df, drop_first=True)
 
-    # Remove the test game from the training data
-    # if 'winner_NA' in df.columns:
-    #     df = df.drop('winner_NA', axis=1)  # axis 0 is rows, axis 1 is columns
     df_train = df.iloc[:training_size]
-    df_predict = df.iloc[training_size:training_size+predict_size]
-    df_test = df.iloc[training_size+predict_size:]
+    df_test = df.iloc[training_size:]
 
-    # x_train, x_test, y_train, y_test = train_test_split(df_train.drop('win_1', axis=1), df_train['win_1'], random_state=42)
+    # x_train, x_test, y_train, y_test =
+    # train_test_split(df_train.drop('win_1', axis=1), df_train['win_1'], random_state=42)
+
     x_train = df_train.drop('win_1', axis=1)
     y_train = df_train['win_1']
     x_test = df_test.drop('win_1', axis=1)
     y_test = df_test['win_1']
-    return [x_train, x_test, y_train, y_test], df_predict
+    return [x_train, x_test, y_train, y_test], df_test
 
 
 def build_LR(data, file):
     """ Build logistic regression model """
     clf = LogisticRegression(solver='lbfgs', random_state=42, max_iter=25000)
 
-    train_classifier(clf, data[0], data[1], data[2], data[3])
+    train_classifier(clf, data[0], data[2])
 
     pickle.dump(clf, open(file, 'wb'))
     return clf
@@ -102,7 +96,7 @@ def build_SVC(data, file):
     """ Build support vector classifier """
     clf = SupportVectorClassification(random_state=42, kernel='rbf')
 
-    train_classifier(clf, data[0], data[1], data[2], data[3])
+    train_classifier(clf, data[0], data[2])
 
     pickle.dump(clf, open(file, 'wb'))
     return clf
@@ -112,7 +106,7 @@ def build_KNC(data, file):
     """ Build kneighbor classifier """
     clf = KNeighborsClassifier(n_neighbors=8)
 
-    train_classifier(clf, data[0], data[1], data[2], data[3])
+    train_classifier(clf, data[0], data[2])
 
     pickle.dump(clf, open(file, 'wb'))
     return clf
@@ -122,7 +116,7 @@ def build_RFC(data, file):
     """ Build random forest classifier """
     clf = RandomForestClassifier(random_state=42)
 
-    train_classifier(clf, data[0], data[1], data[2], data[3])
+    train_classifier(clf, data[0], data[2])
 
     pickle.dump(clf, open(file, 'wb'))
     return clf
@@ -132,13 +126,13 @@ def build_XGB(data, file):
     """ Build XGBoost classifier """
     clf = xgb.XGBClassifier(random_state=42, max_depth=6)
 
-    train_classifier(clf, data[0], data[1], data[2], data[3])
+    train_classifier(clf, data[0], data[2])
 
     pickle.dump(clf, open(file, 'wb'))
     return clf
 
 
-def load_model():
+def load_clfs():
     """ Load clfs from memory """
     try:
         LR = pickle.load(open(filenameLR, 'rb'))

@@ -1,4 +1,6 @@
 """ Setup prediction testing using predict.py """
+from sklearn.metrics import classification_report
+
 from regression.predict import *
 from time import time
 import datetime
@@ -11,8 +13,13 @@ minimum_year = 2012
 num_of_training_years = 2
 
 
-def write_evalutated_results(file, results):
-    """ Print the results of the machine learning test """
+def write_evalutated_results(logfile, results):
+    """
+    Print the overall results of all the machine learning classifiers
+    :param logfile: file - Used as a log file for past execution records.
+    :param results: list of list of int - contains assessed data for each classifier.
+           ex, [[LR_correct, LR_incorrect][SVC_correct, SVC_incorrect] etc..]
+    """
     LR_correct = 0
     LR_incorrect = 0
     SVC_correct = 0
@@ -43,54 +50,69 @@ def write_evalutated_results(file, results):
         census_correct = census_correct + value[6][0]
         census_incorrect = census_incorrect + value[6][1]
 
-    file.write("LogisticRegression, correct: " + str(LR_correct) + ", incorrect: " + str(LR_incorrect) +
-               ", percentage: " + str(LR_correct / (LR_correct + LR_incorrect)) + '\n')
-    file.write("State Vector Machine, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
-               ", percentage: " + str(SVC_correct / (SVC_correct + SVC_incorrect)) + '\n')
-    file.write("KNeighbor Classifier, correct: " + str(KNC_correct) + ", incorrect: " + str(KNC_incorrect) +
-               ", percentage: " + str(KNC_correct / (KNC_correct + KNC_incorrect)) + '\n')
-    file.write("Random Forest Classifier, correct: " + str(RFC_correct) + ", incorrect: " + str(RFC_incorrect) +
-               ", percentage: " + str(RFC_correct / (RFC_correct + RFC_incorrect)) + '\n')
-    file.write("XGBoost, correct: " + str(XGB_correct) + ", incorrect: " + str(XGB_incorrect) +
-               ", percentage: " + str(XGB_correct / (XGB_correct + XGB_incorrect)) + '\n')
-    file.write("LogisticRegression_prior, correct: " + str(LR_p_correct) + ", incorrect: " + str(LR_p_incorrect) +
-               ", percentage: " + str(LR_p_correct / (LR_p_correct + LR_p_incorrect)) + '\n')
-    file.write("Census, correct: " + str(census_correct) + ", incorrect: " + str(census_incorrect) +
-               ", percentage: " + str(census_correct / (census_correct + census_incorrect)) + '\n')
+    logfile.write("LogisticRegression, correct: " + str(LR_correct) + ", incorrect: " + str(LR_incorrect) +
+                  ", percentage: " + str(LR_correct / (LR_correct + LR_incorrect)) + '\n')
+    logfile.write("State Vector Machine, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
+                  ", percentage: " + str(SVC_correct / (SVC_correct + SVC_incorrect)) + '\n')
+    logfile.write("KNeighbor Classifier, correct: " + str(KNC_correct) + ", incorrect: " + str(KNC_incorrect) +
+                  ", percentage: " + str(KNC_correct / (KNC_correct + KNC_incorrect)) + '\n')
+    logfile.write("Random Forest Classifier, correct: " + str(RFC_correct) + ", incorrect: " + str(RFC_incorrect) +
+                  ", percentage: " + str(RFC_correct / (RFC_correct + RFC_incorrect)) + '\n')
+    logfile.write("XGBoost, correct: " + str(XGB_correct) + ", incorrect: " + str(XGB_incorrect) +
+                  ", percentage: " + str(XGB_correct / (XGB_correct + XGB_incorrect)) + '\n')
+    logfile.write("LogisticRegression_prior, correct: " + str(LR_p_correct) + ", incorrect: " + str(LR_p_incorrect) +
+                  ", percentage: " + str(LR_p_correct / (LR_p_correct + LR_p_incorrect)) + '\n')
+    logfile.write("Census, correct: " + str(census_correct) + ", incorrect: " + str(census_incorrect) +
+                  ", percentage: " + str(census_correct / (census_correct + census_incorrect)) + '\n')
 
 
-def predict_team_season_bo1(file, team, testing_year, training_years, prior_year, clf_name):
-    """ Predict the yearly win/loss for a team and check accuracy """
-    file.write("Executing predict_team_season_bo1\n")
-    training_predict_gamelog = build_gamelog([testing_year], [team])
-    testing_predict_gamelog = build_testing_gamelog(prior_year, testing_year, [team])
+def predict_season_bo1(logfile, team, training_years, previous_year, test_year, clf_name):
+    """
+    Predict the yearly win/loss for a team and check accuracy.
+    Using LR, SVC, KNC, RFC, XGB, and LR_p which updates after every game.
+    :param logfile: file - Used as a log file for past execution records.
+    :param team: str - which team's season is being simulated. ex, 'NYM'
+    :param training_years: str list - list of every year to be used to train the classifiers. ex, ['2017']
+    :param previous_year: str - indicates the previous year to the test year. For gamelog purposes. ex, '2017'
+    :param test_year: str - indicates the season being simulated. ex, '2018'
+    :param clf_name: str - specifies which ML_algorithm is being used. ex, 'LR'
+    """
+    logfile.write("Executing predict_season_bo1\n")
+
+    # Obtain gamelogs from the season databases
     training_gamelog = build_gamelog(training_years, teams)
-    prior_gamelog = build_gamelog([prior_year], [team])
+    previous_gamelog = build_gamelog([previous_year], [team])
+    prediction_gamelog_full = build_gamelog([test_year], [team])
+    prediction_gamelog_reduced = build_testing_gamelog(previous_year, test_year, [team])
 
-    # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
-    data, df = build_data(training_predict_gamelog, testing_predict_gamelog, training_gamelog)
-    data_p, df_p = build_data(training_predict_gamelog, testing_predict_gamelog, prior_gamelog)
+    # Obtain training and test data based on the game logs
+    if clf_name == ML_algorithms[5]:
+        data, df = build_data(prediction_gamelog_reduced, previous_gamelog)
+    else:
+        data, df = build_data(prediction_gamelog_reduced, training_gamelog)
 
-    # Load saved models
-    # LR, SVC, KNC, RFC, XGB, LR_p, = load_model()
+    # Load saved classifiers
+    # LR, SVC, KNC, RFC, XGB, LR_p, = load_clfs()
 
-    # Build new models
+    # Build classifier
     if clf_name == ML_algorithms[0]:
-        LR = build_LR(data, filenameLR)
+        clf = build_LR(data, filenameLR)
     elif clf_name == ML_algorithms[1]:
-        SVC = build_SVC(data, filenameSVC)
+        clf = build_SVC(data, filenameSVC)
     elif clf_name == ML_algorithms[2]:
-        KNC = build_KNC(data, filenameKNC)
+        clf = build_KNC(data, filenameKNC)
     elif clf_name == ML_algorithms[3]:
-        RFC = build_RFC(data, filenameRFC)
+        clf = build_RFC(data, filenameRFC)
     elif clf_name == ML_algorithms[4]:
-        XGB = build_XGB(data, filenameXGB)
-    elif clf_name == ML_algorithms[5]:
-        LR_p = build_LR(data_p, filenameLR_p)
+        clf = build_XGB(data, filenameXGB)
+    else:
+        clf = build_LR(data, filenameLR_p)
+
+    # print(classification_report(data[3], clf.predict(data[1])))
 
     # Gather real results - for comparison
     actual_results = []
-    for game in training_predict_gamelog:
+    for game in prediction_gamelog_full:
         if game[len(features) - 1] == '1':
             actual_results.append(1)
         else:
@@ -99,77 +121,77 @@ def predict_team_season_bo1(file, team, testing_year, training_years, prior_year
     print("Actual results: " + ('[%s]' % ', '.join(map(str, actual_results))))
 
     # Test Prediction
-    games_count = len(training_predict_gamelog)
+    games_count = len(prediction_gamelog_full)
     predictions = []
     if clf_name == ML_algorithms[4]:
         games = df.drop('win_1', axis=1)
-        predictions = XGB.predict(games)
+        predictions = clf.predict(games)
     else:
         for i in range(games_count):
 
             game = df.iloc[i].drop('win_1')
-            game_p = df_p.iloc[i].drop('win_1')
 
             try:
-                if clf_name == ML_algorithms[0]:
-                    prediction_LR = LR.predict([game])[:1]
-                    predictions.append(prediction_LR[0])
-                elif clf_name == ML_algorithms[1]:
-                    prediction_SVC = SVC.predict([game])[:1]
-                    predictions.append(prediction_SVC[0])
-                elif clf_name == ML_algorithms[2]:
-                    prediction_KNC = KNC.predict([game])[:1]
-                    predictions.append(prediction_KNC[0])
-                elif clf_name == ML_algorithms[3]:
-                    prediction_RFC = RFC.predict([game])[:1]
-                    predictions.append(prediction_RFC[0])
-                elif clf_name == ML_algorithms[5]:
-                    prediction_LR_p = LR_p.predict([game_p])[:1]
-                    predictions.append(prediction_LR_p[0])
+                prediction_SVC = clf.predict([game])[:1]
+                predictions.append(prediction_SVC[0])
             except ValueError as err:
-                print("ValueError with game: " + str(training_predict_gamelog[i]))
+                print("ValueError with game: " + str(prediction_gamelog_full[i]))
                 print("ValueError: {0}".format(err))
                 if clf_name == ML_algorithms[0]:
-                    LR = build_LR(data, filenameLR)
+                    clf = build_LR(data, filenameLR)
                 elif clf_name == ML_algorithms[1]:
-                    SVC = build_SVC(data, filenameSVC)
+                    clf = build_SVC(data, filenameSVC)
                 elif clf_name == ML_algorithms[2]:
-                    KNC = build_KNC(data, filenameKNC)
+                    clf = build_KNC(data, filenameKNC)
                 elif clf_name == ML_algorithms[3]:
-                    RFC = build_RFC(data, filenameRFC)
+                    clf = build_RFC(data, filenameRFC)
                 elif clf_name == ML_algorithms[5]:
-                    LR_p = build_LR(data_p, filenameLR_p)
+                    clf = build_LR(data, filenameLR_p)
                 continue
             except TypeError as err:
-                print("TypeError with game: " + str(training_predict_gamelog[i]))
+                print("TypeError with game: " + str(prediction_gamelog_full[i]))
                 print("TypeError: {0}".format(err))
 
-            # UPDATE DATA AFTER EVERY GAME
-            prior_gamelog.append(testing_predict_gamelog[i])
+            # Update data
+            previous_gamelog.append(prediction_gamelog_reduced[i])
             if clf_name == ML_algorithms[5]:
-                data_p, df_p = build_data(training_predict_gamelog, testing_predict_gamelog, prior_gamelog)
-                LR_p = build_LR(data_p, filenameLR_p)
+                data, df = build_data(prediction_gamelog_reduced, previous_gamelog)
+                clf = build_LR(data, filenameLR_p)
 
-    print("Predictions " + ('[%s]' % ', '.join(map(str, predictions))))
-    file.write(('[%s]' % ', '.join(map(str, predictions))) + '\n')
+    print("Predictions: " + ('[%s]' % ', '.join(map(str, predictions))))
+    logfile.write(('[%s]' % ', '.join(map(str, predictions))) + '\n')
     assess = assess_prediction(actual_results, predictions)
-    file.write(clf_name + " , correct: " + str(assess[0]) + ", incorrect: " + str(assess[1]) +
-               ", percentage: " + str(assess[0] / (assess[0] + assess[1])) + '\n')
+    logfile.write(clf_name + " , correct: " + str(assess[0]) + ", incorrect: " + str(assess[1]) +
+                  ", percentage: " + str(assess[0] / (assess[0] + assess[1])) + '\n')
     return assess
 
 
-def predict_team_season_bo5(file, team, testing_year, training_years, prior_year):
-    """ Predict the yearly win/loss for a team and check accuracy """
-    file.write("Executing predict_team_season_bo5\n")
-    training_predict_gamelog = build_gamelog(testing_year, [team])
-    testing_predict_gamelog = build_testing_gamelog(prior_year, testing_year, [team])
+def predict_season_bo5(logfile, team, training_years, previous_year, test_year):
+    """
+    Predict the yearly win/loss for a team and check accuracy.
+    Using LR, SVC, KNC, RFC, XGB, and LR_p which updates after every game.
+    :param logfile: file - Used as a log file for past execution records.
+    :param team: str - which team's season is being simulated. ex, 'NYM'
+    :param training_years: str list - list of every year to be used to train the classifiers. ex, ['2017']
+    :param previous_year: str - indicates the previous year to the test year. For gamelog purposes. ex, '2017'
+    :param test_year: str - indicates the season being simulated. ex, '2018'
+    """
+    logfile.write("Executing predict_season_bo5\n")
+
+    # Obtain gamelogs from the season databases
     training_gamelog = build_gamelog(training_years, teams)
-    prior_gamelog = build_gamelog([prior_year], [team])
+    previous_gamelog = build_gamelog([previous_year], [team])
+    prediction_gamelog_full = build_gamelog([test_year], [team])
+    prediction_gamelog_reduced = build_testing_gamelog(previous_year, test_year, [team])
 
-    # BUILD DATA WITHOUT UPDATING AFTER EVERY GAME
-    data, df = build_data(training_predict_gamelog, testing_predict_gamelog, training_gamelog)
-    data_p, df_p = build_data(training_predict_gamelog, testing_predict_gamelog, prior_gamelog)
+    # Obtain training and test data based on the game logs
+    data, df = build_data(prediction_gamelog_reduced, training_gamelog)
+    data_p, df_p = build_data(prediction_gamelog_reduced, previous_gamelog)
 
+    # Load saved classifiers
+    # LR, SVC, KNC, RFC, XGB, LR_p, = load_clfs()
+
+    # Build classifiers
     clf_LR = build_LR(data, filenameLR)
     clf_SVC = build_SVC(data, filenameSVC)
     clf_KNC = build_KNC(data, filenameKNC)
@@ -179,7 +201,7 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
 
     # Gather real results - for comparison
     actual_results = []
-    for game in training_predict_gamelog:
+    for game in prediction_gamelog_full:
         if game[len(features) - 1] == '1':
             actual_results.append(1)
         else:
@@ -188,7 +210,8 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
     print("Actual results: " + ('[%s]' % ', '.join(map(str, actual_results))))
 
     # Test Prediction
-    games_count = len(training_predict_gamelog)
+    games_count = len(prediction_gamelog_full)
+
     predictions_LR = []
     predictions_LR_p = []
     predictions_SVC = []
@@ -215,7 +238,7 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
             prediction_LR_p = clf_LR_p.predict([game_p])[:1]
             predictions_LR_p.append(prediction_LR_p[0])
         except ValueError as err:
-            print("ValueError with game: " + str(training_predict_gamelog[i]))
+            print("ValueError with game: " + str(prediction_gamelog_full[i]))
             print("ValueError: {0}".format(err))
             clf_LR = build_LR(data, filenameLR)
             clf_SVC = build_SVC(data, filenameSVC)
@@ -224,12 +247,12 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
             clf_LR_p = build_LR(data_p, filenameLR_p)
             continue
         except TypeError as err:
-            print("TypeError with game: " + str(training_predict_gamelog[i]))
+            print("TypeError with game: " + str(prediction_gamelog_full[i]))
             print("TypeError: {0}".format(err))
 
-        # UPDATE DATA AFTER EVERY GAME
-        prior_gamelog.append(training_predict_gamelog[i])
-        data_p, df_p = build_data(training_predict_gamelog, testing_predict_gamelog, prior_gamelog)
+        # Update data
+        previous_gamelog.append(prediction_gamelog_reduced[i])
+        data_p, df_p = build_data(prediction_gamelog_reduced, previous_gamelog)
         clf_LR_p = build_LR(data_p, filenameLR_p)
 
     census = []
@@ -242,80 +265,87 @@ def predict_team_season_bo5(file, team, testing_year, training_years, prior_year
 
     print(('[%s]' % ', '.join(map(str, predictions_LR))))
     assess_LR = assess_prediction(actual_results, predictions_LR)
-    file.write(ML_algorithms[0] + ", correct: " + str(assess_LR[0]) + ", incorrect: " + str(assess_LR[1]) +
-               ", percentage: " + str(assess_LR[0] / (assess_LR[0] + assess_LR[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_LR))) + "\n")
+    logfile.write(ML_algorithms[0] + ", correct: " + str(assess_LR[0]) + ", incorrect: " + str(assess_LR[1]) +
+                  ", percentage: " + str(assess_LR[0] / (assess_LR[0] + assess_LR[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_LR))) + "\n")
     print(('[%s]' % ', '.join(map(str, predictions_SVC))))
     assess_SVC = assess_prediction(actual_results, predictions_SVC)
-    file.write(ML_algorithms[1] + ", correct: " + str(assess_SVC[0]) + ", incorrect: " + str(assess_SVC[1]) +
-               ", percentage: " + str(assess_SVC[0] / (assess_SVC[0] + assess_SVC[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_SVC))) + "\n")
+    logfile.write(ML_algorithms[1] + ", correct: " + str(assess_SVC[0]) + ", incorrect: " + str(assess_SVC[1]) +
+                  ", percentage: " + str(assess_SVC[0] / (assess_SVC[0] + assess_SVC[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_SVC))) + "\n")
     print(('[%s]' % ', '.join(map(str, predictions_KNC))))
     assess_KNC = assess_prediction(actual_results, predictions_KNC)
-    file.write(ML_algorithms[2] + ", correct: " + str(assess_KNC[0]) + ", incorrect: " + str(assess_KNC[1]) +
-               ", percentage: " + str(assess_KNC[0] / (assess_KNC[0] + assess_KNC[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_KNC))) + "\n")
+    logfile.write(ML_algorithms[2] + ", correct: " + str(assess_KNC[0]) + ", incorrect: " + str(assess_KNC[1]) +
+                  ", percentage: " + str(assess_KNC[0] / (assess_KNC[0] + assess_KNC[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_KNC))) + "\n")
     print(('[%s]' % ', '.join(map(str, predictions_RFC))))
     assess_RFC = assess_prediction(actual_results, predictions_RFC)
-    file.write(ML_algorithms[3] + ", correct: " + str(assess_RFC[0]) + ", incorrect: " + str(assess_RFC[1]) +
-               ", percentage: " + str(assess_RFC[0] / (assess_RFC[0] + assess_RFC[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_RFC))) + "\n")
+    logfile.write(ML_algorithms[3] + ", correct: " + str(assess_RFC[0]) + ", incorrect: " + str(assess_RFC[1]) +
+                  ", percentage: " + str(assess_RFC[0] / (assess_RFC[0] + assess_RFC[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_RFC))) + "\n")
     print(('[%s]' % ', '.join(map(str, predictions_XGB))))
     assess_XGB = assess_prediction(actual_results, predictions_XGB)
-    file.write(ML_algorithms[4] + ", correct: " + str(assess_XGB[0]) + ", incorrect: " + str(assess_XGB[1]) +
-               ", percentage: " + str(assess_XGB[0] / (assess_XGB[0] + assess_XGB[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_XGB))) + "\n")
+    logfile.write(ML_algorithms[4] + ", correct: " + str(assess_XGB[0]) + ", incorrect: " + str(assess_XGB[1]) +
+                  ", percentage: " + str(assess_XGB[0] / (assess_XGB[0] + assess_XGB[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_XGB))) + "\n")
     print(('[%s]' % ', '.join(map(str, predictions_LR_p))))
     assess_LR_p = assess_prediction(actual_results, predictions_LR_p)
-    file.write(ML_algorithms[5] + ", correct: " + str(assess_LR_p[0]) + ", incorrect: " + str(assess_LR_p[1]) +
-               ", percentage: " + str(assess_LR_p[0] / (assess_LR_p[0] + assess_LR_p[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, predictions_LR_p))) + "\n")
+    logfile.write(ML_algorithms[5] + ", correct: " + str(assess_LR_p[0]) + ", incorrect: " + str(assess_LR_p[1]) +
+                  ", percentage: " + str(assess_LR_p[0] / (assess_LR_p[0] + assess_LR_p[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, predictions_LR_p))) + "\n")
     print(census)
     assess_census = assess_prediction(actual_results, census)
-    file.write("Census, correct: " + str(assess_census[0]) + ", incorrect: " + str(assess_census[1]) +
-               ", percentage: " + str(assess_census[0] / (assess_census[0] + assess_census[1])) + '\n')
-    file.write(('[%s]' % ', '.join(map(str, census))) + "\n")
+    logfile.write("Census, correct: " + str(assess_census[0]) + ", incorrect: " + str(assess_census[1]) +
+                  ", percentage: " + str(assess_census[0] / (assess_census[0] + assess_census[1])) + '\n')
+    logfile.write(('[%s]' % ', '.join(map(str, census))) + "\n")
     results = [assess_LR, assess_SVC, assess_KNC, assess_RFC, assess_XGB, assess_LR_p, assess_census]
     return results
 
 
-def execute_season_bo1(year, execute_teams, model_name):
-    """ Automate testing an entire past season to compare predicted results against the actual results """
+def execute_season_bo1(year, forecast_teams, clf_name):
+    """
+    Automate testing on an entire season, analyze predicted results against the real data.
+    bo1 meaning best of 1, or in other words, only using one desiginated classifier.
+    :param year: int - which year to execute for. ex, 2019
+    :param forecast_teams: str list - which team's seasons to simulate. ex, ['NYM']
+    :param clf_name: str - which classifier to use to predict with. Based of ML_algorithms list. ex, 'LR'
+    """
     # years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
     training_years = []
     for i in range(num_of_training_years):
         if year - i - 1 >= minimum_year:
             training_years.insert(0, str(year - i - 1))
+
     prior_year = str(year - 1)
     prediction_year = str(year)
     results = []
 
-    for team in execute_teams:
+    for team in forecast_teams:
         file = open(filename, "a")
 
         start = time()
-        result = predict_team_season_bo1(file, team, prediction_year, training_years, prior_year, model_name)
+        result = predict_season_bo1(file, team, training_years, prior_year, prediction_year, clf_name)
         end = time()
 
         file.write("Predicting for team: " + team + '\n')
-        file.write("Predicting with prediction year: " + ('[%s]' % ', '.join(map(str, prediction_year))) + '\n')
+        file.write("Predicting with prediction year: " + prediction_year + '\n')
         file.write("Predicting with training years: " + ('[%s]' % ', '.join(map(str, training_years))) + '\n')
-        file.write("Predicting with prior year: " + ('[%s]' % ', '.join(map(str, prior_year))) + '\n')
+        file.write("Predicting with prior year: " + prior_year + '\n')
 
         results.append(result)
 
         # Print the results
-        print("Predicted " + team + " season in {:.4f} seconds".format(end - start))
+        print("Predicted " + team + " season in {:.4f} seconds".format(end - start) + '\n')
         file.write("Predicted " + team + " season in {:.4f} seconds".format(end - start) + '\n\n')
         file.close()
 
     file = open(filename, "a")
-    if execute_teams == teams:
+    if forecast_teams == teams:
         file.write(
-            "Overall stats for " + model_name + ' ' + ('%s' % ', '.join(map(str, prediction_year))) + " season\n")
+            "Overall stats for " + clf_name + ' ' + prediction_year + " season\n")
     else:
-        file.write("Overall stats for " + model_name + ' ' + ('%s' % ', '.join(map(str, execute_teams))) + ' ' +
-                   ('%s' % ', '.join(map(str, prediction_year))) + " season\n")
+        file.write("Overall stats for " + clf_name + ' ' + ('%s' % ', '.join(map(str, forecast_teams))) + ' ' +
+                   prediction_year + " season\n")
 
     correct = 0
     incorrect = 0
@@ -323,15 +353,19 @@ def execute_season_bo1(year, execute_teams, model_name):
         correct = correct + value[0]
         incorrect = incorrect + value[1]
 
-    file.write(model_name + ", correct: " + str(correct) + ", incorrect: " + str(incorrect) +
-               ", percentage: " + str(correct / (correct + incorrect)) + '\n')
+    file.write(clf_name + ", correct: " + str(correct) + ", incorrect: " + str(incorrect) +
+               ", percentage: " + str(correct / (correct + incorrect)) + '\n\n')
 
     file.close()
 
 
-def execute_season_bo5(year, execute_teams):
-    """ Automate testing an entire past season to compare predicted results against the actual results """
-    # years = ['2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019']
+def execute_season_bo5(year, forecast_teams):
+    """
+    Automate testing on an entire season analyze predicted results against the real data.
+    bo5 meaning best of 5, or in other words, only using ML_algorithm[0-5] to come up with an overall census.
+    :param year: int - which year to execute for. ex, 2019
+    :param forecast_teams: str list - which team's seasons to simulate. ex, ['NYM'] or teams
+    """
     training_years = []
     for i in range(num_of_training_years):
         if year - i - 1 >= minimum_year:
@@ -340,17 +374,17 @@ def execute_season_bo5(year, execute_teams):
     prediction_year = str(year)
     results = []
 
-    for team in execute_teams:
+    for team in forecast_teams:
         file = open(filename, "a")
 
         start = time()
-        result = predict_team_season_bo5(file, team, prediction_year, training_years, prior_year)
+        result = predict_season_bo5(file, team, training_years, prior_year, prediction_year)
         end = time()
 
         file.write("Predicting for team: " + team + '\n')
-        file.write("Predicting with prediction year: " + ('[%s]' % ', '.join(map(str, prediction_year))) + '\n')
+        file.write("Predicting with prediction year: " + prediction_year + '\n')
         file.write("Predicting with training years: " + ('[%s]' % ', '.join(map(str, training_years))) + '\n')
-        file.write("Predicting with prior year: " + ('[%s]' % ', '.join(map(str, prior_year))) + '\n')
+        file.write("Predicting with prior year: " + prior_year + '\n')
 
         results.append(result)
 
@@ -360,30 +394,22 @@ def execute_season_bo5(year, execute_teams):
         file.close()
 
     file = open(filename, "a")
-    if execute_teams == teams:
-        file.write("Overall stats for " + ('%s' % ', '.join(map(str, prediction_year))) + " season\n")
+    if forecast_teams == teams:
+        file.write("Overall stats for " + prediction_year + " season\n")
     else:
-        file.write("Overall stats for " + ('%s' % ', '.join(map(str, execute_teams))) + ' ' +
-                   ('%s' % ', '.join(map(str, prediction_year))) + " season\n")
+        file.write("Overall stats for " + ('%s' % ', '.join(map(str, forecast_teams))) + ' ' +
+                   prediction_year + " season\n")
 
     write_evalutated_results(file, results)
 
     file.close()
 
 
-def test():
-    """ Test """
-    # print(classification_report(y_test, knc.predict(x_test)))
-    # print(roc_auc_score(y_test, knc.predict(x_test)))
-
-
 def main():
     """ Main """
-    # int 'year', list [str 'names']
-    execute_season_bo1(2019, ['ARI'], ML_algorithms[2])
-    # execute_season_bo5(2019, ['ARI'])
+    # execute_season_bo1(2019, ['ARI'], ML_algorithms[5])
+    execute_season_bo5(2019, ['BAL'])
 
 
 # Call main
 main()
-# test()
