@@ -52,7 +52,7 @@ def write_evalutated_results(logfile, results):
 
     logfile.write("LogisticRegression, correct: " + str(LR_correct) + ", incorrect: " + str(LR_incorrect) +
                   ", percentage: " + str(LR_correct / (LR_correct + LR_incorrect)) + '\n')
-    logfile.write("State Vector Machine, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
+    logfile.write("State Vector Classifier, correct: " + str(SVC_correct) + ", incorrect: " + str(SVC_incorrect) +
                   ", percentage: " + str(SVC_correct / (SVC_correct + SVC_incorrect)) + '\n')
     logfile.write("KNeighbor Classifier, correct: " + str(KNC_correct) + ", incorrect: " + str(KNC_incorrect) +
                   ", percentage: " + str(KNC_correct / (KNC_correct + KNC_incorrect)) + '\n')
@@ -189,7 +189,7 @@ def predict_season_bo5(logfile, team, training_years, previous_year, test_year):
     data_p, df_p = build_data(prediction_gamelog_reduced, previous_gamelog)
 
     # Load saved classifiers
-    # LR, SVC, KNC, RFC, XGB, LR_p, = load_clfs()
+    # clf_LR, clf_SVC, clf_KNC, clf_RFC, clf_XGB, clf_LR_p, = load_clfs()
 
     # Build classifiers
     clf_LR = build_LR(data, filenameLR)
@@ -407,11 +407,8 @@ def execute_season_bo5(year, forecast_teams):
 
 def main():
     """ Main """
-    # execute_season_bo1(2019, ['ARI'], ML_algorithms[5])
-
-    execute_season_bo5(2017, teams)
-    execute_season_bo5(2018, teams)
-    execute_season_bo5(2019, teams)
+    # execute_season_bo1(2019, ['ARI'], ML_algorithms[2])
+    execute_season_bo5(2019, ['ARI'])
 
 
 # Call main

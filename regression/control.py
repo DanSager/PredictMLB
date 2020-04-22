@@ -93,5 +93,5 @@ def assess_file(name):
 
 
 # main
-main(2019, 'ARI', 'dad')
+main(2019, 'ARI', 'test3')
 # assess_file('test2')

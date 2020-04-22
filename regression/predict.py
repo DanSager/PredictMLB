@@ -4,7 +4,7 @@
 import pickle
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC as SupportVectorClassification
+from sklearn.svm import SVC as SupportVectorClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
@@ -94,7 +94,7 @@ def build_LR(data, file):
 
 def build_SVC(data, file):
     """ Build support vector classifier """
-    clf = SupportVectorClassification(random_state=42, kernel='rbf')
+    clf = SupportVectorClassifier(random_state=42, kernel='rbf')
 
     train_classifier(clf, data[0], data[2])
 
